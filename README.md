@@ -132,32 +132,33 @@ I am interested in _**multi-disciplinary projects**_ that allows me to collabora
 
 -------------------------------------------------------------------------------------------------------------------------------------------
 
-Robert Kelly
 
-kelly2rb@mail.uc.edu | (513) 893-6970
 
-Co-op Work Experience
+Paper View
+**Robert Kelly**
+**kelly2rb@mail.uc.edu** | **(513) 893-6970**
 
-Developer, FOX Sports, Blue Ash, Ohio (3 semesters)
-Worked on Android Mobile Player Framework team as a software developer
-Implemented customizable closed captions feature for Android video player that increased accessibility for millions of users
-Implemented new user interface on Android video player that allowed for better ease of use on the application
-Created and implemented automated test cases for the video player to more easily ensure that the application was running correctly
-QA Engineer, FOX Sports, Blue Ash, Ohio (1 semester)
-Collaborated with 9 software developers to test new features and bug fixes being implemented into new versions of the FOX Sports iOS mobile application
-Created and executed various automated test cases on the mobile application to ensure proper functionality
-Discovered and reported various bugs and defects that would occur in the application
-Software Skills
+**Co-op Work Experience**
+* Developer, FOX Sports, Blue Ash, Ohio (3 semesters)
+    *  Worked on Android Mobile Player Framework team as a software developer
+    * Implemented customizable closed captions feature for Android video player that increased accessibility for millions of users
+    * Implemented new user interface on Android video player that allowed for better ease of use on the application
+    * Created and implemented automated test cases for the video player to more easily ensure that the application was running correctly
+* QA Engineer, FOX Sports, Blue Ash, Ohio (1 semester)
+    * Collaborated with 9 software developers to test new features and bug fixes being implemented into new versions of the FOX Sports iOS mobile application
+    * Created and executed various automated test cases on the mobile application to ensure proper functionality
+    * Discovered and reported various bugs and defects that would occur in the application
 
-Programming
-Fluent in Java, Kotlin, Swift, SQL
-Experienced with C++, Rust, MATLAB, LabVIEW, C#, C, Javascript, Typescript, HTML
-Operating Systems
-Fluent in MacOS, Windows
-Experienced with Linux
-Fluent with all Microsoft Office and Google applications
-Desired Project
+**Software Skills**
+* Programming
+    * Fluent in Java, Kotlin, Swift, SQL
+    * Experienced with C++, Rust, MATLAB, LabVIEW, C#, C, Javascript, Typescript, HTML
+* Operating Systems
+    * Fluent in MacOS, Windows
+    * Experienced with Linux
+* Fluent with all Microsoft Office and Google applications
 
-Turn-based strategy game using a game engine, such as Unity or Unreal Engine 5
-Desktop website extension where a user can highlight/select a word on any website and either look up a definition for said word, or translate the word to a language of the user's choosing
-Mobile application that allows for users to input exercise equipment available to them, as well as workout goals and other important information (such as dietary goals and exercises to avoid). This information will allow for the application to build a relatively-customizable workout regiment for them, as well as tutorials on how to do each lift, and the ability to log their progress
+**Desired Project**
+* Turn-based strategy game using a game engine, such as Unity or Unreal Engine 5
+* Desktop website extension where a user can highlight/select a word on any website and either look up a definition for said word, or translate the word to a language of the user's choosing
+* Mobile application that allows for users to input exercise equipment available to them, as well as workout goals and other important information (such as dietary goals and exercises to avoid). This information will allow for the application to build a relatively-customizable workout regiment for them, as well as tutorials on how to do each lift, and the ability to log their progress
