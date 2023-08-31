@@ -132,10 +132,8 @@ I am interested in _**multi-disciplinary projects**_ that allows me to collabora
 
 -------------------------------------------------------------------------------------------------------------------------------------------
 
-
-
-Paper View
 **Robert Kelly**
+
 **kelly2rb@mail.uc.edu** | **(513) 893-6970**
 
 **Co-op Work Experience**
