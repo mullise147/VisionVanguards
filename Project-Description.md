@@ -1,5 +1,7 @@
-team name
+Vision Vanguards
 
-listing of all team members with majors and email addresses
+Stephanie Mullins (computer science) - mullise@mail.uc.edu 
+Athulya Ganesh (computer science) - 
+Rob Kelly (computer science) - 
 
-project topic area
+Computer vision application within a website
