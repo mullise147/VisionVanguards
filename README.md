@@ -92,3 +92,38 @@ On-Campus Experiences: Resident Advisor at UPA, Former Desk Assistant, Former Le
 I am actively seeking a challenging capstone project that allows me to leverage my strong foundation in computer science and software engineering. I am particularly interested in projects that involve innovative technology solutions, require a mix of technical and problem-solving skills, and have a positive impact on users and society. My diverse experience in software development, web applications, and embedded systems makes me well-equipped to contribute to projects that require a holistic approach to problem-solving and teamwork. I am excited to collaborate on projects that push the boundaries of technology and provide meaningful learning opportunities.
 
 I am interested in _**multi-disciplinary projects**_ that allows me to collaborate with a whole host of other engineers to create a solution to a real-world problem. 
+
+## Stephanie Mullins Professional Biography
+
+## Contact Information
+- **Email:** mullise@mail.uc.edu
+
+## Co-op Work Experience
+
+### Researcher
+#### Infoscitex, Dayton, Ohio (1 co-op quarter, 1 internship before starting co-ops)
+- Worked on creating an autonomous navigation rc car.
+- Created an object detection and object recognition program for the car.
+- Used Raspberry Pi, Python, OpenCV.
+  
+### Researcher
+#### Infoscitex, Dayton, Ohio (1 co-op quarter)
+- Worked on researching the best machine learning model and feature set for an automated acoustic classification of vehicles system.
+- Compared model-feature sets to determine which gave the least amount of overfitting.
+- Models used: k-nearest neighbor, support vector machine, random forest classifier.
+- Feature sets used: short-time fourier transform, mel-frequency cepstral coefficients, gammastone frequency cepstral coefficients.
+- Used Python, Scikit-Learn, Librosa, Pywt, PyAudioProcessing.
+  
+### Full-stack Development
+#### Siemens, Mason, Ohio (2 quarters)
+- Created an internal website to display data and analytics.
+- Used ReactJs, Flask, MongoDB, Python, MySQL, FastAPI, and Docker.
+  
+### Software Engineer
+#### Radiance Technologies, Dayton, Ohio (1 quarter)
+- Create features and fix bugs for a website revamp.
+- Used Typescript, React, Docker, Git, Kubernetes, NodeJS, VSCode Debugging, MongoDB, ElasticSearch.
+  
+## Project Sought/ Areas of Interest
+- Computer Vision
+- Full-stack Development
