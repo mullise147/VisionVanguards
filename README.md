@@ -5,6 +5,8 @@ Stephanie Mullins
 
 # Professional Biography
 
+## ATHULYA GANESH
+
 ## Contact Information
 
 - **Email:** athulya.ganesh2001@gmail.com or LNUAS@mail.uc.edu
