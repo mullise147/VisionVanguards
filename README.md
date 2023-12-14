@@ -128,7 +128,9 @@ View here: https://docs.google.com/presentation/d/1YJ9hlBPG063lpFqUt1tHlmXG1a-g_
 
 [Link to Stephanie's Essay](Assignments/Stephanie%20Mullins%20Capstone.md)
 [Link to Rob's Essay](Assignments/Rob%20Kelly%20Capstone.md)
-[Link to Athulya's Essay](Assignments/Athulya%20Ganesh%20Capstone.md) 
+[Link to Athulya's Essay](Assignments/Athulya%20Ganesh%20Capstone.md)
+
+[Link to deployed website](vision-vanguards.vercel.app)
 
 ## Professional Biographies
 [Link to our Biographies](Biographies.md)
