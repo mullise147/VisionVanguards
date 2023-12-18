@@ -1,3 +1,58 @@
-body {
-    font-family: 'Turret Road';
-}
+  body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Turret Road'; 
+    color: white; 
+  }
+  
+  body {
+    font-family: 'Turret Road'; 
+  }
+
+  button {
+    font-family: 'Turret Road'; 
+  }
+  
+  .landing-page-top {
+    background-image: url("../images/landing.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column; /* Ensures child elements stack vertically */
+    align-items: center;
+    justify-content: center;
+  }
+  
+  h1 {
+    font-size: 80px;
+    margin-top: 20px; /* Adjust the margin as needed */
+  }
+
+  p {
+    font-size: 20px; 
+  }
+
+  /* Add this to your existing CSS */
+
+.blue-button {
+    background-color: #0073D8;
+    color: white;
+    border: none;
+    padding: 20px 40px; /* Adjust padding as needed */
+    border-radius: 51px;
+    font-size: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add a smooth transition effect */
+  
+    /* Additional styling for hover state */
+    &:hover {
+      background-color: #005AAB; /* Darker shade on hover, adjust as needed */
+    }
+  
+    /* Additional styling for active/clicked state */
+    &:active {
+      background-color: #003875; /* Even darker shade on click, adjust as needed */
+    }
+  }
+  
