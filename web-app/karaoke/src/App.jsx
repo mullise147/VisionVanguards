@@ -4,7 +4,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import LandingPage from "../src/components/LandingPage"; 
+import Landing from "../src/components/Landing"; 
 import Account from "../src/components/Account"; 
 import Leaderboard from "../src/components/Leaderboard"; 
 import Search from "../src/components/Search";
@@ -16,7 +16,7 @@ function App() {
     <>
      <Router>
             <Routes>
-              <Route index element={<LandingPage />} />
+              <Route index element={<Landing />} />
               <Route path="/account" element={<Account />} />
               <Route path="/leaderboard" element={<Leaderboard />} />
               <Route path="/songsearch" element={<Search/>} />

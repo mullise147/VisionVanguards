@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import "../../src/index.css"; 
-import Footer from "../components/Footer"; 
-import About from "../components/About"; 
+import "../../assets/styles/landing_page.css"; 
+import "../../index.css"; 
 
 class LandingPage extends Component {
   render() {
@@ -12,12 +11,11 @@ class LandingPage extends Component {
           <br />
           <p>Unleash your inner star: Dance, Sing, and Shine with Karaoke Magic!</p>
           <br />
+          <br></br>
           <button className="blue-button" onClick={() => (window.location.href = "/account")}>
             GET STARTED &rarr;
           </button>
         </div>
-        <About/>
-        <Footer/>
         </>
     );
   }
