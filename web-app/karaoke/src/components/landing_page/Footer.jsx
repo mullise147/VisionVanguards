@@ -12,6 +12,7 @@ const Footer = () => {
       <div className="footer-content">
         <br></br>
         <br></br>
+        <br></br>
         <p style={footerStyle}>Developed by: The Vision Vanguards</p>
         <ul>
           <li><a href="mailto:lnuas@mail.uc.edu">Athulya Ganesh</a></li>

@@ -21,41 +21,56 @@ class About extends Component {
         </p>
         <h2>MEET THE TEAM</h2>
         <Row gutter={[110, 110]}>
+
           <Col span={6}>
-            <Card
-              hoverable
-              style={{ width: 320 }}
-              cover={<img alt="example" src= {Pic} />}
-            >
-              <Meta title="Athulya Ganesh" description="In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available." />
-            </Card>
+          <Card
+          hoverable
+          style={{ width: 320 }}
+          cover={<img alt="example" src={Pic} />}
+          >
+        <Meta
+        title={<span className="card-title">Athulya Ganesh</span>}
+        description={<span className="card-description">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.</span>}
+        />
+        </Card>
+        </Col>
+
+          <Col span={6}>
+             <Card
+          hoverable
+          style={{ width: 320 }}
+          cover={<img alt="example" src={Pic} />}
+          >
+        <Meta
+        title={<span className="card-title">Rob Kelly</span>}
+        description={<span className="card-description">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.</span>}
+        />
+        </Card>
+          </Col>
+
+          <Col span={6}>
+ <Card
+          hoverable
+          style={{ width: 320 }}
+          cover={<img alt="example" src={Pic} />}
+          >
+        <Meta
+        title={<span className="card-title">Stephanie Mullins</span>}
+        description={<span className="card-description">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.</span>}
+        />
+        </Card>
           </Col>
           <Col span={6}>
-            <Card
-              hoverable
-              style={{ width: 320 }}
-              cover={<img alt="example" src={Pic}/>}
-            >
-              <Meta title="Rob Kelly" description="In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available." />
-            </Card>
-          </Col>
-          <Col span={6}>
-            <Card
-              hoverable
-              style={{ width: 320 }}
-              cover={<img alt="example" src={Pic} />}
-            >
-              <Meta title="Stephanie Mullins" description="In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available." />
-            </Card>
-          </Col>
-          <Col span={6}>
-            <Card
-              hoverable
-              style={{ width: 320 }}
-              cover={<img alt="example" src={Pic} />}
-            >
-              <Meta title="Dr. Jilian Aurisano (Advisor)" description="In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available." />
-            </Card>
+          <Card
+          hoverable
+          style={{ width: 320 }}
+          cover={<img alt="example" src={Pic} />}
+          >
+        <Meta
+        title={<span className="card-title">Dr. Jilian Aurisano</span>}
+        description={<span className="card-description">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.</span>}
+        />
+        </Card>
           </Col>
         </Row>
       </div>

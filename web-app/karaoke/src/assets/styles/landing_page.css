@@ -33,3 +33,9 @@
 body, button, input, select, textarea {
     font-family: 'Turret Road', sans-serif;
   }
+
+  .link-style {
+    color: white;
+    text-decoration: none;
+  }
+  

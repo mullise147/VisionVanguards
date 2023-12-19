@@ -4,12 +4,13 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import Landing from "../src/components/Landing"; 
-import Account from "../src/components/Account"; 
-import Leaderboard from "../src/components/Leaderboard"; 
-import Search from "../src/components/Search";
-import Performance from "../src/components/Performance"; 
-import Score from "../src/components/Score"; 
+import Landing from './components/Landing'; 
+import Account from './components/Account';
+import Leaderboard from './components/Leaderboard';
+import Search from './components/Search';
+import Performance from './components/Performance';
+import Score from './components/Score';
+
 function App() {
 
   return (
@@ -24,7 +25,7 @@ function App() {
               <Route path="/score" element={<Score />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
-          </Router>
+      </Router>
     </>
      
   )

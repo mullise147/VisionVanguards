@@ -16,3 +16,13 @@
 body, button, input, select, textarea {
     font-family: 'Turret Road', sans-serif;
   }
+
+  .card-title {
+    font-family: 'Turret Road', sans-serif;
+    font-size: 20px; /* Adjust the size as needed */
+  }
+  
+  .card-description {
+    font-family: 'Turret Road', sans-serif;
+    font-size: 16px; /* Adjust the size as needed */
+  }
