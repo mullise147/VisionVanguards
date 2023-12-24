@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import "../../assets/styles/landing_page.css"; 
 import "../../index.css"; 
 
+
 class LandingPage extends Component {
   render() {
     return (
@@ -13,8 +14,8 @@ class LandingPage extends Component {
           <p>Unleash your inner star: Dance, Sing, and Shine with Karaoke Magic!</p>
           <br></br>
           <br></br>
-          <button className="blue-button">
-          <Link to="/account" className="link-style">GET STARTED &rarr;</Link>
+          <button className="blue-button" >
+            <Link to="/account" className="link-style">GET STARTED &rarr;</Link>
           </button>
         </div>
     );
