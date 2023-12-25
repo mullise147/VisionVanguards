@@ -1,8 +1,11 @@
-function Account() 
-{
-    return (
-        <>This is the account page. </>
-    )
+import React, { Component } from 'react';
 
+class Account extends Component {
+  render() {
+    return (
+      <>This is the account page. </>
+    );
+  }
 }
-export default Account; 
+
+export default Account;
