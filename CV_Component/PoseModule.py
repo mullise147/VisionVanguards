@@ -36,29 +36,48 @@ class PoseDetector:
         lmList= []
         if self.results.pose_landmarks:
             left_shoulder = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.LEFT_SHOULDER]
-            right_shoulder = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.RIGHT_SHOULDER]
-            
-            # left_arm_bend between left parts points 11,13,15
+            left_hip = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.LEFT_HIP]
             left_elbow = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.LEFT_ELBOW]
             left_wrist = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.LEFT_WRIST]
+
+            right_shoulder = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.RIGHT_SHOULDER]
+            right_hip = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.RIGHT_HIP]
+            right_elbow = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.RIGHT_ELBOW]
+            right_wrist = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.RIGHT_WRIST]
             
+            # finds bend in the left arm
             if self.results.pose_landmarks is not None:
                 left_arm_bend = abs(angle_between_lines(left_shoulder.x, left_shoulder.y, left_elbow.x, left_elbow.y, left_wrist.x, left_wrist.y))
             else:
                 left_arm_bend=0
-            print("Left Arm(Shoulder, Wrist) :",left_arm_bend)
-        
-            # left_arm_height between left parts points 23,11,13
-            left_hip = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.LEFT_HIP]
-            
+            # print("Left Arm(Shoulder, Wrist) :",left_arm_bend)
+
+            # find height that left arm is raised
             if self.results.pose_landmarks is not None:
-                left_arm_height = abs(angle_between_lines(left_hip.x, left_hip.y,left_shoulder.x, left_shoulder.y, left_elbow.x, left_elbow.y))
+                left_arm_height = abs(angle_between_lines(left_hip.x, left_hip.y, left_shoulder.x, left_shoulder.y, left_elbow.x, left_elbow.y))
             else:
                 left_arm_height=0
             # print("Left Shoulder-Hip:",left_arm_height)
                 
-            if left_arm_bend >= 80 and left_arm_bend <= 100:
-                print("Bend")
+            # finds bend in the right arm
+            if self.results.pose_landmarks is not None:
+                right_arm_bend = abs(angle_between_lines(right_shoulder.x, right_shoulder.y, right_elbow.x, right_elbow.y, right_wrist.x, right_wrist.y))
+            else:
+                right_arm_bend=0
+            # print("Right Arm(Shoulder, Wrist) :",right_arm_bend)
+
+            # find height that right arm is raised
+            if self.results.pose_landmarks is not None:
+                right_arm_height = abs(angle_between_lines(right_hip.x, right_hip.y, right_shoulder.x, right_shoulder.y, right_elbow.x, right_elbow.y))
+            else:
+                right_arm_height=0
+            # print("Right Shoulder-Hip:",right_arm_height)
+                
+            if ((left_arm_bend >= 80 and left_arm_bend <= 100) and (left_arm_height >= 115 and left_arm_height <= 135) and
+            (right_arm_bend >= 80 and right_arm_bend <= 100) and (right_arm_height >= 115 and right_arm_height <= 135)):
+                print("Got there!")
+            else:
+                print("Not quite there :(")
 
 
             # # angle3 between left parts points 24,12,14
