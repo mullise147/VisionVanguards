@@ -1,22 +1,16 @@
 import cv2 as cv
 import mediapipe as mp
 import time
-
+import math
 
 class PoseDetector:
-
     def __init__(self, mode = False, upBody = False, smooth=True, detectionCon = 0.5, trackCon = 0.5):
-
         self.mode = mode
         self.upBody = upBody
         self.smooth = smooth
-        self.detectionCon = detectionCon
-        self.trackCon = trackCon
-
         self.mpDraw = mp.solutions.drawing_utils
         self.mpPose = mp.solutions.pose
-        # TODO figure out detectionCon and trackCon parameters for Pose() method
-        self.pose = self.mpPose.Pose(self.mode, self.upBody, self.smooth, self.detectionCon, self.trackCon)
+        self.pose = self.mpPose.Pose(self.mode, self.upBody, self.smooth)
 
     def findPose(self, img, draw=True):
         imgRGB = cv.cvtColor(img, cv.COLOR_BGR2RGB)
@@ -25,7 +19,6 @@ class PoseDetector:
         if self.results.pose_landmarks:
             if draw:
                 self.mpDraw.draw_landmarks(img, self.results.pose_landmarks, self.mpPose.POSE_CONNECTIONS)
-
         return img
 
     def getPosition(self, img, draw=True):
@@ -46,18 +39,20 @@ def main():
     detector = PoseDetector()
     while True:
         success, img = cap.read()
-        img = detector.findPose(img)
-        lmList = detector.getPosition(img)
-        print(lmList)
+        if success:
+            img = detector.findPose(img)
+            lmList = detector.getPosition(img)
+            # print(lmList)
 
-        cTime = time.time()
-        fps = 1 / (cTime - pTime)
-        pTime = cTime
+            cTime = time.time()
+            fps = 1 / (cTime - pTime)
+            pTime = cTime
 
-        cv.putText(img, str(int(fps)), (50, 50), cv.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 3)
-        cv.imshow("Image", img)
-        cv.waitKey(1)
-
+            img = cv.flip(img, 1)
+            cv.putText(img, str(int(fps)), (50, 50), cv.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 3)
+            cv.imshow("Image", img)
+            if cv.waitKey(1) & 0xFF == ord('q'):
+                break
 
 if __name__ == "__main__":
     main()

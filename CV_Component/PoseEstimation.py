@@ -28,6 +28,7 @@ while True:
     fps = 1/(cTime-pTime)
     pTime = cTime
 
+    img = cv.flip(img, 1)
     cv.putText(img, str(int(fps)), (50,50), cv.FONT_HERSHEY_SIMPLEX,1,(255,0,0), 3)
     cv.imshow("Image", img)
     cv.waitKey(1)
