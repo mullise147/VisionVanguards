@@ -3,6 +3,17 @@ import mediapipe as mp
 import time
 import math
 
+def angle_between_lines(x1, y1, x2, y2, x3, y3):
+    # Calculate the slopes of the two lines
+    slope1 = (y2 - y1) / (x2 - x1)
+    slope2 = (y3 - y2) / (x3 - x2)
+    
+    # Calculate the angle between the two lines
+    angle = math.atan2(slope2 - slope1, 1 + slope1 * slope2)
+    
+    # Convert the angle to degrees and return it
+    return math.degrees(angle)
+
 class PoseDetector:
     def __init__(self, mode = False, upBody = False, smooth=True, detectionCon = 0.5, trackCon = 0.5):
         self.mode = mode
@@ -24,14 +35,61 @@ class PoseDetector:
     def getPosition(self, img, draw=True):
         lmList= []
         if self.results.pose_landmarks:
-            for id, lm in enumerate(self.results.pose_landmarks.landmark):
-                h, w, c = img.shape
-                #print(id, lm)
-                cx, cy = int(lm.x * w), int(lm.y * h)
-                lmList.append([id, cx, cy])
-                if draw:
-                    cv.circle(img, (cx, cy), 5, (255, 0, 0), cv.FILLED)
-        return lmList
+            left_shoulder = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.LEFT_SHOULDER]
+            right_shoulder = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.RIGHT_SHOULDER]
+            
+            # left_arm_bend between left parts points 11,13,15
+            left_elbow = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.LEFT_ELBOW]
+            left_wrist = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.LEFT_WRIST]
+            
+            if self.results.pose_landmarks is not None:
+                left_arm_bend = abs(angle_between_lines(left_shoulder.x, left_shoulder.y, left_elbow.x, left_elbow.y, left_wrist.x, left_wrist.y))
+            else:
+                left_arm_bend=0
+            print("Left Arm(Shoulder, Wrist) :",left_arm_bend)
+        
+            # left_arm_height between left parts points 23,11,13
+            left_hip = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.LEFT_HIP]
+            
+            if self.results.pose_landmarks is not None:
+                left_arm_height = abs(angle_between_lines(left_hip.x, left_hip.y,left_shoulder.x, left_shoulder.y, left_elbow.x, left_elbow.y))
+            else:
+                left_arm_height=0
+            # print("Left Shoulder-Hip:",left_arm_height)
+                
+            if left_arm_bend >= 80 and left_arm_bend <= 100:
+                print("Bend")
+
+
+            # # angle3 between left parts points 24,12,14
+            # right_hip = results.pose_landmarks.landmark[self.mp_holistic.PoseLandmark.RIGHT_HIP]
+            # right_elbow = results.pose_landmarks.landmark[self.mp_holistic.PoseLandmark.RIGHT_ELBOW]
+            
+            # if results.pose_landmarks is not None:
+            #     angle3 = abs(angle_between_lines(right_hip.x, right_hip.y, right_shoulder.x, right_shoulder.y, right_elbow.x, right_elbow.y))
+            # else:
+            #     angle3=0
+            # print("Right Shoulder-Hip:",angle3)
+
+            # # angle4 between left parts points 24,12,14
+            # right_wrist = results.pose_landmarks.landmark[self.mp_holistic.PoseLandmark.RIGHT_WRIST]
+            
+            # if results.pose_landmarks is not None:
+            #     angle4 = abs(angle_between_lines(right_shoulder.x, right_shoulder.y, right_elbow.x, right_elbow.y, right_wrist.x, right_wrist.y))
+            # else:
+            #     angle4=0
+            # print("Right Shoulder-Wrist:",angle4)
+                
+
+
+        #     for id, lm in enumerate(self.results.pose_landmarks.landmark):
+        #         h, w, c = img.shape
+        #         #print(id, lm)
+        #         cx, cy = int(lm.x * w), int(lm.y * h)
+        #         lmList.append([id, cx, cy])
+        #         if draw:
+        #             cv.circle(img, (cx, cy), 5, (255, 0, 0), cv.FILLED)
+        # return lmList
 
 def main():
     cap = cv.VideoCapture(0)
