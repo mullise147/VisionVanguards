@@ -26,89 +26,89 @@ class PoseDetector:
     def findPose(self, img, draw=True):
         imgRGB = cv.cvtColor(img, cv.COLOR_BGR2RGB)
         self.results = self.pose.process(imgRGB)
-        #print(results.pose_landmarks)
         if self.results.pose_landmarks:
             if draw:
                 self.mpDraw.draw_landmarks(img, self.results.pose_landmarks, self.mpPose.POSE_CONNECTIONS)
+                self.left_shoulder = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.LEFT_SHOULDER]
+                self.left_hip = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.LEFT_HIP]
+                self.left_elbow = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.LEFT_ELBOW]
+                self.left_wrist = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.LEFT_WRIST]
+                self.left_knee = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.LEFT_KNEE]
+                self.left_ankle = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.LEFT_ANKLE]
+
+
+                self.right_shoulder = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.RIGHT_SHOULDER]
+                self.right_hip = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.RIGHT_HIP]
+                self.right_elbow = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.RIGHT_ELBOW]
+                self.right_wrist = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.RIGHT_WRIST]
+                self.right_knee = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.RIGHT_KNEE]
+                self.right_ankle = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.RIGHT_ANKLE]
         return img
 
     def getPosition(self, img, draw=True):
-        lmList= []
-        if self.results.pose_landmarks:
-            left_shoulder = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.LEFT_SHOULDER]
-            left_hip = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.LEFT_HIP]
-            left_elbow = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.LEFT_ELBOW]
-            left_wrist = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.LEFT_WRIST]
-
-            right_shoulder = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.RIGHT_SHOULDER]
-            right_hip = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.RIGHT_HIP]
-            right_elbow = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.RIGHT_ELBOW]
-            right_wrist = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.RIGHT_WRIST]
-            
+        if self.results.pose_landmarks:            
             # finds bend in the left arm
             if self.results.pose_landmarks is not None:
-                left_arm_bend = abs(angle_between_lines(left_shoulder.x, left_shoulder.y, left_elbow.x, left_elbow.y, left_wrist.x, left_wrist.y))
+                self.left_arm_bend = abs(angle_between_lines(self.left_shoulder.x, self.left_shoulder.y, self.left_elbow.x, self.left_elbow.y, self.left_wrist.x, self.left_wrist.y))
             else:
-                left_arm_bend=0
-            # print("Left Arm(Shoulder, Wrist) :",left_arm_bend)
-
+                self.left_arm_bend=0
+            # print("Left arm bend :",self.left_arm_bend)
+                
             # find height that left arm is raised
             if self.results.pose_landmarks is not None:
-                left_arm_height = abs(angle_between_lines(left_hip.x, left_hip.y, left_shoulder.x, left_shoulder.y, left_elbow.x, left_elbow.y))
+                self.left_arm_height = abs(angle_between_lines(self.left_hip.x, self.left_hip.y, self.left_shoulder.x, self.left_shoulder.y, self.left_elbow.x, self.left_elbow.y))
             else:
-                left_arm_height=0
-            # print("Left Shoulder-Hip:",left_arm_height)
+                self.left_arm_height=0
+            # print("Left arm height:",self.left_arm_height)
+                
+            # finds bend in the left leg
+            if self.results.pose_landmarks is not None:
+                self.left_leg_bend = abs(angle_between_lines(self.left_hip.x, self.left_hip.y, self.left_knee.x, self.left_knee.y, self.left_ankle.x, self.left_ankle.y))
+            else:
+                self.left_leg_bend=0
+            # print("Left leg bend :",self.left_leg_bend)
                 
             # finds bend in the right arm
             if self.results.pose_landmarks is not None:
-                right_arm_bend = abs(angle_between_lines(right_shoulder.x, right_shoulder.y, right_elbow.x, right_elbow.y, right_wrist.x, right_wrist.y))
+                self.right_arm_bend = abs(angle_between_lines(self.right_shoulder.x, self.right_shoulder.y, self.right_elbow.x, self.right_elbow.y, self.right_wrist.x, self.right_wrist.y))
             else:
-                right_arm_bend=0
-            # print("Right Arm(Shoulder, Wrist) :",right_arm_bend)
+                self.right_arm_bend=0
+            # print("Right arm bend :",self.right_arm_bend)
 
             # find height that right arm is raised
             if self.results.pose_landmarks is not None:
-                right_arm_height = abs(angle_between_lines(right_hip.x, right_hip.y, right_shoulder.x, right_shoulder.y, right_elbow.x, right_elbow.y))
+                self.right_arm_height = abs(angle_between_lines(self.right_hip.x, self.right_hip.y, self.right_shoulder.x, self.right_shoulder.y, self.right_elbow.x, self.right_elbow.y))
             else:
-                right_arm_height=0
-            # print("Right Shoulder-Hip:",right_arm_height)
+                self.right_arm_height=0
+            # print("Right arm height:",self.right_arm_height)
                 
-            if ((left_arm_bend >= 80 and left_arm_bend <= 100) and (left_arm_height >= 115 and left_arm_height <= 135) and
-            (right_arm_bend >= 80 and right_arm_bend <= 100) and (right_arm_height >= 115 and right_arm_height <= 135)):
-                print("Got there!")
+            # finds bend in the right leg
+            if self.results.pose_landmarks is not None:
+                self.right_leg_bend = abs(angle_between_lines(self.right_hip.x, self.right_hip.y, self.right_knee.x, self.right_knee.y, self.right_ankle.x, self.right_ankle.y))
             else:
-                print("Not quite there :(")
-
-
-            # # angle3 between left parts points 24,12,14
-            # right_hip = results.pose_landmarks.landmark[self.mp_holistic.PoseLandmark.RIGHT_HIP]
-            # right_elbow = results.pose_landmarks.landmark[self.mp_holistic.PoseLandmark.RIGHT_ELBOW]
-            
-            # if results.pose_landmarks is not None:
-            #     angle3 = abs(angle_between_lines(right_hip.x, right_hip.y, right_shoulder.x, right_shoulder.y, right_elbow.x, right_elbow.y))
-            # else:
-            #     angle3=0
-            # print("Right Shoulder-Hip:",angle3)
-
-            # # angle4 between left parts points 24,12,14
-            # right_wrist = results.pose_landmarks.landmark[self.mp_holistic.PoseLandmark.RIGHT_WRIST]
-            
-            # if results.pose_landmarks is not None:
-            #     angle4 = abs(angle_between_lines(right_shoulder.x, right_shoulder.y, right_elbow.x, right_elbow.y, right_wrist.x, right_wrist.y))
-            # else:
-            #     angle4=0
-            # print("Right Shoulder-Wrist:",angle4)
+                self.right_leg_bend=0
+            # print("Right leg bend :",self.right_leg_bend)
                 
+    def yayPose(self):
+        if ((self.left_arm_bend >= 0 and self.left_arm_bend <= 10) and (self.left_arm_height >= 20 and self.left_arm_height <= 40) and
+            (self.right_arm_bend >= 0 and self.right_arm_bend <= 10) and (self.right_arm_height >= 20 and self.right_arm_height <= 40)):
+            print("Yay pose")
+        else:
+            print("...")
 
+    def handsOnHipPose(self):
+        if ((self.left_arm_bend >= 95 and self.left_arm_bend <= 115) and
+            (self.right_arm_bend >= 95 and self.right_arm_bend <=115)):
+            print("Hands on hip pose")
+        else:
+            print("...")
 
-        #     for id, lm in enumerate(self.results.pose_landmarks.landmark):
-        #         h, w, c = img.shape
-        #         #print(id, lm)
-        #         cx, cy = int(lm.x * w), int(lm.y * h)
-        #         lmList.append([id, cx, cy])
-        #         if draw:
-        #             cv.circle(img, (cx, cy), 5, (255, 0, 0), cv.FILLED)
-        # return lmList
+    def leftOnHipRightOnHeadPose(self):
+        if ((self.left_arm_bend >= 95 and self.left_arm_bend <= 115) and
+            (self.right_arm_bend >= 55 and self.right_arm_bend <= 75) and (self.right_arm_height >= 115 and self.right_arm_height <= 135)):
+            print("Hands on hip and head pose")
+        else:
+            print("...")
 
 def main():
     cap = cv.VideoCapture(0)
@@ -118,8 +118,10 @@ def main():
         success, img = cap.read()
         if success:
             img = detector.findPose(img)
-            lmList = detector.getPosition(img)
-            # print(lmList)
+            detector.getPosition(img)
+            detector.yayPose()
+            detector.handsOnHipPose()
+            detector.leftOnHipRightOnHeadPose()
 
             cTime = time.time()
             fps = 1 / (cTime - pTime)
