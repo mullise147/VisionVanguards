@@ -93,22 +93,43 @@ class PoseDetector:
         if ((self.left_arm_bend >= 0 and self.left_arm_bend <= 10) and (self.left_arm_height >= 20 and self.left_arm_height <= 40) and
             (self.right_arm_bend >= 0 and self.right_arm_bend <= 10) and (self.right_arm_height >= 20 and self.right_arm_height <= 40)):
             print("Yay pose")
-        else:
-            print("...")
+        # else:
+        #     print("...")
 
     def handsOnHipPose(self):
-        if ((self.left_arm_bend >= 95 and self.left_arm_bend <= 115) and
-            (self.right_arm_bend >= 95 and self.right_arm_bend <=115)):
+        if ((self.left_arm_bend >= 85 and self.left_arm_bend <= 115) and
+            (self.right_arm_bend >= 85 and self.right_arm_bend <=115)):
             print("Hands on hip pose")
-        else:
-            print("...")
+        # else:
+        #     print("...")
 
     def leftOnHipRightOnHeadPose(self):
-        if ((self.left_arm_bend >= 95 and self.left_arm_bend <= 115) and
-            (self.right_arm_bend >= 55 and self.right_arm_bend <= 75) and (self.right_arm_height >= 115 and self.right_arm_height <= 135)):
-            print("Hands on hip and head pose")
-        else:
-            print("...")
+        if ((self.left_arm_bend >= 85 and self.left_arm_bend <= 115) and
+            (self.right_arm_bend >= 55 and self.right_arm_bend <= 75) and (self.right_arm_height >= 25 and self.right_arm_height <= 55)):
+            print("Left on hip right on head pose")
+        # else:
+        #     print("...")
+
+    def rightOnHipLeftOnHeadPose(self):
+        if ((self.right_arm_bend >= 85 and self.right_arm_bend <= 115) and
+            (self.left_arm_bend >= 55 and self.left_arm_bend <= 75) and (self.left_arm_height >= 25 and self.left_arm_height <= 55)):
+            print("Right on hip and left on head pose")
+        # else:
+        #     print("...")
+
+    def leftFacingKenPose(self):
+        if ((self.right_arm_height >= 130 and self.right_arm_height <= 160) and 
+            (self.left_leg_bend >= 145 and self.left_leg_bend <= 175)):
+            print("Left ken pose")
+        # else:
+        #     print("...")
+
+    def rightFacingKenPose(self):
+        if ((self.left_arm_height >= 130 and self.left_arm_height <= 160) and 
+            (self.right_leg_bend >= 145 and self.right_leg_bend <= 175)):
+            print("Right ken pose")
+        # else:
+        #     print("...")
 
 def main():
     cap = cv.VideoCapture(0)
@@ -122,6 +143,9 @@ def main():
             detector.yayPose()
             detector.handsOnHipPose()
             detector.leftOnHipRightOnHeadPose()
+            detector.rightOnHipLeftOnHeadPose()
+            detector.leftFacingKenPose()
+            detector.rightFacingKenPose()
 
             cTime = time.time()
             fps = 1 / (cTime - pTime)
