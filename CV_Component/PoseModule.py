@@ -1,16 +1,28 @@
 import cv2 as cv
 import mediapipe as mp
-import time
 import math
 
 class PoseDetector:
     def __init__(self, mode = False, upBody = False, smooth=True, detectionCon = 0.5, trackCon = 0.5):
+        self.cap = cv.VideoCapture(0)
         self.mode = mode
         self.upBody = upBody
         self.smooth = smooth
         self.mpDraw = mp.solutions.drawing_utils
         self.mpPose = mp.solutions.pose
         self.pose = self.mpPose.Pose(self.mode, self.upBody, self.smooth)
+
+    def __del__(self):
+        self.cap.release()
+
+    def getFrame(self):
+        success, img = self.cap.read()
+        if success:
+            img = self.findPose(img)
+            self.getPosition(img)
+
+            img = cv.flip(img, 1)
+            cv.imshow("Image", img)
 
     def findPose(self, img, draw=True):
         imgRGB = cv.cvtColor(img, cv.COLOR_BGR2RGB)
@@ -165,34 +177,43 @@ class PoseDetector:
 
 def main():
     # Single Ladies first then maybe Macarena or Vogue
-    cap = cv.VideoCapture(0)
-    pTime = 0
-    detector = PoseDetector()
+    camera = PoseDetector()
+    
     while True:
-        success, img = cap.read()
-        if success:
-            img = detector.findPose(img)
-            detector.getPosition(img)
-            detector.yayPose()
-            detector.handsOnHipPose()
-            detector.leftOnHipRightOnHeadPose()
-            detector.rightOnHipLeftOnHeadPose()
-            detector.leftFacingKenPose()
-            detector.rightFacingKenPose()
-            detector.leftLegYogaPose()
-            detector.rightLegYogaPose()
-            detector.leftGuitarLeftLegPose()
-            detector.rightGuitarRightLegPose()
+        frame = camera.getFrame()
+        
+        if cv.waitKey(1) & 0xFF == ord('q'):
+            break
+    # self.cap = cv.VideoCapture(0)
+    # # pTime = 0
+    # # detector = PoseDetector()
+    # while True:
+    #     success, img = self.cap.read()
+    #     if success:
+    #         img = self.findPose(img)
+    #         self.getPosition(img)
+    #         # detector.yayPose()
+    #         # detector.handsOnHipPose()
+    #         # detector.leftOnHipRightOnHeadPose()
+    #         # detector.rightOnHipLeftOnHeadPose()
+    #         # detector.leftFacingKenPose()
+    #         # detector.rightFacingKenPose()
+    #         # detector.leftLegYogaPose()
+    #         # detector.rightLegYogaPose()
+    #         # detector.leftGuitarLeftLegPose()
+    #         # detector.rightGuitarRightLegPose()
 
-            cTime = time.time()
-            fps = 1 / (cTime - pTime)
-            pTime = cTime
+    #         cTime = time.time()
+    #         fps = 1 / (cTime - pTime)
+    #         pTime = cTime
 
-            img = cv.flip(img, 1)
-            cv.putText(img, str(int(fps)), (50, 50), cv.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 3)
-            cv.imshow("Image", img)
-            if cv.waitKey(1) & 0xFF == ord('q'):
-                break
+    #         img = cv.flip(img, 1)
+    #         cv.putText(img, str(int(fps)), (50, 50), cv.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 3)
+    #         cv.imshow("Image", img)
+    #         if cv.waitKey(1) & 0xFF == ord('q'):
+    #             break
+    return
+    
 
 if __name__ == "__main__":
     main()
