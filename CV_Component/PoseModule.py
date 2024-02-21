@@ -12,17 +12,20 @@ class PoseDetector:
         self.mpPose = mp.solutions.pose
         self.pose = self.mpPose.Pose(self.mode, self.upBody, self.smooth)
 
-    # def __del__(self):
-    #     self.cap.release()
+    def __del__(self):
+        self.cap.release()
 
     def getFrame(self):
-        success, img = self.cap.read()
-        if success:
-            # img = self.findPose(img)
-            # self.getPosition(img)
+        while True:
+            success, img = self.cap.read()
+            if success:
+                img = self.findPose(img)
+                self.getPosition(img)
 
-            img = cv.flip(img, 1)
-            cv.imshow("Image", img)
+                img = cv.flip(img, 1)
+                cv.imshow("Image", img)
+                if cv.waitKey(1) & 0xFF == ord('q'):
+                    break
 
     def findPose(self, img, draw=True):
         imgRGB = cv.cvtColor(img, cv.COLOR_BGR2RGB)
