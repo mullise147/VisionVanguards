@@ -12,14 +12,14 @@ class PoseDetector:
         self.mpPose = mp.solutions.pose
         self.pose = self.mpPose.Pose(self.mode, self.upBody, self.smooth)
 
-    def __del__(self):
-        self.cap.release()
+    # def __del__(self):
+    #     self.cap.release()
 
     def getFrame(self):
         success, img = self.cap.read()
         if success:
-            img = self.findPose(img)
-            self.getPosition(img)
+            # img = self.findPose(img)
+            # self.getPosition(img)
 
             img = cv.flip(img, 1)
             cv.imshow("Image", img)
@@ -175,15 +175,15 @@ class PoseDetector:
         # else:
         #     print("...")
 
-def main():
-    # Single Ladies first then maybe Macarena or Vogue
-    camera = PoseDetector()
+# def main():
+#     # Single Ladies first then maybe Macarena or Vogue
+#     camera = PoseDetector()
     
-    while True:
-        frame = camera.getFrame()
+#     while True:
+#         frame = camera.getFrame()
         
-        if cv.waitKey(1) & 0xFF == ord('q'):
-            break
+#         if cv.waitKey(1) & 0xFF == ord('q'):
+#             break
     # self.cap = cv.VideoCapture(0)
     # # pTime = 0
     # # detector = PoseDetector()
@@ -212,8 +212,8 @@ def main():
     #         cv.imshow("Image", img)
     #         if cv.waitKey(1) & 0xFF == ord('q'):
     #             break
-    return
+#     return
     
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()

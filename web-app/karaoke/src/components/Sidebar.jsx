@@ -65,7 +65,7 @@ const Navbar = () => {
   }
 
   const handleStartPerforming = () => { //Navigate to audio page 
-    navigate("/search")
+    navigate("/video")
   }
 
   return (
