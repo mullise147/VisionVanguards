@@ -3,17 +3,6 @@ import mediapipe as mp
 import time
 import math
 
-def angle_between_lines(x1, y1, x2, y2, x3, y3):
-    # Calculate the slopes of the two lines
-    slope1 = (y2 - y1) / (x2 - x1)
-    slope2 = (y3 - y2) / (x3 - x2)
-    
-    # Calculate the angle between the two lines
-    angle = math.atan2(slope2 - slope1, 1 + slope1 * slope2)
-    
-    # Convert the angle to degrees and return it
-    return math.degrees(angle)
-
 class PoseDetector:
     def __init__(self, mode = False, upBody = False, smooth=True, detectionCon = 0.5, trackCon = 0.5):
         self.mode = mode
@@ -44,47 +33,58 @@ class PoseDetector:
                 self.right_knee = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.RIGHT_KNEE]
                 self.right_ankle = self.results.pose_landmarks.landmark[self.mpPose.PoseLandmark.RIGHT_ANKLE]
         return img
+    
+    def angle_between_lines(self, x1, y1, x2, y2, x3, y3):
+        # Calculate the slopes of the two lines
+        slope1 = (y2 - y1) / (x2 - x1)
+        slope2 = (y3 - y2) / (x3 - x2)
+        
+        # Calculate the angle between the two lines
+        angle = math.atan2(slope2 - slope1, 1 + slope1 * slope2)
+        
+        # Convert the angle to degrees and return it
+        return math.degrees(angle)
 
     def getPosition(self, img, draw=True):
         if self.results.pose_landmarks:            
             # finds bend in the left arm
             if self.results.pose_landmarks is not None:
-                self.left_arm_bend = abs(angle_between_lines(self.left_shoulder.x, self.left_shoulder.y, self.left_elbow.x, self.left_elbow.y, self.left_wrist.x, self.left_wrist.y))
+                self.left_arm_bend = abs(self.angle_between_lines(self.left_shoulder.x, self.left_shoulder.y, self.left_elbow.x, self.left_elbow.y, self.left_wrist.x, self.left_wrist.y))
             else:
                 self.left_arm_bend=0
             # print("Left arm bend :",self.left_arm_bend)
                 
             # find height that left arm is raised
             if self.results.pose_landmarks is not None:
-                self.left_arm_height = abs(angle_between_lines(self.left_hip.x, self.left_hip.y, self.left_shoulder.x, self.left_shoulder.y, self.left_elbow.x, self.left_elbow.y))
+                self.left_arm_height = abs(self.angle_between_lines(self.left_hip.x, self.left_hip.y, self.left_shoulder.x, self.left_shoulder.y, self.left_elbow.x, self.left_elbow.y))
             else:
                 self.left_arm_height=0
             # print("Left arm height:",self.left_arm_height)
                 
             # finds bend in the left leg
             if self.results.pose_landmarks is not None:
-                self.left_leg_bend = abs(angle_between_lines(self.left_hip.x, self.left_hip.y, self.left_knee.x, self.left_knee.y, self.left_ankle.x, self.left_ankle.y))
+                self.left_leg_bend = abs(self.angle_between_lines(self.left_hip.x, self.left_hip.y, self.left_knee.x, self.left_knee.y, self.left_ankle.x, self.left_ankle.y))
             else:
                 self.left_leg_bend=0
             # print("Left leg bend :",self.left_leg_bend)
                 
             # finds bend in the right arm
             if self.results.pose_landmarks is not None:
-                self.right_arm_bend = abs(angle_between_lines(self.right_shoulder.x, self.right_shoulder.y, self.right_elbow.x, self.right_elbow.y, self.right_wrist.x, self.right_wrist.y))
+                self.right_arm_bend = abs(self.angle_between_lines(self.right_shoulder.x, self.right_shoulder.y, self.right_elbow.x, self.right_elbow.y, self.right_wrist.x, self.right_wrist.y))
             else:
                 self.right_arm_bend=0
             # print("Right arm bend :",self.right_arm_bend)
 
             # find height that right arm is raised
             if self.results.pose_landmarks is not None:
-                self.right_arm_height = abs(angle_between_lines(self.right_hip.x, self.right_hip.y, self.right_shoulder.x, self.right_shoulder.y, self.right_elbow.x, self.right_elbow.y))
+                self.right_arm_height = abs(self.angle_between_lines(self.right_hip.x, self.right_hip.y, self.right_shoulder.x, self.right_shoulder.y, self.right_elbow.x, self.right_elbow.y))
             else:
                 self.right_arm_height=0
             # print("Right arm height:",self.right_arm_height)
                 
             # finds bend in the right leg
             if self.results.pose_landmarks is not None:
-                self.right_leg_bend = abs(angle_between_lines(self.right_hip.x, self.right_hip.y, self.right_knee.x, self.right_knee.y, self.right_ankle.x, self.right_ankle.y))
+                self.right_leg_bend = abs(self.angle_between_lines(self.right_hip.x, self.right_hip.y, self.right_knee.x, self.right_knee.y, self.right_ankle.x, self.right_ankle.y))
             else:
                 self.right_leg_bend=0
             # print("Right leg bend :",self.right_leg_bend)
