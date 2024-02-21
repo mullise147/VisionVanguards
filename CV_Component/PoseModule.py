@@ -130,8 +130,41 @@ class PoseDetector:
             print("Right ken pose")
         # else:
         #     print("...")
+            
+    def leftLegYogaPose(self):
+        if ((self.left_arm_bend >= 15 and self.left_arm_bend <= 45) and
+            (self.right_arm_bend >= 15 and self.right_arm_bend <= 45) and
+            (self.left_leg_bend >= 70 and self.left_leg_bend <= 100)):
+            print("Left leg yoga pose")
+        # else:
+        #     print("...")
+
+    def rightLegYogaPose(self):
+        if ((self.left_arm_bend >= 15 and self.left_arm_bend <= 45) and
+            (self.right_arm_bend >= 15 and self.right_arm_bend <= 45) and
+            (self.right_leg_bend >= 70 and self.right_leg_bend <= 100)):
+            print("Right leg yoga pose")
+        # else:
+        #     print("...")
+            
+    def leftGuitarLeftLegPose(self):
+        if((self.left_arm_bend >= 65 and self.left_arm_bend <= 115) and
+           (self.right_arm_bend >= 45 and self.right_arm_bend <= 80) and
+           (self.right_leg_bend >= 20 and self.right_leg_bend <= 50)):
+            print("Left guitar left leg pose")
+        # else:
+        #     print("...")
+        
+    def rightGuitarRightLegPose(self):
+        if((self.right_arm_bend >= 65 and self.right_arm_bend <= 115) and
+           (self.left_arm_bend >= 45 and self.left_arm_bend <= 80) and
+           (self.left_leg_bend >= 20 and self.left_leg_bend <= 50)):
+            print("Right guitar right leg pose")
+        # else:
+        #     print("...")
 
 def main():
+    # Single Ladies first then maybe Macarena or Vogue
     cap = cv.VideoCapture(0)
     pTime = 0
     detector = PoseDetector()
@@ -146,6 +179,10 @@ def main():
             detector.rightOnHipLeftOnHeadPose()
             detector.leftFacingKenPose()
             detector.rightFacingKenPose()
+            detector.leftLegYogaPose()
+            detector.rightLegYogaPose()
+            detector.leftGuitarLeftLegPose()
+            detector.rightGuitarRightLegPose()
 
             cTime = time.time()
             fps = 1 / (cTime - pTime)
