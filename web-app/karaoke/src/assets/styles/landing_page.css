@@ -1,7 +1,7 @@
 
 .landing-page-top {
     /* background-image: url("../images/landing.png"); */
-    background-color: black;
+    /* background-color: black; */
     background-repeat: no-repeat;
     background-size:cover;  
     height: 100vh;
@@ -23,19 +23,18 @@
     font-size: 30px; 
   }
 
-  body, html {
+\body, html {
     height: 100%;
     margin: 0;
-    font-family: 'Turret Road',  sans-serif; 
-    color: white; 
+    /* font-family: 'Turret Road',  sans-serif;  */
+    color: black; 
   }
   
 body, button, input, select, textarea {
-    font-family: 'Turret Road', sans-serif;
+    /* font-family: 'Turret Road', sans-serif; */
   }
 
   .link-style {
     color: white;
     text-decoration: none;
   }
-  

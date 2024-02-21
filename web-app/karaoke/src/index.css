@@ -1,12 +1,12 @@
   body, html {
     height: 100%;
-    margin: 0;
+    margin: 30;
     font-family: 'Turret Road',  sans-serif; 
-    color: white; 
+    color: black; 
   }
   
 body, button, input, select, textarea {
-    font-family: 'Turret Road', sans-serif;
+    font-family: 'Turret Road', sans-serif; 
   }
 
 .blue-button {
@@ -28,4 +28,4 @@ body, button, input, select, textarea {
     &:active {
       background-color: #003875;
     }
-  }
+  } 
