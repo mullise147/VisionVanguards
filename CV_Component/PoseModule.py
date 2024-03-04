@@ -101,6 +101,20 @@ class PoseDetector:
                 self.right_leg_bend=0
             # print("Right leg bend :",self.right_leg_bend)
                 
+    def rightBreakBack(self):
+        if (80 <= self.left_arm_bend <= 120 and
+            0 <= self.right_leg_bend <= 40):
+            print("right break back")
+        else:
+            print("...")
+
+    def leftBreakBack(self):
+        if (80 <= self.right_arm_bend <= 120 and
+            0 <= self.left_leg_bend <= 40):
+            print("left break back")
+        else:
+            print("...")
+                
     def leftdiva(self):
         if (70 <= self.left_arm_bend <= 110 and
             75 <= self.right_arm_bend <= 125 and
@@ -108,6 +122,7 @@ class PoseDetector:
             print("left diva pose")
         else:
             print("...")
+
     def rightdiva(self):
         if (70 <= self.right_arm_bend <= 110 and
             75 <= self.left_arm_bend <= 125 and
@@ -115,34 +130,40 @@ class PoseDetector:
             print("right diva pose")
         else:
             print("...")
+
     def leftHandOnHip(self):
         if (75 <= self.left_arm_bend <= 125):
             print("left hand on hip pose")
         else:
             print("...")
+
     def rightHandOnHip(self):
         if (75 <= self.right_arm_bend <= 125):
             print("right hand on hip pose")
         else:
             print("...")
+
     def bentArmsAboveHead(self):
         if (10 <= self.right_arm_height <= 50 and 100 <= self.right_arm_bend <= 140 and
         10 <= self.left_arm_height <= 50 and 100 <= self.left_arm_bend <= 140):
             print("bent arms above head pose")
         else:
             print("...")
+
     def leftRingOnIt(self):
         if (100 <= self.left_arm_bend <= 140 and 105 <= self.left_arm_height <= 145 and
         75 <= self.right_arm_bend <=125):
             print("left ring on it pose")
         else:
             print("...")
+
     def rightRingOnIt(self):
         if (90 <= self.right_arm_bend <= 150 and 95 <= self.right_arm_height <= 155 and
         65 <= self.left_arm_bend <=135):
             print("right ring on it pose")
         else:
             print("...")  
+
     def rightPushAway(self):
         if (50 <= self.right_arm_bend <= 90 and
         70 <= self.left_arm_height <= 110 and
@@ -150,6 +171,7 @@ class PoseDetector:
             print("right push away pose")
         else:
             print("...")
+
     def leftPushAway(self):
         if (50 <= self.left_arm_bend <= 90 and
         70 <= self.right_arm_height <= 110 and
@@ -157,48 +179,56 @@ class PoseDetector:
             print("left push away pose")
         else:
             print("...")
+
     def armsOut(self):
         if (65 <= self.left_arm_height <= 105 and
         65 <= self.right_arm_height <= 105):
             print("arms out pose")
         else:
             print("...")
+
     def leftOhOhOh(self):
         if (120 <= self.right_arm_height <= 170 and 
         135 <= self.left_leg_bend <= 185):
             print("Left oh oh oh pose")
         else:
             print("...")
+
     def rightOhOhOh(self):
         if (120 <= self.left_arm_height <= 170 and 
         135 <= self.right_leg_bend <= 185):
             print("Right oh oh oh pose")
         else:
             print("...")
+
     def yay(self):
         if (0 <= self.left_arm_bend <= 20 and 10 <= self.left_arm_height <= 50 and
         0 <= self.right_arm_bend <= 20 and 10 <= self.right_arm_height <= 50):
             print("Yay pose")
         else:
             print("...")
+
     def handsOnHip(self):
         if (75 <= self.left_arm_bend <= 125 and
         75 <= self.right_arm_bend <=125):
             print("Hands on hip pose")
         else:
             print("...")
+
     def leftOnHipRightOnHead(self):
         if (75 <= self.left_arm_bend <= 125 and
         45 <= self.right_arm_bend <= 85 and 15 <= self.right_arm_height <= 65):
             print("Left on hip right on head pose")
         else:
             print("...")
+
     def rightOnHipLeftOnHead(self):
         if (75 <= self.right_arm_bend <= 125 and
         45 <= self.left_arm_bend <= 85 and 15 <= self.left_arm_height <= 65):
             print("Right on hip and left on head pose")
         else:
             print("...")
+
     def leftYoga(self):
         if (5 <= self.left_arm_bend <= 55 and
         5 <= self.right_arm_bend <= 55 and
@@ -206,6 +236,7 @@ class PoseDetector:
             print("Left leg yoga pose")
         else:
             print("...")
+
     def rightYoga(self):
         if (5 <= self.left_arm_bend <= 55 and
         5 <= self.right_arm_bend <= 55 and
@@ -213,6 +244,7 @@ class PoseDetector:
             print("Right leg yoga pose")
         else:
             print("...")
+
     def leftGuitarLeftLeg(self):
         if(55 <= self.left_arm_bend <= 125 and
         35 <= self.right_arm_bend <= 90 and
@@ -220,6 +252,7 @@ class PoseDetector:
             print("Left guitar left leg pose")
         else:
             print("...")
+
     def rightGuitarRightLeg(self):
         if(55 <= self.right_arm_bend <= 125 and
         35 <= self.left_arm_bend <= 90 and
@@ -238,21 +271,11 @@ def main():
         if success:
             img = camera.findPose(img)
             camera.getPosition(img)
-            # camera.bentArmsAboveHeadPose()
-            # camera.leftRingOnIt()
-            # camera.rightRingOnIt()
-            # camera.leftHandOnHipPose()
-            # camera.rightHandOnHipPose()
-            # camera.leftPushAwayPose()
-            # camera.rightPushAwayPose()
-            # camera.armsOutPose()
-            # camera.leftOhOhOhPose()
-            # camera.rightOhOhOhPose()
+            # camera.leftBreakBack()
         
         if cv.waitKey(1) & 0xFF == ord('q'):
             break
     return
-    
 
 if __name__ == "__main__":
     main()
