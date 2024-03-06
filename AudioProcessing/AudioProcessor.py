@@ -1,7 +1,9 @@
 import pygame
-import pyaudio
+# import pyaudio
 import wave
 import threading
+import sounddevice as sd
+import soundfile as sf
 import speech_recognition as sr
 import librosa
 import numpy as np
@@ -14,26 +16,37 @@ class AudioPlayer:
         while pygame.mixer.music.get_busy():
             pygame.time.Clock().tick(10)
 
+# This class was initially implemented with PyAudio, but due to some library issues we're trying something different. Will be deleted once we determine that we don't need it.
+# class AudioRecorder:
+#     def record_audio(self, output_filename: str, record_seconds: int) -> None:
+#         FORMAT = pyaudio.paInt16
+#         CHANNELS = 1
+#         RATE = 44100
+#         CHUNK = 1024
+
+#         with pyaudio.PyAudio() as audio:
+#             stream = audio.open(format=FORMAT, channels=CHANNELS,
+#                                 rate=RATE, input=True,
+#                                 frames_per_buffer=CHUNK)
+#             frames = [stream.read(CHUNK) for _ in range(0, int(RATE / CHUNK * record_seconds))]
+#             stream.stop_stream()
+#             stream.close()
+
+#             with wave.open(output_filename, 'wb') as waveFile:
+#                 waveFile.setnchannels(CHANNELS)
+#                 waveFile.setsampwidth(audio.get_sample_size(FORMAT))
+#                 waveFile.setframerate(RATE)
+#                 waveFile.writeframes(b''.join(frames))
+
 class AudioRecorder:
     def record_audio(self, output_filename: str, record_seconds: int) -> None:
-        FORMAT = pyaudio.paInt16
-        CHANNELS = 1
         RATE = 44100
-        CHUNK = 1024
+        CHANNELS = 1
 
-        with pyaudio.PyAudio() as audio:
-            stream = audio.open(format=FORMAT, channels=CHANNELS,
-                                rate=RATE, input=True,
-                                frames_per_buffer=CHUNK)
-            frames = [stream.read(CHUNK) for _ in range(0, int(RATE / CHUNK * record_seconds))]
-            stream.stop_stream()
-            stream.close()
+        recording = sd.rec(int(record_seconds * RATE), samplerate=RATE, channels=CHANNELS)
+        sd.wait()  # Wait until recording is finished
+        sf.write(output_filename, recording, RATE)
 
-            with wave.open(output_filename, 'wb') as waveFile:
-                waveFile.setnchannels(CHANNELS)
-                waveFile.setsampwidth(audio.get_sample_size(FORMAT))
-                waveFile.setframerate(RATE)
-                waveFile.writeframes(b''.join(frames))
 
 class AudioTranscriber:
     def transcribe_audio(self, audio_file: str) -> str:
@@ -102,6 +115,9 @@ class AudioProcessor:
         self.original_lyrics = original_lyrics
 
     def process_audio(self) -> tuple:
+        self.duration = librosa.get_duration(filename=self.audio_file)
+
+        # Play and record in separate threads
         play_thread = threading.Thread(target=self.player.play_audio, args=(self.audio_file,))
         record_thread = threading.Thread(target=self.recorder.record_audio, args=(self.record_file, self.duration))
 
