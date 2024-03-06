@@ -17,15 +17,20 @@ class PoseDetector:
 
     def getFrame(self):
         while True:
-            success, img = self.cap.read()
+            success, frame = self.cap.read()
             if success:
-                img = self.findPose(img)
-                self.getPosition(img)
+                frame = self.findPose(frame)
+                self.getPosition(frame)
+                self.rightBreakBack()
 
-                img = cv.flip(img, 1)
-                cv.imshow("Image", img)
-                if cv.waitKey(1) & 0xFF == ord('q'):
-                    break
+                frame = cv.flip(frame, 1)
+                ret, buffer = cv.imencode('.jpg', frame)
+                frame_bytes = buffer.tobytes()
+                
+                yield (b'--frame\r\n'
+                    b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
+            else:
+                self.cap.release()
 
     def findPose(self, img, draw=True):
         imgRGB = cv.cvtColor(img, cv.COLOR_BGR2RGB)

@@ -1,7 +1,8 @@
-
 const Video = () => {
-    return (<div>
-        <img src = "http://localhost:8080/video-feed"></img>
+    const videoStream = "http://localhost:8080/video-feed"; 
+    return (
+        <div>
+            <img src={videoStream} alt='video-feed'/>
         </div>
     ); 
 }
