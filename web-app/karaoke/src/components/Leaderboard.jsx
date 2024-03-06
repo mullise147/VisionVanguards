@@ -156,6 +156,7 @@ class Leaderboard extends Component {
 
         return (
             <>
+            <Navbar></Navbar>
             <div>(TEMP) Audio: <Link to="/audio">AUDIO INTEGRATION</Link></div>
                 <h3 style={{ textAlign: "center", paddingTop: "25px" }}>{title}</h3>
                 <div style={{ display: "table", justifyContent: "center", paddingTop: "25px", width: "80%", margin: "0 auto" }}>
