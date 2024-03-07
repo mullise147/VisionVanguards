@@ -158,6 +158,7 @@ class Leaderboard extends Component {
             <>
             <Navbar></Navbar>
             <div>(TEMP) Audio: <Link to="/audio">AUDIO INTEGRATION</Link></div>
+            <div>(TEMP) Audio + Video: <Link to="/audio-video">AUDIO + VIDEO INTEGRATION</Link></div>
                 <h3 style={{ textAlign: "center", paddingTop: "25px" }}>{title}</h3>
                 <div style={{ display: "table", justifyContent: "center", paddingTop: "25px", width: "80%", margin: "0 auto" }}>
                     <Tabs onChange={this.onChange} type="card">
