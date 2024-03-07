@@ -33,7 +33,7 @@ def video_feed():
 @app.route("/start-recording", methods=["POST"])
 def start_recording():
     recorder = AudioProcessor.AudioRecorder()
-    recorder.record_audio("user_recording.wav", 10) 
+    recorder.record_audio("user_recording.wav", 5) 
     return "Recording started", 200
 
 @app.route("/play-recording", methods=["GET"])

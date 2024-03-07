@@ -37,7 +37,7 @@ class App extends React.Component {
             <Route index element={<Landing />} />
             <Route path="/account" element={<Account />} />
             <Route path="*" element={<Navigate to="/" replace />} />
-
+            
             <Route element={<PrivateRoute />}>
               <Route path="/leaderboard" element={<Leaderboard />} />
               <Route path="/search" element={<Search />} />

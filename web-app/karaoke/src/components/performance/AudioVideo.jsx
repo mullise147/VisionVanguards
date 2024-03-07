@@ -1,3 +1,5 @@
+import Navbar from "../Sidebar"; 
+
 const AudioVideo = () => {
     const videoStream = "http://localhost:8080/video-feed"; 
 
@@ -11,13 +13,13 @@ const AudioVideo = () => {
         console.log('Recording playing', await response.text());
     };
 
-    return (
+    return ( <><Navbar></Navbar>
         <div>
             <img src={videoStream} alt='video-feed' width="390" height="250"/>
             <br></br>
             <button onClick={startRecording}>Start Recording</button>
             <button onClick={playRecording}>Play Recording</button>
         </div>
-    ); 
+    </>); 
 }
 export default AudioVideo; 
