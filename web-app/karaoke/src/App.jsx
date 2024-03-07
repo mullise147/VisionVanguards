@@ -16,6 +16,7 @@ import Account from "./components/Account";
 import Footer from "./components/Footer"; 
 import PrivateRoute from "./components/PrivateRoute";
 import Settings from "./components/Settings";
+import AudioVideo from "./components/performance/AudioVideo"; 
 
 function fetchAPI() {
   axios.get('http://localhost:8080/hello')
@@ -45,6 +46,8 @@ class App extends React.Component {
               <Route path="/settings" element={<Settings />} />
               <Route path="/audio" element={<Audio />} />
               <Route path="/video" element={<Video />} />
+              <Route path="/audio-video" element={<AudioVideo />} />
+
             </Route>
 
           </Routes>
