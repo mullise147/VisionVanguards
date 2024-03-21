@@ -24,7 +24,7 @@ class PoseDetector:
 
     def getFrame(self):
         start_time = time.time()
-        while True:
+        while time.time() <= start_time+61:
             success, frame = self.cap.read()
             if success:
                 frame = self.findPose(frame)
@@ -34,66 +34,8 @@ class PoseDetector:
                 frame_bytes = buffer.tobytes()
                 yield (b'--frame\r\n'
                     b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
-                if start_time <= time.time() < start_time+4 and self.rightHOH1 != 1:
-                    self.rightHOH1 = self.rightHandOnHip()
-                    self.score += self.rightHOH1
-                elif start_time+4 <= time.time() <= start_time+6 and self.leftHOH1 != 1:
-                    self.leftHOH1 = self.leftHandOnHip()
-                    self.score += self.leftHOH1
-                elif start_time+7 <= time.time() <= start_time+8 and self.rightHOH2 != 1:
-                    self.rightHOH2 = self.rightHandOnHip()
-                    self.score += self.rightHOH2
-                elif start_time+9 <= time.time() < start_time+10 and self.leftHOH2 != 1:
-                    self.leftHOH2 = self.leftHandOnHip()
-                    self.score += self.leftHOH2
-                elif start_time+10 <= time.time() < start_time+12 and self.yayP != 1:
-                    self.yayP = self.yay()
-                    self.score += self.yayP
-                elif start_time+12 <= time.time() <= start_time+16 and self.HOH != 1:
-                    self.HOH = self.handsOnHip()
-                    self.score += self.HOH
-                elif start_time+17 <= time.time() <= start_time+21 and self.rightDivaP != 1:
-                    self.rightDivaP = self.rightDiva()
-                    self.score += self.rightDivaP
-                elif start_time+22 <= time.time() <= start_time+26 and self.leftPush != 1:
-                    self.leftPush = self.leftPushAway()
-                    self.score += self.leftPush
-                elif start_time+27 <= time.time() <= start_time+31 and self.rightBack != 1:
-                    self.rightBack = self.rightBreakBack()
-                    self.score += self.rightBack
-                elif start_time+32 <= time.time() <= start_time+33 and self.leftRing1 != 1:
-                    self.leftRing1 = self.leftRingOnIt()
-                    self.score += self.leftRing1
-                elif start_time+34 <= time.time() <= start_time+36 and self.rightRing1 != 1:
-                    self.rightRing1 = self.rightRingOnIt()
-                    self.score += self.rightRing1
-                elif start_time+37 <= time.time() <= start_time+38 and self.leftRing2 != 1:
-                    self.leftRing2 = self.leftRingOnIt()
-                    self.score += self.leftRing2
-                elif start_time+39 <= time.time() <= start_time+41 and self.rightRing2 != 1:
-                    self.rightRing2 = self.rightRingOnIt()
-                    self.score += self.rightRing2
-                elif start_time+42 <= time.time() <= start_time+44 and self.leftOh1 != 1:
-                    self.leftOh1 = self.leftOhOhOh()
-                    self.score += self.leftOh1
-                elif start_time+45 <= time.time() <= start_time+47 and self.rightOh1 != 1:
-                    self.rightOh1 = self.rightOhOhOh()
-                    self.score += self.rightOh1
-                elif start_time+48 <= time.time() <= start_time+51 and self.leftOh2 != 1:
-                    self.leftOh2 = self.leftOhOhOh()
-                    self.score += self.leftOh2
-                elif start_time+52 <= time.time() <= start_time+53 and self.rightRing3 != 1:
-                    self.rightRing3 = self.rightRingOnIt()
-                    self.score += self.rightRing3
-                elif start_time+54 <= time.time() <= start_time+55 and self.leftRing3 != 1:
-                    self.leftRing3 = self.leftRingOnIt()
-                    self.score += self.leftRing3
-                elif start_time+56 <= time.time() <= start_time+58 and self.rightRing4 != 1:
-                    self.rightRing4 = self.rightRingOnIt()
-                    self.score += self.rightRing4
-                elif start_time+59 <= time.time() <= start_time+60 and self.leftRing4 != 1:
-                    self.leftRing4 = self.leftRingOnIt()
-                    self.score += self.leftRing4
+                self.singleLadies(start_time)
+        self.saveScore()
     
     def findPose(self, img, draw=True):
         imgRGB = cv.cvtColor(img, cv.COLOR_BGR2RGB)
@@ -172,6 +114,71 @@ class PoseDetector:
                 self.right_leg_bend=0
             # print("Right leg bend :",self.right_leg_bend)
                 
+    def saveScore(self):
+        return self.score/20*100
+
+    def singleLadies(self, start_time):
+        if start_time <= time.time() < start_time+4 and self.rightHOH1 != 1:
+            self.rightHOH1 = self.rightHandOnHip()
+            self.score += self.rightHOH1
+        elif start_time+4 <= time.time() <= start_time+6 and self.leftHOH1 != 1:
+            self.leftHOH1 = self.leftHandOnHip()
+            self.score += self.leftHOH1
+        elif start_time+7 <= time.time() <= start_time+8 and self.rightHOH2 != 1:
+            self.rightHOH2 = self.rightHandOnHip()
+            self.score += self.rightHOH2
+        elif start_time+9 <= time.time() < start_time+10 and self.leftHOH2 != 1:
+            self.leftHOH2 = self.leftHandOnHip()
+            self.score += self.leftHOH2
+        elif start_time+10 <= time.time() < start_time+12 and self.yayP != 1:
+            self.yayP = self.yay()
+            self.score += self.yayP
+        elif start_time+12 <= time.time() <= start_time+16 and self.HOH != 1:
+            self.HOH = self.handsOnHip()
+            self.score += self.HOH
+        elif start_time+17 <= time.time() <= start_time+21 and self.rightDivaP != 1:
+            self.rightDivaP = self.rightDiva()
+            self.score += self.rightDivaP
+        elif start_time+22 <= time.time() <= start_time+26 and self.leftPush != 1:
+            self.leftPush = self.leftPushAway()
+            self.score += self.leftPush
+        elif start_time+27 <= time.time() <= start_time+31 and self.rightBack != 1:
+            self.rightBack = self.rightBreakBack()
+            self.score += self.rightBack
+        elif start_time+32 <= time.time() <= start_time+33 and self.leftRing1 != 1:
+            self.leftRing1 = self.leftRingOnIt()
+            self.score += self.leftRing1
+        elif start_time+34 <= time.time() <= start_time+36 and self.rightRing1 != 1:
+            self.rightRing1 = self.rightRingOnIt()
+            self.score += self.rightRing1
+        elif start_time+37 <= time.time() <= start_time+38 and self.leftRing2 != 1:
+            self.leftRing2 = self.leftRingOnIt()
+            self.score += self.leftRing2
+        elif start_time+39 <= time.time() <= start_time+41 and self.rightRing2 != 1:
+            self.rightRing2 = self.rightRingOnIt()
+            self.score += self.rightRing2
+        elif start_time+42 <= time.time() <= start_time+44 and self.leftOh1 != 1:
+            self.leftOh1 = self.leftOhOhOh()
+            self.score += self.leftOh1
+        elif start_time+45 <= time.time() <= start_time+47 and self.rightOh1 != 1:
+            self.rightOh1 = self.rightOhOhOh()
+            self.score += self.rightOh1
+        elif start_time+48 <= time.time() <= start_time+51 and self.leftOh2 != 1:
+            self.leftOh2 = self.leftOhOhOh()
+            self.score += self.leftOh2
+        elif start_time+52 <= time.time() <= start_time+53 and self.rightRing3 != 1:
+            self.rightRing3 = self.rightRingOnIt()
+            self.score += self.rightRing3
+        elif start_time+54 <= time.time() <= start_time+55 and self.leftRing3 != 1:
+            self.leftRing3 = self.leftRingOnIt()
+            self.score += self.leftRing3
+        elif start_time+56 <= time.time() <= start_time+58 and self.rightRing4 != 1:
+            self.rightRing4 = self.rightRingOnIt()
+            self.score += self.rightRing4
+        elif start_time+59 <= time.time() <= start_time+60 and self.leftRing4 != 1:
+            self.leftRing4 = self.leftRingOnIt()
+            self.score += self.leftRing4
+
     def rightBreakBack(self):
         if (80 <= self.left_arm_bend <= 120 and
             0 <= self.right_leg_bend <= 40):
@@ -179,6 +186,7 @@ class PoseDetector:
             return 1
         else:
             print("right back")
+            return 0
 
     def rightDiva(self):
         if (70 <= self.right_arm_bend <= 110 and
@@ -188,6 +196,7 @@ class PoseDetector:
             return 1
         else:
             print("right diva")
+            return 0
 
     def leftHandOnHip(self):
         if (75 <= self.left_arm_bend <= 125):
@@ -195,6 +204,7 @@ class PoseDetector:
             return 1
         else:
             print("left HOH")
+            return 0
 
     def rightHandOnHip(self):
         if (75 <= self.right_arm_bend <= 125):
@@ -202,6 +212,7 @@ class PoseDetector:
             return 1
         else:
             print("right HOH")
+            return 0
 
     def leftRingOnIt(self):
         if (100 <= self.left_arm_bend <= 140 and 105 <= self.left_arm_height <= 145 and
@@ -209,7 +220,8 @@ class PoseDetector:
             print("left ring on it pose")
             return 1
         else:
-            print("left rink")
+            print("left ring")
+            return 0
 
     def rightRingOnIt(self):
         if (90 <= self.right_arm_bend <= 150 and 95 <= self.right_arm_height <= 155 and
@@ -217,7 +229,8 @@ class PoseDetector:
             print("right ring on it pose")
             return 1
         else:
-            print("right ring")  
+            print("right ring") 
+            return 0 
 
     def leftPushAway(self):
         if (50 <= self.left_arm_bend <= 90 and
@@ -227,6 +240,7 @@ class PoseDetector:
             return 1
         else:
             print("left push")
+            return 0
         
     def leftOhOhOh(self):
         if (120 <= self.right_arm_height <= 170 and 
@@ -235,6 +249,7 @@ class PoseDetector:
             return 1
         else:
             print("left oh")
+            return 0
 
     def rightOhOhOh(self):
         if (120 <= self.left_arm_height <= 170 and 
@@ -243,6 +258,7 @@ class PoseDetector:
             return 1
         else:
             print("right oh")
+            return 0
 
     def yay(self):
         if (0 <= self.left_arm_bend <= 20 and 10 <= self.left_arm_height <= 50 and
@@ -251,6 +267,7 @@ class PoseDetector:
             return 1
         else:
             print("yay")
+            return 0
 
     def handsOnHip(self):
         if (75 <= self.left_arm_bend <= 125 and
@@ -259,6 +276,7 @@ class PoseDetector:
             return 1
         else:
             print("HOH")
+            return 0
 
     def leftBreakBack(self):
         if (80 <= self.right_arm_bend <= 120 and

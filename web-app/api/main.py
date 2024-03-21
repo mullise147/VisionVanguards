@@ -11,6 +11,7 @@ from CV_Component import PoseModule
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
+camera = PoseModule.PoseDetector()
 
 @app.route('/hello')
 def hello():
@@ -25,9 +26,13 @@ def hello():
 #/computer-vision
 
 @app.route("/video-feed")
-def video_feed(): 
-    camera = PoseModule.PoseDetector()
+def video_feed():
     return Response(camera.getFrame(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@app.route("/cv-score")
+def cv_score():
+    cv_score = camera.saveScore()
+    return cv_score
     
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
