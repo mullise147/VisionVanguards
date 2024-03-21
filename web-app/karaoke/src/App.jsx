@@ -17,6 +17,8 @@ import Footer from "./components/Footer";
 import PrivateRoute from "./components/PrivateRoute";
 import Settings from "./components/Settings";
 import AudioVideo from "./components/performance/AudioVideo"; 
+// import RedirectA from './components/RedirectA';
+// import RedirectAV from "./components/RedirectAV"; 
 
 function fetchAPI() {
   axios.get('http://localhost:8080/hello')
@@ -47,6 +49,8 @@ class App extends React.Component {
               <Route path="/audio" element={<Audio />} />
               <Route path="/video" element={<Video />} />
               <Route path="/audio-video" element={<AudioVideo />} />
+              {/* <Route path = "/redirect-audio" element = {RedirectA}/>
+              <Route path = "/redirect-audio-video" element = {RedirectAV}/>  */}
 
             </Route>
 

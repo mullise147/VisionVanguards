@@ -1,4 +1,5 @@
 import Navbar from "../Sidebar"; 
+import SingleLadiesAudioPlayer from "./SingleLadiesAudioPlayer";
 
 const Audio = () => {
     const startRecording = async () => {
@@ -15,6 +16,7 @@ const Audio = () => {
         <div>
             <button onClick={startRecording}>Start Recording</button>
             <button onClick={playRecording}>Play Recording</button>
+            <SingleLadiesAudioPlayer />
         </div>
         </> );
 };
