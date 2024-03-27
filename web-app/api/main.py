@@ -1,68 +1,57 @@
-from flask import Flask, Response, render_template, send_file
+from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
+import threading
+import time
 import sys
-sys.path.append('../') 
+sys.path.append('../')
 sys.path.append("../../")
-sys.path.append("../../../")
+sys.path.append("../../..")
 
-from CV_Component import PoseModule
-from AudioProcessing import AudioProcessor
-
+from AudioProcessing import AudioProcessor as audio
+from CV_Component import PoseModule as cv
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app)
 
-camera = PoseModule.PoseDetector()
+player = audio.AudioPlayer()
+recorder = audio.AudioRecorder()
+transcriber = audio.AudioTranscriber()
+lyrics_comparator = audio.LyricsComparator()
+pitch_processor = audio.PitchProcessor()
+camera = cv.PoseDetector()
 
-@app.route('/hello')
-def hello():
-    '''
-    API that returns "Hello World" when called. 
-    '''
-    return 'Hello, World!'
+@app.route('/start-performance', methods=['POST'])
+def start_performance():
+    # Start the PoseDetector in a separate thread
+    threading.Thread(target=camera.getFrame, daemon=True).start()
+    time.sleep(3)  # Delay to sync with countdown in frontend
+    # Start recording and playing audio
+    threading.Thread(target=lambda: recorder.record_audio("user_audio.wav", 60), daemon=True).start()
+    player.play_audio("Single_Ladies.wav")
+    return jsonify({"message": "Performance started"})
 
-#Make more API endpoints? 
-
-#/audio-processing
-#/computer-vision
-
-@app.route("/video-feed")
-def video_feed():
-    return Response(camera.getFrame(), mimetype='multipart/x-mixed-replace; boundary=frame')
-
-@app.route("/cv-score")
-def cv_score():
+@app.route('/get-scores', methods=['GET'])
+def get_scores():
+    lyrics_score = lyrics_comparator.compare_lyrics(read_file("simplified_lyrics.txt"), transcriber.transcribe_audio("user_audio.wav"))
+    pitch_score = pitch_processor.compare_pitches(
+        pitch_processor.extract_pitch("song_vocals.wav"),
+        pitch_processor.extract_pitch("user_audio.wav")
+    )
     cv_score = camera.saveScore()
-    return cv_score
-    
-@app.route("/start-recording", methods=["POST"])
-def start_recording():
-    recorder = AudioProcessor.AudioRecorder()
-    recorder.record_audio("user_recording.wav", 10) 
-    return "Recording started", 200
+    weighted_score = (2 * cv_score + lyrics_score + pitch_score) / 4  # Weighted score calculation
+    return jsonify({"lyrics_score": lyrics_score, "pitch_score": pitch_score, "cv_score": cv_score, "weighted_score": weighted_score})
 
-@app.route("/play-recording", methods=["GET"])
-def play_recording():
-    player = AudioProcessor.AudioPlayer()
-    player.play_audio("user_recording.wav")
-    return send_file("user_recording.wav", as_attachment=True)
+@app.route('/lyrics', methods=['GET'])
+def get_lyrics():
+    return send_from_directory('.', 'lyrics.txt')
 
-@app.route("/audio-feed")
-def audio_feed():
-    player = AudioProcessor.AudioPlayer()
-    recorder = AudioProcessor.AudioRecorder()
-    transcriber = AudioProcessor.AudioTranscriber()
-    lyrics_comparator = AudioProcessor.LyricsComparator()
-    pitch_processor = AudioProcessor.PitchProcessor()
-    original_audio_file = "original_audio.wav"
-    output_audio_file = "output.wav"
-    original_lyrics_file = "lyrics.txt"
+@app.route('/lyrics-timings', methods=['GET'])
+def get_lyrics_timings():
+    return send_from_directory('.', 'lyrics_timings.txt')
 
-    processor = AudioProcessor.AudioProcessor(player, recorder, transcriber, lyrics_comparator, pitch_processor, original_audio_file, output_audio_file, original_lyrics_file)
-
-    recorder.record_audio(output_audio_file, 10)
-    player.play_audio(output_audio_file)
+def read_file(file_path):
+    with open(file_path, 'r') as file:
+        return file.read()
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
-
