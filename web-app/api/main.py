@@ -23,7 +23,7 @@ camera = cv.PoseDetector()
 @app.route('/start-performance', methods=['POST'])
 def start_performance():
     # Start the PoseDetector in a separate thread
-    threading.Thread(target=camera.getFrame, daemon=True).start()
+    threading.Thread(target=camera.getFrame(), daemon=True).start()
     time.sleep(3)  # Delay to sync with countdown in frontend
     # Start recording and playing audio
     threading.Thread(target=lambda: recorder.record_audio("user_audio.wav", 60), daemon=True).start()

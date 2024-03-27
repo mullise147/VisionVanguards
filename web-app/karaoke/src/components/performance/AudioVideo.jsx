@@ -62,8 +62,7 @@ const AudioVideo = () => {
     return (
         <div>
             {countdown > 0 && <h2>{countdown}</h2>}
-            {countdown === 0 && <h2>START</h2>}
-            {countdown === null && (
+            {countdown === 0 && (
                 <>
                     <h2>Current Lyric: {lyrics[currentLyricIndex]}</h2>
                     <h3>Next Lyric: {getNextLyric()}</h3>
