@@ -8,7 +8,7 @@ sys.path.append("../../../")
 from CV_Component import PoseModule
 from AudioProcessing import AudioProcessor
 
-record_time = 22 
+record_time = 25
 
 app = Flask(__name__)
 CORS(app)
@@ -32,12 +32,14 @@ def video_feed():
     return Response(camera.getFrame(), mimetype='multipart/x-mixed-replace; boundary=frame')
     
 @app.route("/start-recording", methods=["POST"])
+# @app.route("/start-recording")
 def start_recording():
     recorder = AudioProcessor.AudioRecorder()
     recorder.record_audio("user_recording.wav", record_time) 
     return "Recording started", 200
 
 @app.route("/play-recording", methods=["GET"])
+# @app.route("/play-recording")
 def play_recording():
     player = AudioProcessor.AudioPlayer()
     player.play_audio("user_recording.wav")
@@ -62,6 +64,8 @@ def audio_feed():
 @app.route("/return-wav")
 def return_wav():
     return 
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
 

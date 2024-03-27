@@ -24,7 +24,7 @@ const SingleLadiesAudioPlayer = () => {
   return (
     <div>
       <div style={audioWrapperStyle}>
-        <div>🎶 Single Ladies - Beyoncé</div>
+        <div>🎶 Single Ladies - Beyoncé 🎶</div>
         <audio controls style={audioStyle} autoPlay = {true}>
           <source src={singleLadies} type="audio/mp3" />
           Your browser does not support the audio element.
