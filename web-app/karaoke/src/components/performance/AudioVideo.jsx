@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Navbar from "../Sidebar";
 import SingleLadiesAudioPlayer from "./SingleLadiesAudioPlayer";
+import AudioWave from './AudioWave';
 
 const AudioVideo = () => {
     const [showContent, setShowContent] = useState(false);
@@ -28,6 +29,7 @@ const AudioVideo = () => {
             setCountdown(10);
         }
     };
+
 
     // Styles
     const previewTextStyle = {
@@ -77,6 +79,7 @@ const AudioVideo = () => {
                         )}
                         {buttonClicked && (
                             <div style={{  alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+                                <AudioWave></AudioWave>
                             <div style={videoContainerStyle}>
                                 <p style={previewTextStyle}>PREVIEW</p>
                                 {countdown > 0 && (
@@ -111,9 +114,10 @@ const AudioVideo = () => {
                 )}
                 {showContent && (
                     <>
-                     <h3 style={{  marginTop: '20px', marginBottom: '20px', textAlign: 'center' }}>🎶 Single Ladies - Beyoncé 🎶</h3>
+                     {/* <h3 style={{  marginTop: '20px', marginBottom: '20px', textAlign: 'center' }}>🎶 Single Ladies - Beyoncé 🎶</h3>
                     <div style={{ alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
-                        <div style={{ textAlign: 'center', width: '100%' }}>
+                        <div style={videoContainerStyle}>
+                        <AudioWave></AudioWave>
                             <img
                                 src={videoStream}
                                 alt='video-feed'
@@ -124,19 +128,44 @@ const AudioVideo = () => {
                                     borderRadius: '15px',
                                     boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)',
                                     objectFit: 'cover',
-                                    margin: '0 auto', // Center the image horizontally
+                                    margin: '0 auto', // Center the image horizontally, 
+
                                 }}
                             />
                         </div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '0 -10px' }}>
-    <div style={{ flex: '5', padding: '0 10px' }}> {/* Adjusts to 75% width with padding for spacing */}
-        <SingleLadiesAudioPlayer/>
-    </div>
-    <div style={{ flex: '1', padding: '0 30px' }}> {/* Adjusts to 25% width with padding for spacing */}
-        <button className="blue-button" style={{ width: '100%' }}>QUIT →</button>
-    </div>
-</div>
-                    </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '0 -10px', paddingTop: '40px' }}>
+                            <div style={{ flex: '5', padding: '0 10px' }}>
+                                <SingleLadiesAudioPlayer/>
+                            </div>
+                            <div style={{ flex: '1', padding: '0 30px' }}>
+                                <button className="blue-button" style={{ width: '100%',  }}>QUIT →</button>
+                            </div>
+                        </div>
+                    </div> */}
+                    <h3 style={{  marginTop: '20px', marginBottom: '20px', textAlign: 'center' }}>🎶 Single Ladies - Beyoncé 🎶</h3>
+                    <div style={{  alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+                                <AudioWave></AudioWave>
+                            <div style={videoContainerStyle}>
+                                <img
+                                    src={videoStream}
+                                    alt='video-feed'
+                                    style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        borderRadius: '15px',
+                                        objectFit: 'cover',
+                                    }}
+                                />
+                            </div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '0 -10px', paddingTop: '40px' }}>
+                            <div style={{ flex: '5', padding: '0 10px' }}>
+                                <SingleLadiesAudioPlayer/>
+                            </div>
+                            <div style={{ flex: '1', padding: '0 30px' }}>
+                                <button className="blue-button" style={{ width: '100%', backgroundColor: 'rgb(199,0,0)' }}>QUIT →</button>
+                            </div>
+                        </div>
+                            </div>
                     </>
                 )}
             </div>
