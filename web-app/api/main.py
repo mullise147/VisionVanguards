@@ -8,9 +8,10 @@ sys.path.append("../../../")
 from CV_Component import PoseModule
 from AudioProcessing import AudioProcessor
 
+record_time = 25
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app)
 
 camera = PoseModule.PoseDetector()
 
@@ -36,12 +37,14 @@ def cv_score():
     return cv_score
     
 @app.route("/start-recording", methods=["POST"])
+# @app.route("/start-recording")
 def start_recording():
     recorder = AudioProcessor.AudioRecorder()
-    recorder.record_audio("user_recording.wav", 10) 
+    recorder.record_audio("user_recording.wav", record_time) 
     return "Recording started", 200
 
 @app.route("/play-recording", methods=["GET"])
+# @app.route("/play-recording")
 def play_recording():
     player = AudioProcessor.AudioPlayer()
     player.play_audio("user_recording.wav")
@@ -54,14 +57,19 @@ def audio_feed():
     transcriber = AudioProcessor.AudioTranscriber()
     lyrics_comparator = AudioProcessor.LyricsComparator()
     pitch_processor = AudioProcessor.PitchProcessor()
-    original_audio_file = "original_audio.wav"
+    original_audio_file = "single_ladies.wav"
     output_audio_file = "output.wav"
     original_lyrics_file = "lyrics.txt"
 
     processor = AudioProcessor.AudioProcessor(player, recorder, transcriber, lyrics_comparator, pitch_processor, original_audio_file, output_audio_file, original_lyrics_file)
 
-    recorder.record_audio(output_audio_file, 10)
+    recorder.record_audio(output_audio_file, record_time)
     player.play_audio(output_audio_file)
+
+@app.route("/return-wav")
+def return_wav():
+    return 
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)

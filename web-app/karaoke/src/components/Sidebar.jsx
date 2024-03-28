@@ -7,11 +7,12 @@ import {
   SettingOutlined,
   LogoutOutlined,
   AudioOutlined,
-  VideoCameraOutlined
+  VideoCameraOutlined, 
+  LeftOutlined
 } from '@ant-design/icons';
 import { auth } from '../firebase'; 
 import { updateEmail, updatePassword } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const { SubMenu } = Menu;
 const { confirm } = Modal;
@@ -25,11 +26,13 @@ const Navbar = () => {
   const [changePWError, setchangePWError] = useState(null); 
   const [changeUserSuccess, setchangeUserSuccess] = useState(null); 
   const [changePWSuccess, setchangePWSuccess] = useState(null); 
-
+  const location = useLocation();
+  const navigate = useNavigate();
   const [email, setEmail] = useState(auth.currentUser.email || ''); // Sample email
-  
-  const navigate = useNavigate(); 
 
+  // Check if the current page is the leaderboard page
+  const isLeaderboardPage = location.pathname === '/leaderboard';
+  
   const toggleCollapsed = () => {
     setCollapsed(!collapsed); // Toggle collapsed state
   };
@@ -64,8 +67,12 @@ const Navbar = () => {
     navigate("/"); 
   }
 
-  const handleStartPerforming = () => { //Navigate to audio page 
-    navigate("/video")
+  const handleStartPerformingAudio = () => { //Navigate to audio page 
+    navigate("/audio")
+  }
+
+  const handleStartPerformingVideo = () => { //Navigate to audio page 
+    navigate("/audio-video")
   }
 
   return (
@@ -89,20 +96,41 @@ const Navbar = () => {
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
   <div>
-    <Menu
-      theme="dark"
-      mode="horizontal"
-      style={{ backgroundColor: '#001529', color: '#ffffff' }}
-    >
-      <SubMenu
-        key="newSession"
-        icon={<PlusOutlined style={{ fontSize: '24px' }} />}
-      >
-        <Menu.Item key="startAudio" icon={<AudioOutlined />} onClick={handleStartPerforming}>
-          Start Performance
-        </Menu.Item>
-      </SubMenu>
-    </Menu>
+  {!isLeaderboardPage && (
+        <Menu
+          theme="dark"
+          mode="horizontal"
+          style={{ backgroundColor: "#001529", color: "#ffffff"}}
+        >
+          <Menu.Item
+            key="back"
+            icon={<LeftOutlined style={{ fontSize: '24px'}} />}
+            onClick={() => navigate('/leaderboard')}
+          >
+          </Menu.Item>
+        </Menu>
+      )}
+
+{isLeaderboardPage && (
+ <Menu
+ theme="dark"
+ mode="horizontal"
+ style={{ backgroundColor: '#001529', color: '#ffffff' }}
+>
+ <SubMenu
+   key="newSession"
+   icon={<PlusOutlined style={{ fontSize: '24px' }} />}
+ >
+   <Menu.Item key="startAudio" icon={<AudioOutlined />} onClick={handleStartPerformingAudio}>
+   Start Karaoke Session
+   </Menu.Item>
+   <Menu.Item key="startAudio" icon={<VideoCameraOutlined />} onClick={handleStartPerformingVideo}>
+     Start Karaoke-Dance Session
+   </Menu.Item>
+ </SubMenu>
+</Menu>
+
+)}
   </div>
 
   <Menu

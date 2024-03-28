@@ -1,3 +1,6 @@
+import Navbar from "../Sidebar"; 
+import SingleLadiesAudioPlayer from "./SingleLadiesAudioPlayer";
+
 const Audio = () => {
     const startRecording = async () => {
         const response = await fetch('http://localhost:8080/start-recording', { method: 'POST' });
@@ -9,12 +12,13 @@ const Audio = () => {
         console.log('Recording playing', await response.text());
     };
 
-    return (
+    return (<><Navbar></Navbar>
         <div>
             <button onClick={startRecording}>Start Recording</button>
             <button onClick={playRecording}>Play Recording</button>
+            <SingleLadiesAudioPlayer />
         </div>
-    );
+        </> );
 };
 
 export default Audio;
