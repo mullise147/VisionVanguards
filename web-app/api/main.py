@@ -14,6 +14,7 @@ record_time = 25
 app = Flask(__name__)
 CORS(app)
 
+camera = PoseModule.PoseDetector()
 
 @app.route('/hello')
 def hello():
@@ -32,6 +33,10 @@ def video_feed():
     camera = PoseModule.PoseDetector()
     return Response(camera.getFrame(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
+@app.route("/cv-score")
+def cv_score():
+    cv_score = camera.saveScore()
+    return cv_score
 
 recorder_instance = None  # Global recorder instance
 
