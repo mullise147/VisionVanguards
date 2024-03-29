@@ -29,16 +29,13 @@ def hello():
 #/computer-vision
 
 @app.route("/video-feed")
-def video_feed(): 
-    camera = PoseModule.PoseDetector()
+def video_feed():
     return Response(camera.getFrame(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route("/cv-score")
 def cv_score():
     cv_score = camera.saveScore()
     return cv_score
-
-recorder_instance = None  # Global recorder instance
 
 @app.route("/start-recording", methods=["POST"])
 def start_recording():
