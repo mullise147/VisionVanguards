@@ -5,8 +5,6 @@ import { auth } from '../firebase';
 import { getFirestore, getDocs, collection, query, where } from "firebase/firestore";
 import winner from "../assets/images/winner.png"; 
 import you from "../assets/images/you.png"; 
-import {Link} from "react-router-dom"; 
-
 
 const { TabPane } = Tabs;
 
@@ -157,8 +155,6 @@ class Leaderboard extends Component {
         return (
             <>
             <Navbar></Navbar>
-            <div>(TEMP) Audio: <Link to="/audio">AUDIO INTEGRATION</Link></div>
-            <div>(TEMP) Audio + Video: <Link to="/audio-video">AUDIO + VIDEO INTEGRATION</Link></div>
                 <h3 style={{ textAlign: "center", paddingTop: "25px" }}>{title}</h3>
                 <div style={{ display: "table", justifyContent: "center", paddingTop: "25px", width: "80%", margin: "0 auto" }}>
                     <Tabs onChange={this.onChange} type="card">

@@ -11,7 +11,7 @@ import Leaderboard from './components/Leaderboard';
 import Search from './components/Search';
 import Audio from './components/performance/Audio';
 import Video from './components/performance/Video';
-import Score from './components/Score';
+import Score from './components/score/Score';
 import Account from "./components/Account"; 
 import Footer from "./components/Footer"; 
 import PrivateRoute from "./components/PrivateRoute";
