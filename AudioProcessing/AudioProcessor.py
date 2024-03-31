@@ -38,14 +38,39 @@ class AudioPlayer:
 #                 waveFile.setframerate(RATE)
 #                 waveFile.writeframes(b''.join(frames))
 
+# class AudioRecorder:
+#     def record_audio(self, output_filename: str, record_seconds: int) -> None:
+#         RATE = 44100
+#         CHANNELS = 1
+
+#         recording = sd.rec(int(record_seconds * RATE), samplerate=RATE, channels=CHANNELS)
+#         sd.wait()  # Wait until recording is finished
+#         sf.write(output_filename, recording, RATE)
+
 class AudioRecorder:
+    def __init__(self):
+        self.is_recording = False
+
     def record_audio(self, output_filename: str, record_seconds: int) -> None:
+        self.is_recording = True
         RATE = 44100
         CHANNELS = 1
 
-        recording = sd.rec(int(record_seconds * RATE), samplerate=RATE, channels=CHANNELS)
-        sd.wait()  # Wait until recording is finished
-        sf.write(output_filename, recording, RATE)
+        def callback(indata, frames, time, status):
+            if self.is_recording:
+                recording.append(indata.copy())
+            else:
+                raise sd.CallbackAbort
+
+        recording = []
+        with sd.InputStream(samplerate=RATE, channels=CHANNELS, callback=callback):
+            sd.sleep(int(record_seconds * 1000))
+        if recording:
+            sf.write(output_filename, np.concatenate(recording), RATE)
+        self.is_recording = False
+
+    def stop_recording(self):
+        self.is_recording = False
 
 
 class AudioTranscriber:
