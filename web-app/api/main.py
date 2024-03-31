@@ -3,9 +3,11 @@ from flask_cors import CORS
 import threading
 import time
 import sys
+import os
 sys.path.append('../')
 sys.path.append("../../")
 sys.path.append("../../..")
+
 
 from AudioProcessing import AudioProcessor as audio
 from CV_Component import PoseModule as cv
@@ -108,9 +110,16 @@ def get_lyrics():
 def get_lyrics_timings():
     return send_from_directory('.', 'lyrics_timings.txt')
 
+@app.route('/pose-timings', methods=['GET'])
+def get_pose_timings():
+    directory = os.path.join(app.root_path)  # Adjust this path to the directory of your poses_timings.txt file
+    return send_from_directory(directory, 'poses_timings.txt')
+
 def read_file(file_path):
     with open(file_path, 'r') as file:
         return file.read()
+    
 
 if __name__ == '__main__':
+    print(app.root_path)
     app.run(host='0.0.0.0', port=8080)

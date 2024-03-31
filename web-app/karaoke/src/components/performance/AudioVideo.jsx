@@ -3,8 +3,26 @@ import Navbar from "../Sidebar";
 import SingleLadiesAudioPlayer from "./SingleLadiesAudioPlayer";
 import AudioWave from './AudioWave';
 import { useNavigate } from 'react-router-dom';
-import pose1 from "../../assets/images/pose/1.png"; 
 import "../../assets/styles/comment.css"; 
+import pose0 from "../../assets/images/pose/0.png"; 
+import pose1 from "../../assets/images/pose/1.png"; 
+import pose2 from "../../assets/images/pose/2.png"; 
+import pose3 from "../../assets/images/pose/3.png"; 
+import pose4 from "../../assets/images/pose/4.png"; 
+import pose5 from "../../assets/images/pose/5.png"; 
+import pose6 from "../../assets/images/pose/6.png"; 
+import pose7 from "../../assets/images/pose/7.png"; 
+import pose8 from "../../assets/images/pose/8.png"; 
+import pose9 from "../../assets/images/pose/9.png"; 
+import pose10 from "../../assets/images/pose/10.png"; 
+import pose11 from "../../assets/images/pose/11.png"; 
+import pose12 from "../../assets/images/pose/12.png"; 
+import pose13 from "../../assets/images/pose/13.png"; 
+import pose14 from "../../assets/images/pose/14.png"; 
+import pose15 from "../../assets/images/pose/15.png"; 
+import pose16 from "../../assets/images/pose/16.png"; 
+import pose17 from "../../assets/images/pose/17.png"; 
+
 
 const AudioVideo = () => {
     const [lyrics, setLyrics] = useState([]);
@@ -15,6 +33,9 @@ const AudioVideo = () => {
     const [buttonClicked, setButtonClicked] = useState(false); // Track if the countdown button has been clicked
     const videoStream = "http://localhost:8080/video-feed";
     const navigate = useNavigate(); 
+
+    const [currentPoseIndex, setCurrentPoseIndex] = useState(0);
+    const [poseTimings, setPoseTimings] = useState([]);
     
     const [currentWord, setCurrentWord] = useState('');
     const wordsOfEncouragement = [
@@ -26,10 +47,30 @@ const AudioVideo = () => {
         "Spectacular!", "Making progress!", "Phenomenal!", "You're a star!", 
         "Magnificent!", "Wonderful!", "You're soaring!", "You're dazzling!", 
         "Excellence personified!", "You're a champion!", "Marvelous!", "You're leading the way!", 
-        "Outstanding!", "You're breaking barriers!", "Keep pushing!", "You're a genius!", "Slay!", "You're killing this!", 
+        "Outstanding!", "You're breaking barriers!", "Keep pushing!", "Slay!", "You're killing this!", 
         "You're a star", "Keep going!", "On fire!"
     ];
 
+    const poses = {
+      0: pose0,
+      1: pose1,
+      2: pose2,
+      3: pose3, 
+      4: pose4,
+      5: pose5,
+      6: pose6, 
+      7: pose7,
+      8: pose8,
+      9: pose9,
+      10: pose10,
+      11: pose11,
+      12: pose12,
+      13: pose13,
+      14: pose14, 
+      15: pose15,
+      16: pose16,
+      17: pose17
+    };
     useEffect(() => {
         // Function to update to a random word
         const updateWord = () => {
@@ -57,12 +98,37 @@ const AudioVideo = () => {
         }
     }, [countdown, buttonClicked]);
 
+    useEffect(() => {
+      const fetchPoseTimings = async () => {
+          const response = await fetch('http://localhost:8080/pose-timings');
+          const text = await response.text();
+          const timings = text.split('\n').map(t => parseInt(t, 10));
+          setPoseTimings(timings);
+      };
+  
+      fetchPoseTimings();
+  }, []);
+
+  useEffect(() => {
+    if (showContent && poseTimings.length > 0) {
+        const timeouts = poseTimings.map((time, index) => {
+            return setTimeout(() => {
+                setCurrentPoseIndex(index);
+            }, time * 1000); // Convert to milliseconds
+        });
+
+        // Clear timeouts when the component unmounts or the timings change
+        return () => {
+            timeouts.forEach(clearTimeout);
+        };
+    }
+}, [showContent, poseTimings]);
+
 
     useEffect(() => {
         fetchLyrics();
         fetchLyricsTimings();
     }, []);
-
 
     const fetchLyrics = async () => {
         const response = await fetch('http://localhost:8080/lyrics');
@@ -104,16 +170,6 @@ const AudioVideo = () => {
           return () => timeoutIds.forEach(clearTimeout);
         }
       }, [showContent, lyricsTimings, lyrics, countdown]);
-      
-
-    // const startPerformance = async () => {
-    //     await fetch('http://localhost:8080/start-performance', { method: 'POST' });
-    //     lyricsTimings.forEach((time, index) => {
-    //         setTimeout(() => {
-    //             setCurrentLyricIndex(index);
-    //         }, time * 1000);
-    //     });
-    // };
 
     const startRecording = async () => {
         const response = await fetch('http://localhost:8080/start-recording', { method: 'POST' });
@@ -293,9 +349,6 @@ const AudioVideo = () => {
   </div>
 
 
-  
-  
-
   <div style={{
   flex: '1', // This will allow each box to take up an equal amount of space
   textAlign: 'center',
@@ -311,7 +364,12 @@ const AudioVideo = () => {
   backgroundColor: '#fff', // Optional: Background color for contrast
 }}>
     <h3 style = {{fontSize: '2.2em'}}>POSES</h3>
-    <img src = {pose1} style = {{height: '190px', width: 'auto'}}></img>
+    <h3>{currentPoseIndex}</h3>
+    {/* <img src={`../../assets/images/pose/${currentPoseIndex + 1}.png`} style={{ height: '220px', width: '600px' }} alt="Current Pose" /> */}
+    {/* <img src = {pose0}  style={{ height: '220px', width: '600px' }} alt="Current Pose" ></img> */}
+    {/* <img src={poseImage} style={{ height: '220px', width: '600px' }} alt="Current Pose" /> */}
+    <img src={poses[currentPoseIndex]} style={{ height: '200px', width: '600px' }} alt="Current Pose" />
+
   </div>
 </div>
     

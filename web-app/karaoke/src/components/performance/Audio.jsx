@@ -162,6 +162,7 @@ useEffect(() => {
             <div style={{alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
                 {!showContent && (
                     <>
+                     <AudioWave style={{ pointerEvents: 'none' }} />
                      <h3 style={{ marginTop: '20px', marginBottom: '20px', textAlign: 'center' }}>Start your Performance</h3>
                         {!buttonClicked && (
                             <div style={{ textAlign: 'center', marginTop: '0px' }}>
