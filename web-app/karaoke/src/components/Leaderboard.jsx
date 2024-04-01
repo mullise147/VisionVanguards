@@ -23,14 +23,13 @@ class Leaderboard extends Component {
     fetchData = async () => {
         try {
             const firestore = getFirestore();
-            const leaderboardQuerySnapshot = await getDocs(collection(firestore, 'leaderboard'));
+            const leaderboardQuerySnapshot = await getDocs(collection(firestore, 'users'));
             let data = [];
             leaderboardQuerySnapshot.forEach((doc) => {
                 data.push({
-                    id: doc.id,
-                    name: doc.data().name,
+                    username: doc.data().username,
                     score: doc.data().score,
-                    tag: doc.data().tag
+                    tags: doc.data().tags
                 });
             });
     
@@ -55,16 +54,35 @@ class Leaderboard extends Component {
             const curr_username = username; 
     
             // Find user's entry
-            const userEntry = data.find(entry => entry.name === username);
+            const userEntry = data.find(entry => entry.username === username);
+            console.log("userEntry: ", userEntry); 
     
-            // Retrieve entries around the user's rank
             let data_ranking = [];
-            if (userEntry) {
-                const userIndex = data.indexOf(userEntry);
-                const startIndex = Math.max(0, userIndex - 2);
-                const endIndex = Math.min(data.length - 1, userIndex + 2);
-                data_ranking = data.slice(startIndex, endIndex + 1);
-            }
+
+if (userEntry) {
+    const userIndex = data.indexOf(userEntry);
+    let startIndex = Math.max(0, userIndex - 2);
+    let endIndex = Math.min(data.length - 1, userIndex + 2);
+
+    // Case: User is first
+    if (userIndex === 0) {
+        endIndex = Math.min(4, data.length - 1);
+    }
+    // Case: User is last
+    else if (userIndex === data.length - 1) {
+        startIndex = Math.max(0, data.length - 5);
+    }
+    // Case: User is in the middle
+    else {
+        // Ensure we show 2 before and 2 after the user
+        startIndex = Math.max(0, userIndex - 2);
+        endIndex = Math.min(data.length - 1, userIndex + 2);
+    }
+
+    data_ranking = data.slice(startIndex, endIndex + 1);
+}
+
+
     
             this.setState({ data_leaderboard, data_ranking, curr_username });
         } catch (error) {
@@ -92,9 +110,9 @@ class Leaderboard extends Component {
                 align: 'center',
                 render: (text, record, index) => 
                     {
-                        if (index === 0) { // For Rank 1
+                        if (record.rank === 1) { // For Rank 1
                             return <img src= {winner} alt="Rank 1" style={{ width: '20px', height: 'auto' }} />;
-                        } else if (record.name === curr_username) { // For the user's rank
+                        } else if (record.username === curr_username) { // For the user's rank
                             return <img src= {you} alt={`Rank ${text}`} style={{ width: '20px', height: 'auto' }} />;
                         } else {
                             return <span style={{ display: 'block', textAlign: 'center' }}>{text}</span>;
@@ -102,13 +120,13 @@ class Leaderboard extends Component {
                     },
             },
             {
-                title: 'Name',
-                dataIndex: 'name',
-                key: 'name',
+                title: 'Username',
+                dataIndex: 'username',
+                key: 'username',
                 align: 'center',
             },
             {
-                title: 'Score',
+                title: 'High Score',
                 dataIndex: 'score',
                 key: 'score',
                 align: 'center',
@@ -116,14 +134,14 @@ class Leaderboard extends Component {
             },
             {
                 title: 'Tags',
-                key: 'tag',
-                dataIndex: 'tag',
+                key: 'tags',
+                dataIndex: 'tags',
                 align: 'center',
-                render: (_, { tag }) => (
+                render: (_, { tags}) => (
                     <div style={{ textAlign: 'center' }}>
-                        {tag && tag.map((tag, index) => {
+                        {tags && tags.map((tags, index) => {
                             let color;
-                            switch (tag) {
+                            switch (tags) {
                                 case 'newbie':
                                     color = 'volcano';
                                     break;
@@ -137,11 +155,91 @@ class Leaderboard extends Component {
                                     color = 'lime';
                                     break;
                                 default:
-                                    color = tag.length > 5 ? 'geekblue' : 'green';
+                                    switch (tags) {
+                                        case 'lit':
+                                            color = '#FF5733'; // Light Red
+                                            break;
+                                        case 'dope':
+                                            color = '#64DD17'; // Light Green
+                                            break;
+                                        case 'slick':
+                                            color = '#03A9F4'; // Light Blue
+                                            break;
+                                        case 'boss':
+                                            color = '#FFEB3B'; // Yellow
+                                            break;
+                                        case 'fresh':
+                                            color = '#E91E63'; // Pink
+                                            break;
+                                        case 'smooth':
+                                            color = '#9C27B0'; // Purple
+                                            break;
+                                        case 'fly':
+                                            color = '#4CAF50'; // Green
+                                            break;
+                                        case 'sharp':
+                                            color = '#FFC107'; // Amber
+                                            break;
+                                        case 'swag':
+                                            color = '#795548'; // Brown
+                                            break;
+                                        case 'cool':
+                                            color = '#00BCD4'; // Cyan
+                                            break;
+                                        case 'groovy':
+                                            color = '#FF9800'; // Orange
+                                            break;
+                                        case 'snazzy':
+                                            color = '#2196F3'; // Dark Blue
+                                            break;
+                                        case 'jazzy':
+                                            color = '#9E9E9E'; // Grey
+                                            break;
+                                        case 'rad':
+                                            color = '#009688'; // Teal
+                                            break;
+                                        case 'tight':
+                                            color = '#673AB7'; // Deep Purple
+                                            break;
+                                        case 'sick':
+                                            color = '#FF5252'; // Pink Red
+                                            break;
+                                        case 'stellar':
+                                            color = '#607D8B'; // Blue Grey
+                                            break;
+                                        case 'epic':
+                                            color = '#3F51B5'; // Indigo
+                                            break;
+                                        case 'fire':
+                                            color = '#FF1744'; // Red
+                                            break;
+                                        case 'awesome':
+                                            color = '#FF9800'; // Orange
+                                            break;
+                                        case 'crisp':
+                                            color = '#FF5722'; // Deep Orange
+                                            break;
+                                        case 'killer':
+                                            color = '#4CAF50'; // Green
+                                            break;
+                                        case 'dashing':
+                                            color = '#8BC34A'; // Light Green
+                                            break;
+                                        case 'vibing':
+                                            color = '#9C27B0'; // Purple
+                                            break;
+                                        case 'bomb':
+                                            color = '#03A9F4'; // Light Blue
+                                            break;
+                                        default:
+                                            color = '#ff6ac1'; 
+                                            break;
+                                    }
+                                    
                             }
                             return (
-                                <Tag color={color} key={`${tag}-${index}`}>
-                                    {tag.toUpperCase()}
+                                <Tag color={color} key={`${tags}-${index}`}>
+                                    {tags.toUpperCase()}
                                 </Tag>
                             );
                         })}

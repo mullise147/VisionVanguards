@@ -13,6 +13,42 @@ const Account = () => {
   const [signinError, setSigninError] = useState(null);
   const [signinSuccess, setSignUpSuccess] = useState(null); 
   const navigateTo = useNavigate();
+  const performanceWords = [
+    'lit',
+    'dope',
+    'slick',
+    'boss',
+    'fresh',
+    'smooth',
+    'fly',
+    'sharp',
+    'swag',
+    'cool',
+    'groovy',
+    'snazzy',
+    'jazzy',
+    'rad',
+    'tight',
+    'sick',
+    'stellar',
+    'epic',
+    'fire',
+    'awesome',
+    'crisp',
+    'killer',
+    'dashing',
+    'vibing',
+    'bomb',
+    'amazing',
+    'crazy',
+    'fire'
+  ];
+  const getRandomWord = () => {
+    const randomIndex = Math.floor(Math.random() * performanceWords.length);
+    return performanceWords[randomIndex];
+  };  
+  const randomWordsArray = Array.from({ length: 3 }, () => getRandomWord());
+
 
   const db = getFirestore(); // Initialize Firestore outside to use in multiple functions
 
@@ -30,16 +66,13 @@ const Account = () => {
       const userCredential = await createUserWithEmailAndPassword(auth, email, signupPassword);
       const user = userCredential.user;
       console.log('Signup successful:', user);
-      if (!username) {
-        username = generateRandomUsername(); // Generate a random username for new users
-      }
-      
+
       // Store user information in Firestore
       await updateFirestoreUser(user.uid, {
         username,
         email: user.email,
         score: 0, // Initialize score,
-        tags: []
+        tags: randomWordsArray
       });
       
       setSignUpSuccess("Sign Up Successful!");
@@ -80,7 +113,7 @@ const Account = () => {
           username: generateRandomUsername(),
           email: user.email,
           score: 0,
-          tags: []
+          tags: randomWordsArray
         });
       }
 
@@ -94,8 +127,6 @@ const Account = () => {
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
-
-  // Remainder of your component rendering logic stays the same
 
 
   return (
