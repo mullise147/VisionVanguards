@@ -36,6 +36,7 @@
     import { auth } from '../../firebase'; // Import Firebase auth
     import ScoreMeter from "./ScoreMeter";
 
+
 const Score = () => {
     const [showCalculating, setShowCalculating] = useState(true);
     const [score, setScore] = useState(null);
@@ -47,7 +48,87 @@ const Score = () => {
     const[pitch_score, setPitchScore] = useState(null); 
     const location = useLocation(); 
     const navigatedFromAudioVideo = location.state?.from === "/audio-video";
+    const praiseMessages = [
+        "excellent", "awesome", "fantastic", "terrific", "superb", 
+        "outstanding", "impressive", "bravo", "amazing", "great", 
+        "super", "fabulous", "splendid", "magnificent", "stellar", 
+        "phenomenal", "incredible", "sensational", "dazzling", "exceptional", 
+        "marvelous", "remarkable", "perfect", "tremendous", "unbelievable", 
+        "fantabulous", "awesome", "exceptional", "stellar", "outstanding", 
+        "superb", "amazing", "impressive", "fabulous", "great", 
+        "bravo", "wonderful", "phenomenal", "excellent", "terrific", "newbie", "intermediate", "pro", "expert"
+      ];
 
+
+const colors = 
+[
+    "#FFD600",
+    "#C6FF00",
+    "#795548",
+    "#03A9F4",
+    "#AA00FF",
+    "#9C27B0",
+    "#009688",
+    "#9E9E9E",
+    "#7BDCB5",
+    "#6200EA",
+    "#00B0FF",
+    "#FF6D00",
+    "#00A6ED",
+    "#673AB7",
+    "#76FF03",
+    "#00BCD4",
+    "#3F51B5",
+    "#FF5722",
+    "#FF5733",
+    "#FF5252",
+    "#FF1744",
+    "#D500F9",
+    "#4CAF50",
+    "#F50057",
+    "#ff6ac1",
+    "#00E5FF",
+    "#FFB400",
+    "#F78DA7",
+    "#64DD17",
+    "#FF9800",
+    "#FFEB3B",
+    "#9900EF",
+    "#2196F3",
+    "#FFC107",
+    "#8BC34A",
+    "#607D8B",
+    "#1DE9B6",
+    "#E91E63",
+    "#304FFE",
+    "#F6511D", 
+    "volcano", 
+    "lime", 
+    "gold", 
+    "cyan" 
+]
+
+
+        const randomPraises = []; 
+      for (let i = 0; i < 3; i++) {
+        const randomIndex = Math.floor(Math.random() * praiseMessages.length);
+        randomPraises.push(praiseMessages[randomIndex]);
+      }
+      const uniqueRandomPraises = [...new Set(randomPraises)];
+
+
+      const updateFirestoreTags = async (newTags) => {
+        try {
+            const userDocRef = doc(db, 'users', auth.currentUser.uid); // Get the document reference
+            console.log("uid: ", auth.currentUser.uid); 
+            console.log("newtag: ", newTags); 
+            await updateDoc(userDocRef, {
+                tags: newTags // Update the 'tags' field with new values
+            });
+        } catch (error) {
+            console.error('Error updating tags in Firestore:', error);
+        }
+    };
 
     const fetchScores = async () => {
         if (!scoreFetched) {
@@ -61,6 +142,7 @@ const Score = () => {
                 setPitchScore(Number.isNaN(newScore.pitch_score) ? 0 : Math.ceil(+newScore.pitch_score));
 
                 const existingScore = await getFirestoreScore(); // Fetch existing score from Firestore
+                await updateFirestoreTags(uniqueRandomPraises); 
                 if (newScore.weighted_score > existingScore) { // Compare with existing score
                     await updateFirestoreScore(Math.ceil(newScore.weighted_score)); // Update score in Firestore
                 }
@@ -122,6 +204,38 @@ const Score = () => {
     const handleRestartClick = () => navigate(-1);
     const handleLeaderClick = () => navigate("/leaderboard");
 
+    
+const PraiseButtons = ({ praises }) => (
+    <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        gap: '10px',
+        marginTop: '20px',
+    }}>
+
+{
+  praises.map((praise, index) => {
+    const colorIndex = Math.floor(Math.random() * colors.length); // Select a random index for the color
+    const color = colors[colorIndex]; // Get the color at the randomly selected index
+    
+    return (
+      <div key={index} style={{
+          padding: '10px 20px',
+          borderRadius: '5px', // Small radius for a rectangular look
+          background: color, // Use random color from colors array
+          color: 'white',
+          fontSize: '20px',
+          boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+          textTransform: 'uppercase' // for white text in uppercase
+      }}>
+          {praise}
+      </div>
+    );
+  })
+}
+    </div>
+);
+
     return (
         <>
             <Navbar />
@@ -144,6 +258,8 @@ const Score = () => {
                                 <button className="blue-button" style={{ marginRight: '10px' }} onClick={handleRestartClick}>RESTART →</button>
                                 <button className="blue-button" onClick={handleLeaderClick}>LEADERBOARD →</button>
                             </div>
+                            <PraiseButtons praises={uniqueRandomPraises} />
+
                             
                         </>
                     )}

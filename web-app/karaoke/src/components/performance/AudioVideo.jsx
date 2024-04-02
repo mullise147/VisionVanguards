@@ -268,6 +268,7 @@ const AudioVideo = () => {
                         <div style={{alignItems: 'center', justifyContent: 'center', height: '100vh'}}>
                             <div style={videoContainerStyle}>
                                 <p style={previewTextStyle}>PREVIEW</p>
+                                
                                 {countdown > 0 && (
                                     <div style={{
                                         position: 'absolute',

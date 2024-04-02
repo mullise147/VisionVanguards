@@ -6,6 +6,54 @@ import { getFirestore, getDocs, collection, query, where } from "firebase/firest
 import winner from "../assets/images/winner.png"; 
 import you from "../assets/images/you.png"; 
 
+const colors = 
+    [
+        "#FFD600",
+        "#C6FF00",
+        "#795548",
+        "#03A9F4",
+        "#AA00FF",
+        "#9C27B0",
+        "#009688",
+        "#9E9E9E",
+        "#7BDCB5",
+        "#6200EA",
+        "#00B0FF",
+        "#FF6D00",
+        "#00A6ED",
+        "#673AB7",
+        "#76FF03",
+        "#00BCD4",
+        "#3F51B5",
+        "#FF5722",
+        "#FF5733",
+        "#FF5252",
+        "#FF1744",
+        "#D500F9",
+        "#4CAF50",
+        "#F50057",
+        "#ff6ac1",
+        "#00E5FF",
+        "#FFB400",
+        "#F78DA7",
+        "#64DD17",
+        "#FF9800",
+        "#FFEB3B",
+        "#9900EF",
+        "#2196F3",
+        "#FFC107",
+        "#8BC34A",
+        "#607D8B",
+        "#1DE9B6",
+        "#E91E63",
+        "#304FFE",
+        "#F6511D", 
+        "volcano", 
+        "lime", 
+        "gold", 
+        "cyan" 
+]
+
 const { TabPane } = Tabs;
 
 class Leaderboard extends Component {
@@ -140,109 +188,15 @@ if (userEntry) {
                 render: (_, { tags}) => (
                     <div style={{ textAlign: 'center' }}>
                         {tags && tags.map((tags, index) => {
-                            let color;
-                            switch (tags) {
-                                case 'newbie':
-                                    color = 'volcano';
-                                    break;
-                                case 'intermediate':
-                                    color = 'cyan';
-                                    break;
-                                case 'pro':
-                                    color = 'gold';
-                                    break;
-                                case 'expert':
-                                    color = 'lime';
-                                    break;
-                                default:
-                                    switch (tags) {
-                                        case 'lit':
-                                            color = '#FF5733'; // Light Red
-                                            break;
-                                        case 'dope':
-                                            color = '#64DD17'; // Light Green
-                                            break;
-                                        case 'slick':
-                                            color = '#03A9F4'; // Light Blue
-                                            break;
-                                        case 'boss':
-                                            color = '#FFEB3B'; // Yellow
-                                            break;
-                                        case 'fresh':
-                                            color = '#E91E63'; // Pink
-                                            break;
-                                        case 'smooth':
-                                            color = '#9C27B0'; // Purple
-                                            break;
-                                        case 'fly':
-                                            color = '#4CAF50'; // Green
-                                            break;
-                                        case 'sharp':
-                                            color = '#FFC107'; // Amber
-                                            break;
-                                        case 'swag':
-                                            color = '#795548'; // Brown
-                                            break;
-                                        case 'cool':
-                                            color = '#00BCD4'; // Cyan
-                                            break;
-                                        case 'groovy':
-                                            color = '#FF9800'; // Orange
-                                            break;
-                                        case 'snazzy':
-                                            color = '#2196F3'; // Dark Blue
-                                            break;
-                                        case 'jazzy':
-                                            color = '#9E9E9E'; // Grey
-                                            break;
-                                        case 'rad':
-                                            color = '#009688'; // Teal
-                                            break;
-                                        case 'tight':
-                                            color = '#673AB7'; // Deep Purple
-                                            break;
-                                        case 'sick':
-                                            color = '#FF5252'; // Pink Red
-                                            break;
-                                        case 'stellar':
-                                            color = '#607D8B'; // Blue Grey
-                                            break;
-                                        case 'epic':
-                                            color = '#3F51B5'; // Indigo
-                                            break;
-                                        case 'fire':
-                                            color = '#FF1744'; // Red
-                                            break;
-                                        case 'awesome':
-                                            color = '#FF9800'; // Orange
-                                            break;
-                                        case 'crisp':
-                                            color = '#FF5722'; // Deep Orange
-                                            break;
-                                        case 'killer':
-                                            color = '#4CAF50'; // Green
-                                            break;
-                                        case 'dashing':
-                                            color = '#8BC34A'; // Light Green
-                                            break;
-                                        case 'vibing':
-                                            color = '#9C27B0'; // Purple
-                                            break;
-                                        case 'bomb':
-                                            color = '#03A9F4'; // Light Blue
-                                            break;
-                                        default:
-                                            color = '#ff6ac1'; 
-                                            break;
-                                    }
-                                    
-                            }
+                            const colorIndex = Math.floor(Math.random() * colors.length); // Select a random index for the color
+                            const color = colors[colorIndex]; // Get the color at the randomly selected index
+                            
                             return (
-                                <Tag color={color} key={`${tags}-${index}`}>
-                                    {tags.toUpperCase()}
-                                </Tag>
+                              <Tag color={color} key={`${tags}-${index}`}>
+                                {tags.toUpperCase()}
+                              </Tag>
                             );
-                        })}
+                          })}                   
                     </div>
                 ),
             },
