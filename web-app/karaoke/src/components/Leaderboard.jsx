@@ -6,6 +6,54 @@ import { getFirestore, getDocs, collection, query, where } from "firebase/firest
 import winner from "../assets/images/winner.png"; 
 import you from "../assets/images/you.png"; 
 
+const colors = 
+    [
+        "#FFD600",
+        "#C6FF00",
+        "#795548",
+        "#03A9F4",
+        "#AA00FF",
+        "#9C27B0",
+        "#009688",
+        "#9E9E9E",
+        "#7BDCB5",
+        "#6200EA",
+        "#00B0FF",
+        "#FF6D00",
+        "#00A6ED",
+        "#673AB7",
+        "#76FF03",
+        "#00BCD4",
+        "#3F51B5",
+        "#FF5722",
+        "#FF5733",
+        "#FF5252",
+        "#FF1744",
+        "#D500F9",
+        "#4CAF50",
+        "#F50057",
+        "#ff6ac1",
+        "#00E5FF",
+        "#FFB400",
+        "#F78DA7",
+        "#64DD17",
+        "#FF9800",
+        "#FFEB3B",
+        "#9900EF",
+        "#2196F3",
+        "#FFC107",
+        "#8BC34A",
+        "#607D8B",
+        "#1DE9B6",
+        "#E91E63",
+        "#304FFE",
+        "#F6511D", 
+        "volcano", 
+        "lime", 
+        "gold", 
+        "cyan" 
+]
+
 const { TabPane } = Tabs;
 
 class Leaderboard extends Component {
@@ -23,14 +71,13 @@ class Leaderboard extends Component {
     fetchData = async () => {
         try {
             const firestore = getFirestore();
-            const leaderboardQuerySnapshot = await getDocs(collection(firestore, 'leaderboard'));
+            const leaderboardQuerySnapshot = await getDocs(collection(firestore, 'users'));
             let data = [];
             leaderboardQuerySnapshot.forEach((doc) => {
                 data.push({
-                    id: doc.id,
-                    name: doc.data().name,
+                    username: doc.data().username,
                     score: doc.data().score,
-                    tag: doc.data().tag
+                    tags: doc.data().tags
                 });
             });
     
@@ -55,16 +102,35 @@ class Leaderboard extends Component {
             const curr_username = username; 
     
             // Find user's entry
-            const userEntry = data.find(entry => entry.name === username);
+            const userEntry = data.find(entry => entry.username === username);
+            console.log("userEntry: ", userEntry); 
     
-            // Retrieve entries around the user's rank
             let data_ranking = [];
-            if (userEntry) {
-                const userIndex = data.indexOf(userEntry);
-                const startIndex = Math.max(0, userIndex - 2);
-                const endIndex = Math.min(data.length - 1, userIndex + 2);
-                data_ranking = data.slice(startIndex, endIndex + 1);
-            }
+
+if (userEntry) {
+    const userIndex = data.indexOf(userEntry);
+    let startIndex = Math.max(0, userIndex - 2);
+    let endIndex = Math.min(data.length - 1, userIndex + 2);
+
+    // Case: User is first
+    if (userIndex === 0) {
+        endIndex = Math.min(4, data.length - 1);
+    }
+    // Case: User is last
+    else if (userIndex === data.length - 1) {
+        startIndex = Math.max(0, data.length - 5);
+    }
+    // Case: User is in the middle
+    else {
+        // Ensure we show 2 before and 2 after the user
+        startIndex = Math.max(0, userIndex - 2);
+        endIndex = Math.min(data.length - 1, userIndex + 2);
+    }
+
+    data_ranking = data.slice(startIndex, endIndex + 1);
+}
+
+
     
             this.setState({ data_leaderboard, data_ranking, curr_username });
         } catch (error) {
@@ -92,9 +158,9 @@ class Leaderboard extends Component {
                 align: 'center',
                 render: (text, record, index) => 
                     {
-                        if (index === 0) { // For Rank 1
+                        if (record.rank === 1) { // For Rank 1
                             return <img src= {winner} alt="Rank 1" style={{ width: '20px', height: 'auto' }} />;
-                        } else if (record.name === curr_username) { // For the user's rank
+                        } else if (record.username === curr_username) { // For the user's rank
                             return <img src= {you} alt={`Rank ${text}`} style={{ width: '20px', height: 'auto' }} />;
                         } else {
                             return <span style={{ display: 'block', textAlign: 'center' }}>{text}</span>;
@@ -102,13 +168,13 @@ class Leaderboard extends Component {
                     },
             },
             {
-                title: 'Name',
-                dataIndex: 'name',
-                key: 'name',
+                title: 'Username',
+                dataIndex: 'username',
+                key: 'username',
                 align: 'center',
             },
             {
-                title: 'Score',
+                title: 'High Score',
                 dataIndex: 'score',
                 key: 'score',
                 align: 'center',
@@ -116,35 +182,21 @@ class Leaderboard extends Component {
             },
             {
                 title: 'Tags',
-                key: 'tag',
-                dataIndex: 'tag',
+                key: 'tags',
+                dataIndex: 'tags',
                 align: 'center',
-                render: (_, { tag }) => (
+                render: (_, { tags}) => (
                     <div style={{ textAlign: 'center' }}>
-                        {tag && tag.map((tag, index) => {
-                            let color;
-                            switch (tag) {
-                                case 'newbie':
-                                    color = 'volcano';
-                                    break;
-                                case 'intermediate':
-                                    color = 'cyan';
-                                    break;
-                                case 'pro':
-                                    color = 'gold';
-                                    break;
-                                case 'expert':
-                                    color = 'lime';
-                                    break;
-                                default:
-                                    color = tag.length > 5 ? 'geekblue' : 'green';
-                            }
+                        {tags && tags.map((tags, index) => {
+                            const colorIndex = Math.floor(Math.random() * colors.length); // Select a random index for the color
+                            const color = colors[colorIndex]; // Get the color at the randomly selected index
+                            
                             return (
-                                <Tag color={color} key={`${tag}-${index}`}>
-                                    {tag.toUpperCase()}
-                                </Tag>
+                              <Tag color={color} key={`${tags}-${index}`}>
+                                {tags.toUpperCase()}
+                              </Tag>
                             );
-                        })}
+                          })}                   
                     </div>
                 ),
             },

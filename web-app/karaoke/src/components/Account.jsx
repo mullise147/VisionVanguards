@@ -5,14 +5,60 @@ import "../assets/styles/google.css";
 import "../assets/styles/account.css"; 
 import { auth } from '../firebase'; 
 import { signInWithGoogle } from '../firebase';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword , updateProfile} from "firebase/auth";
-import { getFirestore, collection, doc, setDoc } from "firebase/firestore"; // Corrected Firestore import
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, updateProfile } from "firebase/auth";
+import { getFirestore, collection, doc, setDoc, getDoc, updateDoc } from "firebase/firestore"; 
 
 const Account = () => {
   const [signupError, setSignupError] = useState(null);
   const [signinError, setSigninError] = useState(null);
   const [signinSuccess, setSignUpSuccess] = useState(null); 
   const navigateTo = useNavigate();
+  const performanceWords = [
+    'lit',
+    'dope',
+    'slick',
+    'boss',
+    'fresh',
+    'smooth',
+    'fly',
+    'sharp',
+    'swag',
+    'cool',
+    'groovy',
+    'snazzy',
+    'jazzy',
+    'rad',
+    'tight',
+    'sick',
+    'stellar',
+    'epic',
+    'fire',
+    'awesome',
+    'crisp',
+    'killer',
+    'dashing',
+    'vibing',
+    'bomb',
+    'amazing',
+    'crazy',
+    'fire'
+  ];
+  const getRandomWord = () => {
+    const randomIndex = Math.floor(Math.random() * performanceWords.length);
+    return performanceWords[randomIndex];
+  };  
+  const randomWordsArray = Array.from({ length: 3 }, () => getRandomWord());
+
+
+  const db = getFirestore(); // Initialize Firestore outside to use in multiple functions
+
+  const generateRandomUsername = () => {
+    return `user_${Math.random().toString(36).substring(2, 15)}`;
+  };
+
+  const updateFirestoreUser = async (uid, data) => {
+    await setDoc(doc(db, "users", uid), data);
+  };
 
   const signupFinish = async (values) => {
     const { email, signupPassword, username } = values;
@@ -20,17 +66,17 @@ const Account = () => {
       const userCredential = await createUserWithEmailAndPassword(auth, email, signupPassword);
       const user = userCredential.user;
       console.log('Signup successful:', user);
-      
-      // Initialize Firestore
-      const db = getFirestore();
-      
-      // Save username to Firestore
-      await setDoc(doc(db, "users", user.uid), {
+
+      // Store user information in Firestore
+      await updateFirestoreUser(user.uid, {
+        username,
         email: user.email,
-        username: username
+        score: 0, // Initialize score,
+        tags: randomWordsArray
       });
       
       setSignUpSuccess("Sign Up Successful!");
+      navigateTo('/leaderboard'); 
     } catch (error) {
       console.error('Signup error:', error);
       setSignupError(error.message);
@@ -50,20 +96,39 @@ const Account = () => {
     }
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
-
   const googleSignIn = async () => {
     try {
-      await signInWithGoogle(); // Await for Google sign-in to complete
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log('Google Sign-In successful:', user);
+
+      // Check if the user already exists in Firestore
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+
+      if (!docSnap.exists()) {
+        // User does not exist, so create a new document with a random username and initialize score
+        await updateFirestoreUser(user.uid, {
+          username: generateRandomUsername(),
+          email: user.email,
+          score: 0,
+          tags: randomWordsArray
+        });
+      }
+
       navigateTo('/leaderboard'); 
     } catch (error) {
       console.error('Google Sign-In error:', error);
       setSigninError(error.message);
     }
   };
-  
+
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  };
+
+
   return (
     <>
       <Row justify="center" style={{ paddingTop: '25px' }}>
@@ -89,10 +154,11 @@ const Account = () => {
               </Form.Item> 
               <Form.Item
                 name="username"
-                rules={[{ required: true, message: 'Please input your username!' }]}
+                rules={[{ required: true, type: 'username', message: 'Please input a username!' }]}
               >
                 <Input placeholder="Username" />
-              </Form.Item>
+              </Form.Item> 
+
               <Form.Item
                 name="signupPassword"
                 rules={[

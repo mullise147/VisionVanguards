@@ -10,12 +10,16 @@ import {
   VideoCameraOutlined, 
   LeftOutlined
 } from '@ant-design/icons';
+// import { initializeFirestore } from 'firebase/firestore';
 import { auth } from '../firebase'; 
+import { doc, deleteDoc, getFirestore } from 'firebase/firestore';
 import { updateEmail, updatePassword } from 'firebase/auth';
 import { useNavigate, useLocation } from 'react-router-dom';
+import logo from "../assets/images/logo.png"; 
 
 const { SubMenu } = Menu;
 const { confirm } = Modal;
+const db = getFirestore(); 
 
 const Navbar = () => {
   const [changeEmailForm] = Form.useForm();
@@ -43,7 +47,7 @@ const Navbar = () => {
 
   const showDeleteConfirmation = async () => {
     confirm({
-      title: 'Are you sure you want to delete your account?',
+      title: `Are you sure you want to delete your account?`,
       icon: <ExclamationCircleOutlined />,
       content: 'This action cannot be undone.',
       okText: 'Yes',
@@ -51,13 +55,18 @@ const Navbar = () => {
       cancelText: 'No',
       async onOk() {
         try {
-            await auth.currentUser.delete(); 
-            navigate('/'); 
-            console.log('Account deleted');
-        }
-        catch (error){
-            console.error('Error deleting account:', error);
-            setdeleteError(error.message); 
+          // Delete user from authentication
+          // Delete user data from Firestore
+          const userDocRef = doc(db, 'users', auth.currentUser.uid);
+          await deleteDoc(userDocRef);
+          await auth.currentUser.delete();
+          
+  
+          navigate('/');
+          console.log('Account deleted');
+        } catch (error) {
+          console.error('Error deleting account:', error);
+          // setDeleteError(error.message);
         }
       },
     });
@@ -86,6 +95,11 @@ const Navbar = () => {
         color: '#ffffff', // White text color
       }}
     >
+       {/* Logo container - aligned to the left */}
+       <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+        <img src={logo} alt="Logo" style={{ height: '65px', marginRight: '10px' }} /> {/* Adjust height and spacing as needed */}
+        {/* If you have additional items to go next to the logo, include them here */}
+      </div>
       <div justify="center" style={{ paddingTop: '50px' }}>
         {deleteError && <Alert message={deleteError} type="error" showIcon />}
         {changeUserError && <Alert message={changeUserError} type="error" showIcon />}
