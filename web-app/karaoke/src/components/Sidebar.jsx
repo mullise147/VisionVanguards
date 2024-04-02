@@ -15,6 +15,7 @@ import { auth } from '../firebase';
 import { doc, deleteDoc, getFirestore } from 'firebase/firestore';
 import { updateEmail, updatePassword } from 'firebase/auth';
 import { useNavigate, useLocation } from 'react-router-dom';
+import logo from "../assets/images/logo.png"; 
 
 const { SubMenu } = Menu;
 const { confirm } = Modal;
@@ -94,6 +95,11 @@ const Navbar = () => {
         color: '#ffffff', // White text color
       }}
     >
+       {/* Logo container - aligned to the left */}
+       <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+        <img src={logo} alt="Logo" style={{ height: '65px', marginRight: '10px' }} /> {/* Adjust height and spacing as needed */}
+        {/* If you have additional items to go next to the logo, include them here */}
+      </div>
       <div justify="center" style={{ paddingTop: '50px' }}>
         {deleteError && <Alert message={deleteError} type="error" showIcon />}
         {changeUserError && <Alert message={changeUserError} type="error" showIcon />}
