@@ -184,7 +184,9 @@ const AudioVideo = () => {
 
     const handleButtonClick = () => {
         stopRecording(); 
-        navigate("/score")
+        // navigate("/score")
+        navigate('/score', { state: { from: "/audio-video" } });
+
     }
     const handleStartCountdown = () => {
         if (!buttonClicked) {
@@ -430,7 +432,7 @@ const AudioVideo = () => {
 
 </div>
     <div style={{paddingTop: '5px'}}>
-    <SingleLadiesAudioPlayer onAudioEnd={() => navigate("/score")} />
+    <SingleLadiesAudioPlayer onAudioEnd={() => navigate('/score', { state: { from: "/audio-video" } })} />
 
     </div>
   </div>

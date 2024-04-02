@@ -31,27 +31,37 @@
     import Navbar from "../Sidebar";
     import CalculatingScore from "./CalculatingScoreAnimation";
     import singleLadiesImage from "../../assets/images/single_ladies.jpg"; 
-    import { useNavigate } from "react-router-dom";
+    import { useNavigate, useLocation } from "react-router-dom";
     import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore"; // Import Firestore functions
     import { auth } from '../../firebase'; // Import Firebase auth
-
+    import ScoreMeter from "./ScoreMeter";
 
 const Score = () => {
     const [showCalculating, setShowCalculating] = useState(true);
     const [score, setScore] = useState(null);
     const [scoreFetched, setScoreFetched] = useState(false);
     const navigate = useNavigate(); 
-
     const db = getFirestore(); // Initialize Firestore
+    const [cv_score, setCVscore] = useState(null); 
+    const [lyrics_score, setLyricsScore] = useState(null); 
+    const[pitch_score, setPitchScore] = useState(null); 
+    const location = useLocation(); 
+    const navigatedFromAudioVideo = location.state?.from === "/audio-video";
+
 
     const fetchScores = async () => {
         if (!scoreFetched) {
             try {
                 const response = await fetch('http://localhost:8080/get-scores');
                 const newScore = await response.json();
+                
+                setScore(Number.isNaN(newScore.weighted_score) ? 0 : Math.ceil(+newScore.weighted_score));
+                setCVscore(Number.isNaN(newScore.cv_score) ? 0 : Math.ceil(+newScore.cv_score));
+                setLyricsScore(Number.isNaN(newScore.lyrics_score) ? 0 : Math.ceil(+newScore.lyrics_score));
+                setPitchScore(Number.isNaN(newScore.pitch_score) ? 0 : Math.ceil(+newScore.pitch_score));
+
                 const existingScore = await getFirestoreScore(); // Fetch existing score from Firestore
                 if (newScore.weighted_score > existingScore) { // Compare with existing score
-                    setScore(newScore.weighted_score);
                     await updateFirestoreScore(Math.ceil(newScore.weighted_score)); // Update score in Firestore
                 }
                 setScoreFetched(true);
@@ -123,20 +133,42 @@ const Score = () => {
                     {showCalculating ? <CalculatingScore /> : (
                         <>
                             <div className="score-text" style={{ textAlign: 'center' }}>
-                                <span style={styles.smallText}>Your</span>
+                                <span style={styles.smallText}>Total</span>
                                 <span style={styles.largeText}>
                                     <b>{Math.ceil(score)}</b>
                                 </span>
                                 <span style={styles.smallText}>Score</span>
                             </div>
+
                             <div style={{ marginTop: '70px', display: 'flex', justifyContent: 'center', gap: '20px' }}>
                                 <button className="blue-button" style={{ marginRight: '10px' }} onClick={handleRestartClick}>RESTART →</button>
                                 <button className="blue-button" onClick={handleLeaderClick}>LEADERBOARD →</button>
                             </div>
+                            
                         </>
                     )}
                 </div>
             </div>
+            {showCalculating ? <CalculatingScore /> : (
+            <div className="score-container">
+                        {
+                navigatedFromAudioVideo && (
+                    <div className="score-meter">
+                        <ScoreMeter widthPerc={cv_score} title="CV Score" gradient={true} />
+                    </div>
+                )
+            }
+            <div className="score-meter">
+                <ScoreMeter widthPerc={pitch_score} title="Pitch Score" gradient={true} />
+            </div>
+            <div className="score-meter">
+                <ScoreMeter widthPerc={lyrics_score} title="Lyrics Score" gradient={true} />
+            </div>
+            <div className="score-meter">
+                <ScoreMeter widthPerc={score} title="Total Score" gradient={true} />
+            </div>
+        </div>)}
+
         </>
     );
 }; 
