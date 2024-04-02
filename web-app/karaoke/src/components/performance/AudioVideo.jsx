@@ -22,6 +22,8 @@ import pose14 from "../../assets/images/pose/14.png";
 import pose15 from "../../assets/images/pose/15.png"; 
 import pose16 from "../../assets/images/pose/16.png"; 
 import pose17 from "../../assets/images/pose/17.png"; 
+import pose18 from "../../assets/images/pose/18.png";
+import pose19 from "../../assets/images/pose/19.png";
 
 
 const AudioVideo = () => {
@@ -69,7 +71,9 @@ const AudioVideo = () => {
       14: pose14, 
       15: pose15,
       16: pose16,
-      17: pose17
+      17: pose17,
+      18: pose18,
+      19: pose19
     };
     useEffect(() => {
         // Function to update to a random word
