@@ -39,7 +39,7 @@
 
 const Score = () => {
     const [showCalculating, setShowCalculating] = useState(true);
-    const [score, setScore] = useState(null);
+    const [score, setScore] = useState();
     const [scoreFetched, setScoreFetched] = useState(false);
     const navigate = useNavigate(); 
     const db = getFirestore(); // Initialize Firestore
@@ -136,11 +136,14 @@ const colors =
                 const response = await fetch('http://localhost:8080/get-scores');
                 const newScore = await response.json();
                 
-                setScore(Number.isNaN(newScore.weighted_score) ? 0 : Math.ceil(+newScore.weighted_score));
-                setCVscore(Number.isNaN(newScore.cv_score) ? 0 : Math.ceil(+newScore.cv_score));
-                setLyricsScore(Number.isNaN(newScore.lyrics_score) ? 0 : Math.ceil(+newScore.lyrics_score));
-                setPitchScore(Number.isNaN(newScore.pitch_score) ? 0 : Math.ceil(+newScore.pitch_score));
-
+                if(newScore) 
+                {
+                    setScore(Number.isNaN(newScore.weighted_score) ? 0 : Math.ceil(+newScore.weighted_score));
+                    setCVscore(Number.isNaN(newScore.cv_score) ? 0 : Math.ceil(+newScore.cv_score));
+                    setLyricsScore(Number.isNaN(newScore.lyrics_score) ? 0 : Math.ceil(+newScore.lyrics_score));
+                    setPitchScore(Number.isNaN(newScore.pitch_score) ? 0 : Math.ceil(+newScore.pitch_score));
+                }
+               
                 const existingScore = await getFirestoreScore(); // Fetch existing score from Firestore
                 await updateFirestoreTags(uniqueRandomPraises); 
                 if (newScore.weighted_score > existingScore) { // Compare with existing score
@@ -182,19 +185,8 @@ const colors =
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowCalculating(false);
-            if (!scoreFetched) { fetchScores(); }
-        }, 10000);
-
-        return () => clearTimeout(timer);
-    }, []);
-
-
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setShowCalculating(false);
             if (!scoreFetched) {fetchScores();}
-        }, 10000); // Delay changed to 10 seconds for demonstration
+        }, 10); // Delay changed to 10 seconds for demonstration
 
         return () => clearTimeout(timer);
     }, []);
@@ -249,7 +241,7 @@ const PraiseButtons = ({ praises }) => (
                             <div className="score-text" style={{ textAlign: 'center' }}>
                                 <span style={styles.smallText}>Total</span>
                                 <span style={styles.largeText}>
-                                    <b>{Math.ceil(score)}</b>
+                                <b>{isNaN(score) || score === undefined ? <CalculatingScore/> : Math.ceil(score)}</b>
                                 </span>
                                 <span style={styles.smallText}>Score</span>
                             </div>
@@ -270,18 +262,18 @@ const PraiseButtons = ({ praises }) => (
                         {
                 navigatedFromAudioVideo && (
                     <div className="score-meter">
-                        <ScoreMeter widthPerc={cv_score} title="CV Score" gradient={true} />
+                         <b>{isNaN(score) || score === undefined ? <CalculatingScore/> : <ScoreMeter widthPerc={cv_score} title="Video Score" gradient={true} />}</b>
                     </div>
                 )
             }
             <div className="score-meter">
-                <ScoreMeter widthPerc={pitch_score} title="Pitch Score" gradient={true} />
+                <b>{isNaN(score) || score === undefined ? <CalculatingScore/> : <ScoreMeter widthPerc={pitch_score} title="Pitch Score" gradient={true} />}</b>
             </div>
             <div className="score-meter">
-                <ScoreMeter widthPerc={lyrics_score} title="Lyrics Score" gradient={true} />
+                <b>{isNaN(score) || score === undefined ? <CalculatingScore/> : <ScoreMeter widthPerc={lyrics_score} title="Lyrics Score" gradient={true} />}</b>
             </div>
             <div className="score-meter">
-                <ScoreMeter widthPerc={score} title="Total Score" gradient={true} />
+                <b>{isNaN(score) || score === undefined ? <CalculatingScore/> : <ScoreMeter widthPerc={score} title="Total Score" gradient={true} />}</b>
             </div>
         </div>)}
 

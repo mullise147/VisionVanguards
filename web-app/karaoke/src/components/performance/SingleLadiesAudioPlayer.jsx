@@ -7,9 +7,8 @@ const SingleLadiesAudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const audioRef = useRef(null);
   const navigate = useNavigate(); // Initialize useNavigate hook for navigation
-
+  const audioRef = useRef(null);
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
@@ -30,10 +29,14 @@ const SingleLadiesAudioPlayer = () => {
 
     audio.addEventListener('loadedmetadata', setAudioData);
     audio.addEventListener('timeupdate', setAudioTime);
-
+  
+      // const bufferLength = analyser.frequencyBinCount;
+      // const dataArray = new Uint8Array(bufferLength);
+  
     return () => {
       audio.removeEventListener('loadedmetadata', setAudioData);
       audio.removeEventListener('timeupdate', setAudioTime);
+    
     };
   }, []);
 
@@ -42,6 +45,7 @@ const SingleLadiesAudioPlayer = () => {
       setIsPlaying(false); // Set playing status to false
       navigate("/score"); // Navigate to the score page
     };
+
 
   const progressBarStyle = {
     flex: 1, // Allows the progress bar to fill the available space
@@ -97,7 +101,6 @@ const SingleLadiesAudioPlayer = () => {
     <div style={{ padding: '20px', boxSizing: 'border-box' }}>
       <style>{progressBarValueStyle + progressBarBackgroundStyle}</style>
       <audio ref={audioRef} src={singleLadies} preload="metadata" autoPlay={isPlaying} onEnded={handleAudioEnd}/> 
-       {/* onEnded={() => setIsPlaying(false)} */}
       <div style={playerStyle}>
         <div style={progressContainerStyle}>
           <progress style={progressBarStyle} value={currentTime} max={duration}></progress>

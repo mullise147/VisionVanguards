@@ -3,7 +3,7 @@ import './score.css'; // Make sure this path is correct for your CSS
 
 // ScoreMeter component
 const ScoreMeter = ({ widthPerc, title, gradient = false }) => {
-  const radius = 65;
+  const radius = 85;
   const dashArray = Math.PI * radius * (widthPerc / 100);
 
   return (

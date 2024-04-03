@@ -4,6 +4,7 @@ import SingleLadiesAudioPlayer from "./SingleLadiesAudioPlayer";
 import AudioWave from './AudioWave';
 import { useNavigate } from 'react-router-dom';
 
+
 const Audio = () => {
     const [showContent, setShowContent] = useState(false);
     const [countdown, setCountdown] = useState(10); // Start countdown at 10 seconds
@@ -13,18 +14,90 @@ const Audio = () => {
     const [lyrics, setLyrics] = useState([]);
     const [lyricsTimings, setLyricsTimings] = useState([]);
     const [currentWord, setCurrentWord] = useState('');
+
     const wordsOfEncouragement = [
-        "Keep going!", "Awesome job!", "You're doing great!", 
-        "Amazing effort!", "Keep up the good work!", "You're on fire!", 
-        "Fantastic!", "Unstoppable!", "Wow, impressive!", "Keep shining!", 
-        "You're crushing it!", "Brilliant work!", "Superb!", "You're flying high!", 
-        "Incredible!", "You got this!", "Nothing can stop you!", "Way to go!", 
-        "Spectacular!", "Making progress!", "Phenomenal!", "You're a star!", 
-        "Magnificent!", "Wonderful!", "You're soaring!", "You're dazzling!", 
-        "Excellence personified!", "You're a champion!", "Marvelous!", "You're leading the way!", 
-        "Outstanding!", "You're breaking barriers!", "Keep pushing!", "You're a genius!", "Slay!", "You're killing this!", 
-        "You're a star", "Keep going!", "On fire!"
+        'lit!',
+      'dope!',
+      'slick!',
+      'boss!',
+      'fresh!',
+      'smooth!',
+      'fly!',
+      'sharp!',
+      'swag!',
+      'cool!',
+      'groovy!',
+      'snazzy!',
+      'jazzy!',
+      'rad!',
+      'tight!',
+      'sick!',
+      'stellar!',
+      'epic!',
+      'fire!',
+      'awesome!',
+      'crisp!',
+      'killer!',
+      'dashing!',
+      'vibing!',
+      'bomb!',
+      'amazing!',
+      'crazy!',
+      'fire!', 
+      'amazing!', 
+      'keep going!'
     ];
+
+    const colors = 
+    [
+        "#FFD600",
+        "#C6FF00",
+        "#795548",
+        "#03A9F4",
+        "#AA00FF",
+        "#9C27B0",
+        "#009688",
+        "#9E9E9E",
+        "#7BDCB5",
+        "#6200EA",
+        "#00B0FF",
+        "#FF6D00",
+        "#00A6ED",
+        "#673AB7",
+        "#76FF03",
+        "#00BCD4",
+        "#3F51B5",
+        "#FF5722",
+        "#FF5733",
+        "#FF5252",
+        "#FF1744",
+        "#D500F9",
+        "#4CAF50",
+        "#F50057",
+        "#ff6ac1",
+        "#00E5FF",
+        "#FFB400",
+        "#F78DA7",
+        "#64DD17",
+        "#FF9800",
+        "#FFEB3B",
+        "#9900EF",
+        "#2196F3",
+        "#FFC107",
+        "#8BC34A",
+        "#607D8B",
+        "#1DE9B6",
+        "#E91E63",
+        "#304FFE",
+        "#F6511D", 
+        "volcano", 
+        "lime", 
+        "gold", 
+        "cyan" 
+    ]
+    const colorIndex = Math.floor(Math.random() * colors.length); // Select a random index for the color
+    const color = colors[colorIndex]; // Get the color at the randomly selected index    
+
 
 
     // Define the event handler for button click
@@ -201,103 +274,6 @@ useEffect(() => {
                     </>
                 )}
                 {showContent && (
-//                     <>
-//                     <h2 style={{ marginTop: '20px', marginBottom: '20px', textAlign: 'center' }}>🎶 Single Ladies - Beyoncé 🎶</h2>
-                        
-//                         {/* Wide Box for Lyrics */}
-//                         <div style={{
-//                             textAlign: 'center',
-//                             border: '3px solid #f0f0f0',
-//                             padding: '10px',
-//                             width: '75%', // Adjusted for a wider box
-//                             height: '300px', // Height adjusts to content
-//                             boxSizing: 'border-box',
-//                             borderRadius: '15px',
-//                             boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-//                             backgroundColor: '#fff',
-//                             margin: '0 auto 20px auto', // Centered and with margin below
-//                         }}>
-//                             <h3 style={{ fontSize: '2.2em' }}>LYRICS</h3>
-//                             <h3 style={{
-//     margin: '0', // Remove default margin
-//     // fontSize: '1.9em', // Slightly larger font size for the current lyric
-//     fontSize: getFontSizeForLyric(lyrics[currentLyricIndex]), // Dynamic font size
-//     fontWeight: '500', // Medium font weight for importance
-//     paddingTop: '35px'
-//   }}>
-//                                 {lyrics[currentLyricIndex]}
-//                             </h3>
-//                             <h3 style={{
-//     margin: '0', // Remove default margin
-//     fontSize: '1.9em', // Smaller font size for the next lyric
-//     // fontSize: nextLyricFontSize,
-//     fontStyle: 'italic', // Italicize for a preview effect
-//     color: '#666', // Lighter color for the preview
-//     paddingTop: '50px',
-//     paddingBottom: "45px"
-//   }}>
-//                                 {getNextLyric()}
-//                             </h3>
-//                         </div>
-
-//                         <div style={{
-//     display: 'flex',
-//     alignItems: 'flex-end', // This aligns children at the bottom
-//     width: '75%', // Match the width of the lyrics box above for alignment
-//     margin: '0 auto', // Center align with the lyrics box
-// }}>
-
-// <div style={{
-//         width: '100%', // Take the full width of the parent container
-//         display: 'flex', // Use flexbox to center the content
-//         justifyContent: 'center', // Center the content horizontally
-//         marginBottom: '20px', // Space between comment and the next element
-//     }}>
-//         <div style={{
-//             backgroundColor: '#4076fa',
-//             color: 'white',
-//             padding: '5px 20px',
-//             fontSize: '2rem',
-//             fontFamily: 'Trebuchet MS, cursive',
-//             boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)',
-//             borderRadius: '5px',
-//         }}>
-//             {currentWord}
-//         </div>
-//     </div>
-
-
-//         <div style={{
-//         display: 'flex',
-//         flexDirection: 'column',
-//         justifyContent: 'space-between', // This spreads out the children vertically
-//         flex: '3', // Takes up 75% of the space
-//         marginRight: '20px', // Spacing between the audio player and the QUIT button
-//     }}>
-//         <SingleLadiesAudioPlayer onAudioEnd={() => navigate("/score")} />
-//     </div>
-    
-//     <div style={{
-//         flex: '1', // Takes up 25% of the space
-//         display: 'flex', // Added to allow alignment of the button
-//         flexDirection: 'column', // Aligns children vertically
-//         justifyContent: 'flex-end', // Pushes the button to the bottom
-//     }}>
-//         <button
-//             className="blue-button"
-//             style={{
-//                 marginLeft: '60px',
-//                 width: '80%',
-//                 backgroundColor: 'rgb(199,0,0)',
-//             }}
-//             onClick={handleButtonClick}
-//         >
-//             QUIT →
-//         </button>
-//     </div>
-// </div>
-//                     </>
-
 <>
 <h2 style={{ marginTop: '20px', marginBottom: '20px', textAlign: 'center' }}>🎶 Single Ladies - Beyoncé 🎶</h2>
     
@@ -335,24 +311,29 @@ useEffect(() => {
         </h3>
     </div>
 
-    {/* Current Word */}
-    <div style={{
-        width: '20%', // Match the width of the lyrics box above for alignment
-        margin: '20px auto', // Center align with the lyrics box, with top margin
-        textAlign: 'center',
-    }}>
-        <div style={{
-            backgroundColor: '#4076fa',
-            color: 'white',
-            padding: '5px 30px',
-            fontSize: '2rem',
-            fontFamily: 'Trebuchet MS, cursive',
-            boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)',
-            borderRadius: '15px',
-        }}>
-            {currentWord}
-        </div>
-    </div>
+
+  <div style={{ 
+  marginTop: '10px', 
+  textAlign: 'center', 
+  flexGrow: '1', // Allow this container to grow and push the audio player down
+  // padding: '10px 0', // Add some vertical padding
+  animation: 'float 3s ease-in-out infinite', // Add a floating animation
+}}>
+  <p style={{
+          padding: '10px 20px', // Add padding inside the box
+          borderRadius: '5px', // Small radius for a rectangular look
+          background: color, // Use random color from colors array
+          color: 'white',
+          fontSize: '40px',
+          boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+          textTransform: 'uppercase', // for white text in uppercase
+          maxWidth: '10%', // Maximum width of the box
+          margin: '0 auto', // Center the box if it's smaller than the max-width
+  }}>
+      <p className="floatAnimation">{currentWord}</p>
+  </p>
+</div>
+
 {/* Audio Player and Quit Button */}
 <div style={{
     display: 'flex',

@@ -1,6 +1,5 @@
 
 .landing-page-top {
-    /* background-image: url("../images/landing.png"); */
     /* background-color: black; */
     background-repeat: no-repeat;
     background-size:cover;  
@@ -53,3 +52,20 @@ body, button, input, select, textarea {
       visibility: hidden;
     }
   }
+
+  .landing-container {
+    background: url('../images/landing.png') repeat-y center top fixed;
+    /* background-size: cover; */
+    background-size: 100% 100%
+  }
+  
+  .about-section {
+    height: 100vh; /* Set the height to control the section size */
+    background-position: center 33%; 
+  }
+  
+  .team-section {
+    height: 100vh;
+    background-position: center 66%;
+  }
+  

@@ -36,12 +36,21 @@ class Landing extends Component {
   }
 
   render() {
+    const { showAbout } = this.state;
+    
+    const aboutStyle = {
+      backgroundPosition: showAbout ? 'center 33%' : 'center 0%'
+    };
+
+    const teamStyle = {
+      backgroundPosition: 'center 66%' // or calculate this dynamically
+    };
+
     return (
       <div className="landing-container">
         <LandingPage />
-        {/* {this.state.showAbout && <About /> && <Team />} */}
-        <About></About>
-        <Team></Team>
+        <div style={aboutStyle}><About /></div>
+        <div style={teamStyle}><Team /></div>
       </div>
     );
   }

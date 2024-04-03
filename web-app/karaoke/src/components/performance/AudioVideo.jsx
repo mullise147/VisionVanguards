@@ -41,16 +41,36 @@ const AudioVideo = () => {
     
     const [currentWord, setCurrentWord] = useState('');
     const wordsOfEncouragement = [
-        "Keep going!", "Awesome job!", "You're doing great!", 
-        "Amazing effort!", "Keep up the good work!", "You're on fire!", 
-        "Fantastic!", "Unstoppable!", "Wow, impressive!", "Keep shining!", 
-        "You're crushing it!", "Brilliant work!", "Superb!", "You're flying high!", 
-        "Incredible!", "You got this!", "Nothing can stop you!", "Way to go!", 
-        "Spectacular!", "Making progress!", "Phenomenal!", "You're a star!", 
-        "Magnificent!", "Wonderful!", "You're soaring!", "You're dazzling!", 
-        "Excellence personified!", "You're a champion!", "Marvelous!", "You're leading the way!", 
-        "Outstanding!", "You're breaking barriers!", "Keep pushing!", "Slay!", "You're killing this!", 
-        "You're a star", "Keep going!", "On fire!"
+      'lit!',
+      'dope!',
+      'slick!',
+      'boss!',
+      'fresh!',
+      'smooth!',
+      'fly!',
+      'sharp!',
+      'swag!',
+      'cool!',
+      'groovy!',
+      'snazzy!',
+      'jazzy!',
+      'rad!',
+      'tight!',
+      'sick!',
+      'stellar!',
+      'epic!',
+      'fire!',
+      'awesome!',
+      'crisp!',
+      'killer!',
+      'dashing!',
+      'vibing!',
+      'bomb!',
+      'amazing!',
+      'crazy!',
+      'fire!', 
+      'amazing!', 
+      'keep going!'
     ];
 
     const poses = {
@@ -75,6 +95,59 @@ const AudioVideo = () => {
       18: pose18,
       19: pose19
     };
+
+
+const colors = 
+[
+    "#FFD600",
+    "#C6FF00",
+    "#795548",
+    "#03A9F4",
+    "#AA00FF",
+    "#9C27B0",
+    "#009688",
+    "#9E9E9E",
+    "#7BDCB5",
+    "#6200EA",
+    "#00B0FF",
+    "#FF6D00",
+    "#00A6ED",
+    "#673AB7",
+    "#76FF03",
+    "#00BCD4",
+    "#3F51B5",
+    "#FF5722",
+    "#FF5733",
+    "#FF5252",
+    "#FF1744",
+    "#D500F9",
+    "#4CAF50",
+    "#F50057",
+    "#ff6ac1",
+    "#00E5FF",
+    "#FFB400",
+    "#F78DA7",
+    "#64DD17",
+    "#FF9800",
+    "#FFEB3B",
+    "#9900EF",
+    "#2196F3",
+    "#FFC107",
+    "#8BC34A",
+    "#607D8B",
+    "#1DE9B6",
+    "#E91E63",
+    "#304FFE",
+    "#F6511D", 
+    "volcano", 
+    "lime", 
+    "gold", 
+    "cyan" 
+]
+
+const colorIndex = Math.floor(Math.random() * colors.length); // Select a random index for the color
+const color = colors[colorIndex]; // Get the color at the randomly selected index
+
     useEffect(() => {
         // Function to update to a random word
         const updateWord = () => {
@@ -396,7 +469,7 @@ const AudioVideo = () => {
       objectFit: 'cover',
       maxWidth: '100%',
       height: 'auto',
-      width: '100px', // Specify a fixed width or adjust as needed
+      width: '80px', // Specify a fixed width or adjust as needed
       marginRight: '2%',
       marginLeft: '2%',
     }}
@@ -412,29 +485,26 @@ const AudioVideo = () => {
     marginRight: '2%',
     maxWidth: 'calc(100% - 300px - 30px)', // Account for image and margins
   }}>
-  
-<div style={{ 
+  <div style={{ 
   marginTop: '10px', 
   textAlign: 'center', 
   flexGrow: '1', // Allow this container to grow and push the audio player down
-  padding: '10px 0', // Add some vertical padding
+  // padding: '10px 0', // Add some vertical padding
   animation: 'float 3s ease-in-out infinite', // Add a floating animation
 }}>
   <p style={{
-    display: 'inline-block',
-    backgroundColor: '#4076fa', // Soft pink for a playful background,
-    color: 'white', // Dark color for the text for readability
-    padding: '5px 20px', // Padding inside the speech bubble
-    fontSize: '2rem', // Larger font size for cuteness
-    fontFamily: 'Trebuchet MS, cursive', // A playful font
-    boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)', // Subtle shadow for depth,
-    borderRadius: '5px'
-    // transform: 'scale(1)', // Start at normal scale
-    // transition: 'transform 0.3s', // Smooth scaling transition
+          padding: '10px 20px', // Add padding inside the box
+          borderRadius: '5px', // Small radius for a rectangular look
+          background: color, // Use random color from colors array
+          color: 'white',
+          fontSize: '40px',
+          boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+          textTransform: 'uppercase', // for white text in uppercase
+          maxWidth: '25%', // Maximum width of the box
+          margin: '0 auto', // Center the box if it's smaller than the max-width
   }}>
       <p className="floatAnimation">{currentWord}</p>
   </p>
-
 </div>
     <div style={{paddingTop: '5px'}}>
     <SingleLadiesAudioPlayer onAudioEnd={() => navigate('/score', { state: { from: "/audio-video" } })} />

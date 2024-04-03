@@ -1,26 +1,21 @@
 import React from 'react';
 
 const CalculatingScore = () => {
-  // Inline CSS styles
+  // // Inline CSS styles
   const styles = {
     calculatingContainer: {
       display: 'flex',
-      flexDirection: 'column',
+      // flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      height: '100vh',
-    },
-    calculatingMessage: {
-      fontSize: '24px',
-      marginBottom: '20px',
-      textAlign: 'center',
+      // height: '100vh',
     },
     loader: {
       border: '6px solid #f3f3f3', // Light grey
       borderTop: '6px solid #3498db', // Blue
       borderRadius: '50%',
-      width: '50px',
-      height: '50px',
+      width: '60px',
+      height: '60px',
       animation: 'spin 2s linear infinite',
     },
     // The @keyframes definition cannot be inlined into React style objects directly.
@@ -33,7 +28,6 @@ const CalculatingScore = () => {
 
   return (
     <div style={styles.calculatingContainer}>
-      <div style={styles.calculatingMessage}>Great Job! Calculating your final score....</div>
       <div style={styles.loader}></div> 
     </div>
   );

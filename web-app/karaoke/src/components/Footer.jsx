@@ -18,6 +18,7 @@ const Footer = () => {
           <li><a href="mailto:lnuas@mail.uc.edu">Athulya Ganesh</a></li>
           <li><a href="mailto:kelly2r@mail.uc.edu">Rob Kelly</a></li>
           <li><a href="mailto:mullise@mail.uc.edu">Stephanie Mullins</a></li>
+          <li><a href="mailto:aurisajm@ucmail.uc.edu">Advisor: Dr. Jillian Aurisano</a></li>
         </ul>
       </div>
     </footer>
