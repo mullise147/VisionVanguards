@@ -175,7 +175,7 @@ const colors =
 
     const updateFirestoreScore = async (newScore) => {
         try {
-            const userDocRef = doc(db, 'users', auth.currentUser.uid); // Replace 'USER_ID_HERE' with the actual user ID
+            const userDocRef = doc(db, 'users', auth.currentUser.uid); 
             await updateDoc(userDocRef, { score: newScore });
         } catch (error) {
             console.error('Error updating score in Firestore:', error);
@@ -257,25 +257,30 @@ const PraiseButtons = ({ praises }) => (
                     )}
                 </div>
             </div>
-            {showCalculating ? <CalculatingScore /> : (
-            <div className="score-container">
-                        {
-                navigatedFromAudioVideo && (
-                    <div className="score-meter">
-                         <b>{isNaN(score) || score === undefined ? <CalculatingScore/> : <ScoreMeter widthPerc={cv_score} title="Video Score" gradient={true} />}</b>
-                    </div>
-                )
-            }
+
+            <>
+    {showCalculating || isNaN(score) || score === undefined ? (
+        <p></p>
+    ) : (
+        <div className="score-container">
+            {navigatedFromAudioVideo && (
+                <div className="score-meter">
+                    <ScoreMeter widthPerc={cv_score} title="Video Score" gradient={true} />
+                </div>
+            )}
             <div className="score-meter">
-                <b>{isNaN(score) || score === undefined ? <CalculatingScore/> : <ScoreMeter widthPerc={pitch_score} title="Pitch Score" gradient={true} />}</b>
+                <ScoreMeter widthPerc={pitch_score} title="Pitch Score" gradient={true} />
             </div>
             <div className="score-meter">
-                <b>{isNaN(score) || score === undefined ? <CalculatingScore/> : <ScoreMeter widthPerc={lyrics_score} title="Lyrics Score" gradient={true} />}</b>
+                <ScoreMeter widthPerc={lyrics_score} title="Lyrics Score" gradient={true} />
             </div>
             <div className="score-meter">
-                <b>{isNaN(score) || score === undefined ? <CalculatingScore/> : <ScoreMeter widthPerc={score} title="Total Score" gradient={true} />}</b>
+                <ScoreMeter widthPerc={score} title="Total Score" gradient={true} />
             </div>
-        </div>)}
+        </div>
+    )}
+</>
+
 
         </>
     );
