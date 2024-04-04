@@ -35,7 +35,6 @@ const AudioVideo = () => {
     const [buttonClicked, setButtonClicked] = useState(false); // Track if the countdown button has been clicked
     const videoStream = "http://localhost:8080/video-feed";
     const navigate = useNavigate(); 
-    const lyricsRef = useRef(null);
 
     const [currentPoseIndex, setCurrentPoseIndex] = useState(0);
     const [poseTimings, setPoseTimings] = useState([]);
@@ -249,12 +248,6 @@ const color = colors[colorIndex]; // Get the color at the randomly selected inde
         }
       }, [showContent, lyricsTimings, lyrics, countdown]);
 
-    useEffect(() => {
-      if (showContent && lyricsRef.current) {
-        lyricsRef.current.scrollIntoView({behavior: 'smooth', block: 'start'});
-      }
-    }, [showContent]);
-  
     const startRecording = async () => {
         const response = await fetch('http://localhost:8080/start-recording', { method: 'POST' });
         console.log('Recording started:', await response.text());
@@ -411,7 +404,7 @@ const color = colors[colorIndex]; // Get the color at the randomly selected inde
   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', // Added a soft shadow for depth
   backgroundColor: '#fff', // Optional: Background color for contrast
 }}> 
-    <h3 ref={lyricsRef} style = {{fontSize: '2.2em'}}>LYRICS</h3>  
+     <h3 style = {{fontSize: '2.2em'}}>LYRICS</h3>  
     <h3 style={{
     margin: '0', // Remove default margin
     // fontSize: '1.9em', // Slightly larger font size for the current lyric
