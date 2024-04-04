@@ -259,6 +259,12 @@ useEffect(() => {
         }
       }, [showContent, lyricsTimings, lyrics, countdown]);
 
+    useEffect(() => {
+      if (showContent && lyricsRef.current) {
+        lyricsRef.current.scrollIntoView({behavior: 'smooth', block: 'start'});
+      }
+    }, [showContent]);
+  
     const startRecording = async () => {
         const response = await fetch('http://localhost:8080/start-recording', { method: 'POST' });
         console.log('Recording started:', await response.text());
@@ -418,6 +424,7 @@ useEffect(() => {
   backgroundColor: '#fff', // Optional: Background color for contrast
 }}> 
         <h3 ref={lyricsRef} style = {{fontSize: '2.2em'}}>LYRICS</h3>  
+    //<h3 ref={lyricsRef} style = {{fontSize: '2.2em'}}>LYRICS</h3>  
     <h3 style={{
     margin: '0', // Remove default margin
     // fontSize: '1.9em', // Slightly larger font size for the current lyric
