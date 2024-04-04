@@ -1,4 +1,15 @@
-    const styles = {
+import React, { useState, useEffect } from "react";
+import Navbar from "../Sidebar";
+import CalculatingScore from "./CalculatingScoreAnimation";
+import singleLadiesImage from "../../assets/images/single_ladies.jpg"; 
+import { useNavigate, useLocation } from "react-router-dom";
+import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore"; // Import Firestore functions
+import { auth } from '../../firebase'; // Import Firebase auth
+import ScoreMeter from "./ScoreMeter";
+import Confetti from 'react-confetti'; 
+import useSize from "../performance/useSize";
+
+const styles = {
         scoreContainer: {
             display: 'flex',
             justifyContent: 'center',
@@ -27,15 +38,6 @@
         }
     };
 
-    import React, { useState, useEffect } from "react";
-    import Navbar from "../Sidebar";
-    import CalculatingScore from "./CalculatingScoreAnimation";
-    import singleLadiesImage from "../../assets/images/single_ladies.jpg"; 
-    import { useNavigate, useLocation } from "react-router-dom";
-    import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore"; // Import Firestore functions
-    import { auth } from '../../firebase'; // Import Firebase auth
-    import ScoreMeter from "./ScoreMeter";
-
 
 const Score = () => {
     const [showCalculating, setShowCalculating] = useState(true);
@@ -58,6 +60,7 @@ const Score = () => {
         "superb", "amazing", "impressive", "fabulous", "great", 
         "bravo", "wonderful", "phenomenal", "excellent", "terrific", "newbie", "intermediate", "pro", "expert"
       ];
+      const { width, height } = useSize();
 
 
 const colors = 
@@ -117,18 +120,27 @@ const colors =
       const uniqueRandomPraises = [...new Set(randomPraises)];
 
 
-      const updateFirestoreTags = async (newTags) => {
+    const updateFirestoreTags = async (newTags) => {
         try {
             const userDocRef = doc(db, 'users', auth.currentUser.uid); // Get the document reference
-            console.log("uid: ", auth.currentUser.uid); 
-            console.log("newtag: ", newTags); 
-            await updateDoc(userDocRef, {
-                tags: newTags // Update the 'tags' field with new values
-            });
+            const userDocSnap = await getDoc(userDocRef); // Fetch the document
+    
+            if (userDocSnap.exists()) {
+                const currentData = userDocSnap.data(); // Get current data from the document
+                const newNumGames = currentData.numGames ? currentData.numGames + 1 : 1; // Increment numGames or initialize it
+    
+                await updateDoc(userDocRef, {
+                    tags: newTags, // Update the 'tags' field with new values
+                    numGames: newNumGames // Update the 'numGames' field
+                });
+            } else {
+                console.log('Document does not exist!'); // Handle the case where the document doesn't exist
+            }
         } catch (error) {
             console.error('Error updating tags in Firestore:', error);
         }
     };
+    
 
     const fetchScores = async () => {
         if (!scoreFetched) {
@@ -229,7 +241,7 @@ const PraiseButtons = ({ praises }) => (
 );
 
     return (
-        <>
+    <div className = "background">
             <Navbar />
             <div style={styles.scoreContainer}>
                 <div style={styles.imageContainer}>
@@ -238,6 +250,10 @@ const PraiseButtons = ({ praises }) => (
                 <div style={styles.scoreDisplay}>
                     {showCalculating ? <CalculatingScore /> : (
                         <>
+                         <Confetti
+                            width={width}
+                            height={height}
+                            />
                             <div className="score-text" style={{ textAlign: 'center' }}>
                                 <span style={styles.smallText}>Total</span>
                                 <span style={styles.largeText}>
@@ -258,31 +274,32 @@ const PraiseButtons = ({ praises }) => (
                 </div>
             </div>
 
-            <>
-    {showCalculating || isNaN(score) || score === undefined ? (
-        <p></p>
-    ) : (
-        <div className="score-container">
-            {navigatedFromAudioVideo && (
-                <div className="score-meter">
-                    <ScoreMeter widthPerc={cv_score} title="Video Score" gradient={true} />
+            <div>
+            {showCalculating || isNaN(score) || score === undefined ? (
+                <div className = "background"></div>
+            ) : (
+                <div className="score-container">
+                    {navigatedFromAudioVideo && (
+                        <div className="score-meter">
+                            <ScoreMeter widthPerc={cv_score} title="Video Score" gradient={true} />
+                        </div>
+                    )}
+                    <div className="score-meter">
+                        <ScoreMeter widthPerc={pitch_score} title="Pitch Score" gradient={true} />
+                    </div>
+                    <div className="score-meter">
+                        <ScoreMeter widthPerc={lyrics_score} title="Lyrics Score" gradient={true} />
+                    </div>
+                    <div className="score-meter">
+                        <ScoreMeter widthPerc={score} title="Total Score" gradient={true} />
+                    </div>
                 </div>
             )}
-            <div className="score-meter">
-                <ScoreMeter widthPerc={pitch_score} title="Pitch Score" gradient={true} />
-            </div>
-            <div className="score-meter">
-                <ScoreMeter widthPerc={lyrics_score} title="Lyrics Score" gradient={true} />
-            </div>
-            <div className="score-meter">
-                <ScoreMeter widthPerc={score} title="Total Score" gradient={true} />
-            </div>
         </div>
-    )}
-</>
+        <div className = "background"></div>
 
 
-        </>
+        </div>
     );
 }; 
 

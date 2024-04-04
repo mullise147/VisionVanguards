@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import singleLadies from './single_ladies.wav';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
+import WaveForm from './Waveform';
 
 
 const SingleLadiesAudioPlayer = () => {
@@ -9,6 +10,7 @@ const SingleLadiesAudioPlayer = () => {
   const [duration, setDuration] = useState(0);
   const navigate = useNavigate(); // Initialize useNavigate hook for navigation
   const audioRef = useRef(null);
+
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);

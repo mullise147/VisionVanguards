@@ -3,7 +3,9 @@ import Navbar from "../Sidebar";
 import SingleLadiesAudioPlayer from "./SingleLadiesAudioPlayer";
 import AudioWave from './AudioWave';
 import { useNavigate } from 'react-router-dom';
-
+import WaveForm from './Waveform';
+import "../../assets/styles/audio.css"; 
+import { useReward } from 'react-rewards';
 
 const Audio = () => {
     const [showContent, setShowContent] = useState(false);
@@ -14,6 +16,9 @@ const Audio = () => {
     const [lyrics, setLyrics] = useState([]);
     const [lyricsTimings, setLyricsTimings] = useState([]);
     const [currentWord, setCurrentWord] = useState('');
+
+
+
 
     const wordsOfEncouragement = [
         'lit!',
@@ -109,6 +114,7 @@ const Audio = () => {
     fetchLyrics();
     fetchLyricsTimings();
 }, []);
+
 
 const fetchLyrics = async () => {
     const response = await fetch('http://localhost:8080/lyrics');
@@ -230,7 +236,7 @@ useEffect(() => {
     };
 
     return (
-        <>
+        <div className = "background">
             <Navbar />
             <div style={{alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
                 {!showContent && (
@@ -354,6 +360,7 @@ useEffect(() => {
                 width: '100%', // Ensures the audio player stretches to fill its container
             }} 
         />
+
     </div>
     <button
         className="blue-button"
@@ -367,15 +374,25 @@ useEffect(() => {
     >
         QUIT →
     </button>
+    
+      <div
+        style={{
+          height: 0,
+          display: "flex",
+          justifyContent: "space-around",
+          alignItems: "center"
+        }}
+      >
+        <WaveForm></WaveForm>
+
+        </div>
 </div>
-
-
 
 </>
 
                 )}
             </div>
-        </>
+        </div>
     );
 };
 
