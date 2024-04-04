@@ -1,8 +1,4 @@
-.form-item {
-    height: 375px; 
-  }
-
-  .background {
+.background {
     background: url('../images/all.png') repeat-y center top fixed;
     background-size: 100% 100%
   }

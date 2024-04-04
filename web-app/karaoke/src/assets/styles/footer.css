@@ -12,6 +12,8 @@ body, html {
 
 .footer-container {
     /* background-color: #000; */
+    background: url('../images/all.png') repeat-y center top fixed;
+    background-size: 100% 100%;
     color: black;
     padding: 20px 0;
     text-align: center;

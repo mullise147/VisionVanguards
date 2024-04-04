@@ -91,7 +91,7 @@ const Navbar = () => {
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: '8px 10px', // Adjusted padding for thin navbar
-        backgroundColor: '#001529', // Dark blue background color
+        backgroundColor: 'transparent', // Dark blue background color
         color: '#ffffff', // White text color
       }}
     >
@@ -114,7 +114,7 @@ const Navbar = () => {
         <Menu
           theme="dark"
           mode="horizontal"
-          style={{ backgroundColor: "#001529", color: "#ffffff"}}
+          style={{ backgroundColor: "transparent", color: "#ffffff"}} //001529
         >
           <Menu.Item
             key="back"
@@ -129,7 +129,7 @@ const Navbar = () => {
  <Menu
  theme="dark"
  mode="horizontal"
- style={{ backgroundColor: '#001529', color: '#ffffff' }}
+ style={{ backgroundColor: 'transparent', color: '#ffffff' }}
 >
  <SubMenu
    key="newSession"
@@ -150,7 +150,7 @@ const Navbar = () => {
   <Menu
       theme="dark"
       mode="horizontal"
-      style={{ backgroundColor: '#001529', color: '#ffffff' }}
+      style={{ backgroundColor: 'transparent', color: '#ffffff' }}
     >
       <SubMenu
         key="settings"

@@ -10,7 +10,7 @@ import Landing from './components/Landing';
 import Leaderboard from './components/Leaderboard';
 import Search from './components/Search';
 import Audio from './components/performance/Audio';
-import Video from './components/performance/Video';
+// import Video from './components/performance/Video';
 import Score from './components/score/Score';
 import Account from "./components/Account"; 
 import Footer from "./components/Footer"; 
@@ -45,7 +45,7 @@ class App extends React.Component {
               <Route path="/score" element={<Score />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/audio" element={<Audio />} />
-              <Route path="/video" element={<Video />} />
+              {/* <Route path="/video" element={<Video />} /> */}
               <Route path="/audio-video" element={<AudioVideo />} />
 
             </Route>

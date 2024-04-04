@@ -2,8 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import Navbar from "../Sidebar";
 import SingleLadiesAudioPlayer from "./SingleLadiesAudioPlayer";
 import AudioWave from './AudioWave';
+import WaveForm from './Waveform';
+import { useReward } from 'react-rewards';
 import { useNavigate } from 'react-router-dom';
-import "../../assets/styles/comment.css"; 
+import "../../assets/styles/comment.css";
+import "../../assets/styles/audio.css"; 
 import pose0 from "../../assets/images/pose/0.png"; 
 import pose1 from "../../assets/images/pose/1.png"; 
 import pose2 from "../../assets/images/pose/2.png"; 
@@ -35,6 +38,7 @@ const AudioVideo = () => {
     const [buttonClicked, setButtonClicked] = useState(false); // Track if the countdown button has been clicked
     const videoStream = "http://localhost:8080/video-feed";
     const navigate = useNavigate(); 
+    const { reward, isAnimating } = useReward('rewardId', 'confetti');
 
     const [currentPoseIndex, setCurrentPoseIndex] = useState(0);
     const [poseTimings, setPoseTimings] = useState([]);
@@ -266,6 +270,7 @@ const color = colors[colorIndex]; // Get the color at the randomly selected inde
 
     }
     const handleStartCountdown = () => {
+      reward
         if (!buttonClicked) {
             setButtonClicked(true);
             setCountdown(10);
@@ -320,7 +325,7 @@ const color = colors[colorIndex]; // Get the color at the randomly selected inde
     };
     
     return (
-        <>
+        <div className = "background">
         <Navbar />
         <div style={{alignItems: 'center', justifyContent: 'center', height: '100vh'}}>
             {!showContent && (
@@ -333,11 +338,12 @@ const color = colors[colorIndex]; // Get the color at the randomly selected inde
                         <div style={{textAlign: 'center', marginTop: '0px'}}>
                             <button
                                 className="blue-button"
+                                disabled={isAnimating}
                                 onClick={handleStartCountdown}
                                 onMouseEnter={(e) => (e.target.style.backgroundColor = '#0056b3')}
                                 onMouseLeave={(e) => (e.target.style.backgroundColor = '#007bff')}
                             >
-                                START →
+                                START →             
                             </button>
                         </div>
                     )}
@@ -379,7 +385,7 @@ const color = colors[colorIndex]; // Get the color at the randomly selected inde
             
             {showContent && (
   <>
-    <h2 style={{ marginTop: '20px', marginBottom: '20px', textAlign: 'center' }}>🎶 Single Ladies - Beyoncé 🎶</h2>
+    <h2 style={{  marginTop: '20px', marginBottom: '20px', textAlign: 'center' }}>🎶 Single Ladies - Beyoncé 🎶</h2>
     <div style = {{opacity: '0.8'}}>    </div>
 
     
@@ -531,13 +537,16 @@ const color = colors[colorIndex]; // Get the color at the randomly selected inde
     >
       QUIT →
     </button>
+    <WaveForm></WaveForm>
   </div>
 </div>
+
   </>
 )}
 
         </div>
-    </>
+
+    </div>
     );
 };
 

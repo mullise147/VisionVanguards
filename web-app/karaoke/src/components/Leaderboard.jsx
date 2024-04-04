@@ -6,6 +6,7 @@ import { getFirestore, getDocs, collection, query, where } from "firebase/firest
 import winner from "../assets/images/winner.png"; 
 import you from "../assets/images/you.png"; 
 
+
 const colors = 
     [
         "#FFD600",
@@ -77,7 +78,8 @@ class Leaderboard extends Component {
                 data.push({
                     username: doc.data().username,
                     score: doc.data().score,
-                    tags: doc.data().tags
+                    tags: doc.data().tags,
+                    numGames: doc.data().numGames
                 });
             });
     
@@ -181,6 +183,13 @@ if (userEntry) {
                 render: (text) => <span style={{ display: 'block', textAlign: 'center' }}>{text}</span>,
             },
             {
+                title: 'Games Played',
+                dataIndex: 'numGames',
+                key: 'numGames',
+                align: 'center',
+                render: (text) => <span style={{ display: 'block', textAlign: 'center' }}>{text}</span>,
+            },
+            {
                 title: 'Tags',
                 key: 'tags',
                 dataIndex: 'tags',
@@ -205,7 +214,7 @@ if (userEntry) {
         ];
 
         return (
-            <>
+            <div className = "background">
             <Navbar></Navbar>
                 <h3 style={{ textAlign: "center", paddingTop: "25px" }}>{title}</h3>
                 <div style={{ display: "table", justifyContent: "center", paddingTop: "25px", width: "80%", margin: "0 auto" }}>
@@ -218,7 +227,7 @@ if (userEntry) {
                         </TabPane>
                     </Tabs>
                 </div>
-            </>
+            </div>
         )
     }
 }

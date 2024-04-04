@@ -72,7 +72,8 @@ const Account = () => {
         username,
         email: user.email,
         score: 0, // Initialize score,
-        tags: randomWordsArray
+        tags: randomWordsArray,
+        numGames: 0
       });
       
       setSignUpSuccess("Sign Up Successful!");
@@ -113,7 +114,8 @@ const Account = () => {
           username: generateRandomUsername(),
           email: user.email,
           score: 0,
-          tags: randomWordsArray
+          tags: randomWordsArray,
+          numGames: 0
         });
       }
 
@@ -130,7 +132,7 @@ const Account = () => {
 
 
   return (
-    <>
+    <div className = "background">
       <Row justify="center" style={{ paddingTop: '25px' }}>
         {signupError && <Alert message={signupError} type="error" showIcon />}
         {signinError && <Alert message={signinError} type="error" showIcon />}
@@ -242,7 +244,7 @@ const Account = () => {
           </Card>
         </Col>
       </Row>
-    </>
+    </div>
   );
 };
 
