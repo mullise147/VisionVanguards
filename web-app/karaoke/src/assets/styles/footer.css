@@ -1,0 +1,58 @@
+/* 
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Turret Road',  sans-serif; 
+  color: white; 
+} */
+
+/* body, button, input, select, textarea {
+  font-family: 'Turret Road', sans-serif;
+} */
+
+.footer-container {
+    /* background-color: #000; */
+    background: url('../images/all.png') repeat-y center top fixed;
+    background-size: 100% 100%;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  h3 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  p {
+    margin: 5px 0;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin: 5px 0;
+  }
+  
+  a {
+    color: #92bee5; /* Unopened link color */
+    text-decoration: none;
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+  }
+  
+  a:hover {
+    color: white; /* Link color on hover */
+  }
+  
+  a:active {
+    color: #004E9A; /* Darker shade on click */
+  }
