@@ -34,7 +34,7 @@ class Team extends Component {
               <Card
                 hoverable
                 style={{ width: 260 }}
-                cover={<img alt="example" src={Pic} style={{width: 260, height: 200}}/>}
+                cover={<img alt="example" src={Pic} style={{width: 260, height: 220}}/>}
               >
                 <Meta
                   title={<span  className = "rubik-mono">Rob</span>}
