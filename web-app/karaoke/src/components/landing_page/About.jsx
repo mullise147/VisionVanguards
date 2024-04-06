@@ -6,7 +6,7 @@ class About extends Component {
     return (
       <div className="about-container">
         <div className="landing-page-top">
-          <h2>ABOUT</h2>
+          <h2 className = "rubik-mono">ABOUT</h2>
           <p className="about-paragraph">
             Immerse yourself in the world of music with SightStep, a cutting-edge computer vision application.
             Transform any space into your private dance floor and karaoke stage.

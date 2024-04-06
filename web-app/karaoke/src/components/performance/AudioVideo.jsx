@@ -7,6 +7,7 @@ import { useReward } from 'react-rewards';
 import { useNavigate } from 'react-router-dom';
 import "../../assets/styles/comment.css";
 import "../../assets/styles/audio.css"; 
+import "../../assets/styles/font.css"; 
 import pose0 from "../../assets/images/pose/0.png"; 
 import pose1 from "../../assets/images/pose/1.png"; 
 import pose2 from "../../assets/images/pose/2.png"; 
@@ -153,11 +154,11 @@ const colors =
 const colorIndex = Math.floor(Math.random() * colors.length); // Select a random index for the color
 const color = colors[colorIndex]; // Get the color at the randomly selected index
 
-useEffect(() => {
-  if (showContent && lyricsRef.current) {
-    lyricsRef.current.scrollIntoView({behavior: 'smooth', block: 'start'});
-  }
-}, [showContent]);
+// useEffect(() => {
+//   if (showContent && lyricsRef.current) {
+//     lyricsRef.current.scrollIntoView({behavior: 'smooth', block: 'start'});
+//   }
+// }, [showContent]);
 
     useEffect(() => {
         // Function to update to a random word
@@ -321,6 +322,9 @@ useEffect(() => {
         left: '50%',
         transform: 'translateX(-50%)',
         zIndex: 2, // Ensure it's above the video feed
+        fontFamily: "Rubik Mono One, monospace", 
+        fontWeight: 400,
+        fontStyle: "normal",
     };
 
     const videoContainerStyle = {
@@ -346,7 +350,7 @@ useEffect(() => {
                 <>
                     <AudioWave style={{ pointerEvents: 'none', flex: '1', alignSelf: 'center' }} />
 
-                    <h3 style={{marginTop: '20px', marginBottom: '20px', textAlign: 'center'}}>Start your Performance</h3>
+                    <h2 className = "rubik-mono" style={{marginTop: '20px', marginBottom: '20px', textAlign: 'center', className: "rubik-mono"}}>Start your Performance</h2>
                     {!buttonClicked && (
                         <div style={{textAlign: 'center', marginTop: '0px'}}>
                             <button
@@ -376,6 +380,9 @@ useEffect(() => {
                                         backgroundColor: 'rgba(128, 128, 128, 0.5)',
                                         padding: '5px 20px',
                                         borderRadius: '100px',
+                                        fontFamily: "Rubik Mono One, monospace", 
+                                        fontWeight: 400,
+                                        fontStyle: "normal"
                                     }}>
                                         {countdown}
                                     </div>
@@ -398,7 +405,7 @@ useEffect(() => {
             
             {showContent && (
   <>
-    <h2 style={{  marginTop: '20px', marginBottom: '20px', textAlign: 'center' }}>🎶 Single Ladies - Beyoncé 🎶</h2>
+    <h2 style={{  marginTop: '20px', marginBottom: '20px', textAlign: 'center',  fontFamily: "Rubik Mono One, monospace" }}>🎶 Single Ladies - Beyoncé 🎶</h2>
     <div style = {{opacity: '0.8'}}>    </div>
 
     
@@ -424,7 +431,7 @@ useEffect(() => {
   backgroundColor: '#fff', // Optional: Background color for contrast
 }}> 
         <h3 ref={lyricsRef} style = {{fontSize: '2.2em'}}>LYRICS</h3>  
-    //<h3 ref={lyricsRef} style = {{fontSize: '2.2em'}}>LYRICS</h3>  
+  {/* <h3 ref={lyricsRef} style = {{fontSize: '2.2em'}}>LYRICS</h3>   */}
     <h3 style={{
     margin: '0', // Remove default margin
     // fontSize: '1.9em', // Slightly larger font size for the current lyric

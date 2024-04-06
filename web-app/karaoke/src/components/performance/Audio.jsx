@@ -5,7 +5,7 @@ import AudioWave from './AudioWave';
 import { useNavigate } from 'react-router-dom';
 import WaveForm from './Waveform';
 import "../../assets/styles/audio.css"; 
-import { useReward } from 'react-rewards';
+import "../../assets/styles/font.css"; 
 
 const Audio = () => {
     const [showContent, setShowContent] = useState(false);
@@ -219,6 +219,9 @@ useEffect(() => {
         left: '50%',
         transform: 'translateX(-50%)',
         zIndex: 2, // Ensure it's above the video feed
+        fontFamily: "Rubik Mono One, monospace",
+        fontWeight: "400",
+        fontStyle: "normal"
     };
 
     const videoContainerStyle = {
@@ -242,7 +245,8 @@ useEffect(() => {
                 {!showContent && (
                     <>
                      <AudioWave style={{ pointerEvents: 'none' }} />
-                     <h3 style={{ marginTop: '20px', marginBottom: '20px', textAlign: 'center' }}>Start your Performance</h3>
+                     <h2 style={{ marginTop: '20px', marginBottom: '20px', textAlign: 'center', fontFamily: "Rubik Mono One, monospace", 
+                    fontWeight: '400',fontStyle: 'normal'}}>Start your Performance</h2>
                         {!buttonClicked && (
                             <div style={{ textAlign: 'center', marginTop: '0px' }}>
                                 <button className="blue-button"
@@ -270,6 +274,10 @@ useEffect(() => {
                                         backgroundColor: 'rgba(128, 128, 128, 0.5)',
                                         padding: '5px 20px',
                                         borderRadius: '100px',
+                                        fontFamily: "Rubik Mono One, monospace",
+                                        fontWeight: "400",
+                                        fontStyle: "normal"
+                                        
                                     }}>
                                         {countdown}
                                     </div>
@@ -281,7 +289,7 @@ useEffect(() => {
                 )}
                 {showContent && (
 <>
-<h2 style={{ marginTop: '20px', marginBottom: '20px', textAlign: 'center' }}>🎶 Single Ladies - Beyoncé 🎶</h2>
+<h2 style={{ marginTop: '20px', marginBottom: '20px', textAlign: 'center',  fontFamily: "Rubik Mono One, monospace" }}>🎶 Single Ladies - Beyoncé 🎶</h2>
     
     {/* Wide Box for Lyrics */}
     <div style={{
@@ -296,7 +304,7 @@ useEffect(() => {
         backgroundColor: '#fff',
         margin: '0 auto 20px auto', // Centered and with margin below
     }}>
-        <h3 style={{ fontSize: '2.2em' }}>LYRICS</h3>
+        <h3 style={{ fontSize: '2.2em', }}>LYRICS</h3>
         <h3 style={{
             margin: '0', // Remove default margin
             fontSize: getFontSizeForLyric(lyrics[currentLyricIndex]), // Dynamic font size

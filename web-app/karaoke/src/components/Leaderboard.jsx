@@ -5,6 +5,7 @@ import { auth } from '../firebase';
 import { getFirestore, getDocs, collection, query, where } from "firebase/firestore";
 import winner from "../assets/images/winner.png"; 
 import you from "../assets/images/you.png"; 
+import "../assets/styles/font.css"; 
 
 
 const colors = 
@@ -216,7 +217,7 @@ if (userEntry) {
         return (
             <div className = "background">
             <Navbar></Navbar>
-                <h3 style={{ textAlign: "center", paddingTop: "25px" }}>{title}</h3>
+                <h3 className = "rubik-mono"style={{ textAlign: "center", paddingTop: "25px" }}>{title}</h3>
                 <div style={{ display: "table", justifyContent: "center", paddingTop: "25px", width: "80%", margin: "0 auto" }}>
                     <Tabs onChange={this.onChange} type="card">
                         <TabPane tab="Leaderboard" key="1">

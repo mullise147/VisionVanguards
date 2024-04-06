@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import "../../assets/styles/landing_page.css";
 import "../../index.css";
+import "../../assets/styles/font.css"; 
 
 class LandingPage extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class LandingPage extends Component {
         text: fullText.substring(0, text.length + 1),
       });
 
-      setTimeout(this.typeText, 300); // Slowed down the typing speed
+      setTimeout(this.typeText, 400); // Slowed down the typing speed
     }
   };
 
@@ -31,10 +32,10 @@ class LandingPage extends Component {
     const { text } = this.state;
     return (
       <div className="landing-page-top">
-        <p>The Vision Vanguards present...</p>
-        <h1>[ {text} ]</h1>
+        <p className = "cousine-regular ">The Vision Vanguards present...</p>
+        <h1 className = "rubik-mono" style = {{fontSize: '90px', paddingTop: '0px'}}>[{text}]</h1>
         <br />
-        <p>Unleash your inner star: Dance, Sing, and Shine with Karaoke Magic!</p>
+        <p className = "cousine-regular ">Unleash your inner star: Dance, Sing, and Shine with Karaoke Magic!</p>
         <br />
         <br />
         <button className="blue-button">

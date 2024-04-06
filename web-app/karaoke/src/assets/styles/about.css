@@ -2,6 +2,9 @@
     padding-left: 100px;
     padding-right: 100px;
     text-align: justify;
+    font-family: "Cousine", monospace;
+    font-weight: 400;
+    font-style: normal;
   }
 
 body, html {
@@ -15,11 +18,12 @@ body, button, input, select, textarea {
     font-family: 'Turret Road', sans-serif;
   }
 
-  .card-title {
+  /* .card-title {
     font-family: 'Turret Road', sans-serif;
-    font-size: 20px; 
+    font-size: 20px;
+    
   }
   .card-description {
     font-family: 'Turret Road', sans-serif;
     font-size: 16px; 
-  } 
+  }  */
