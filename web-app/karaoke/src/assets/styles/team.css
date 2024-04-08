@@ -6,4 +6,20 @@
     margin: 0 auto; /* Center horizontally */
   }
   
+  .team-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .custom-card-container {
+    height: 365px; /* Adjust based on your content */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .custom-card-description {
+    flex: 1;
+    overflow: auto;
+  }
   
