@@ -16,6 +16,8 @@ import { doc, deleteDoc, getFirestore } from 'firebase/firestore';
 import { updateEmail, updatePassword } from 'firebase/auth';
 import { useNavigate, useLocation } from 'react-router-dom';
 import logo from "../assets/images/logo.png"; 
+import "../assets/styles/font.css"; 
+
 
 const { SubMenu } = Menu;
 const { confirm } = Modal;
@@ -44,13 +46,15 @@ const Navbar = () => {
   const toggleCollapsed1 = () => {
     setCollapsed1(!collapsed); 
   }
+  
+
 
   const showDeleteConfirmation = async () => {
     confirm({
-      title: `Are you sure you want to delete your account?`,
+      title: <div style = {{fontFamily: 'Cousine'}}>Are you sure you want to delete your account?</div>,
       icon: <ExclamationCircleOutlined />,
-      content: 'This action cannot be undone.',
-      okText: 'Yes',
+      content: <div style = {{fontFamily: 'Cousine'}}>This action cannot be undone.</div>,
+      okText:'Yes',
       okType: 'danger',
       cancelText: 'No',
       async onOk() {
@@ -97,8 +101,8 @@ const Navbar = () => {
     >
        {/* Logo container - aligned to the left */}
        <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-        <img src={logo} alt="Logo" style={{ height: '65px', marginRight: '10px' }} /> {/* Adjust height and spacing as needed */}
-        {/* If you have additional items to go next to the logo, include them here */}
+        <img src={logo}  alt="Logo" style={{ height: '65px', marginRight: '10px' }} /> {/* Adjust height and spacing as needed */}
+        <h4 className = "cousine-regular">Welcome!</h4>
       </div>
       <div justify="center" style={{ paddingTop: '50px' }}>
         {deleteError && <Alert message={deleteError} type="error" showIcon />}
@@ -136,10 +140,10 @@ const Navbar = () => {
    icon={<PlusOutlined style={{ fontSize: '24px' }} />}
  >
    <Menu.Item key="startAudio" icon={<AudioOutlined />} onClick={handleStartPerformingAudio}>
-   Start Karaoke Session
+    Start Karaoke Session 
    </Menu.Item>
    <Menu.Item key="startAudio" icon={<VideoCameraOutlined />} onClick={handleStartPerformingVideo}>
-     Start Karaoke-Dance Session
+  Start Karaoke-Dance Session
    </Menu.Item>
  </SubMenu>
 </Menu>
@@ -160,7 +164,7 @@ const Navbar = () => {
         Delete Account
         </Menu.Item>
         <Menu.Item key="signOut" icon={<LogoutOutlined />} onClick={handleSignOut}>
-          Sign Out       
+        Sign Out    
         </Menu.Item>
       </SubMenu>
     </Menu>

@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Cousine:ital,wght@0,400;0,700;1,400;1,700&family=Reddit+Mono:wght@200..900&family=Rubik+Mono+One&family=VT323&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
 .form-item {
-    height: 375px; 
+    height: 550px; 
   }
 
   .background {
@@ -8,3 +10,123 @@
   }
 
   
+
+.form-item input, .form-item .ant-card-head-title {
+  color: white;
+}
+
+
+.form-item {
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size:90px; 
+  border: transparent;
+}
+
+/* account.css */
+.ant-card-head-title {
+  font-size: 50px; /* or any other size you prefer */
+  /* Additional styling if needed */
+  border: transparent;
+
+}
+/* account.css */
+.ant-card-head {
+  border-bottom: transparent;
+}
+
+/* Target both Input and Input.Password with the same styles */
+.form-item input{
+  background-color: #fff; /* White background */
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 40px; /* Rounded corners for a modern look */
+  padding: 15px; /* Padding for aesthetics */
+  font-size: 16px; /* Suitable font size */
+  color: #333; /* Darker text for better readability */
+  text-indent: 5px;
+}
+
+.form-item .ant-input-password {
+  background-color: #fff; /* White background */
+  border-radius: 40px; /* Rounded corners for a modern look */
+  font-size: 16px; /* Suitable font size */
+  color: #333; /* Darker text for better readability */
+  border: transparent;
+  outline: transparent;
+  text-indent: 0px;
+}
+
+
+.form-item .ant-input-password input{
+  background-color: #fff; /* White background */
+  border-radius: 40px; /* Rounded corners for a modern look */
+  padding: 10px; /* Padding for aesthetics */
+  font-size: 16px; /* Suitable font size */
+  color: #333; /* Darker text for better readability */
+  border: transparent;
+  text-indent: 0px;
+}
+
+
+.form-item .ant-input-affix-wrapper {
+  border: 1px solid #ccc; /* Light gray border */
+}
+
+/* Style the focus state similarly for both types of inputs */
+.form-item input:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+
+/* Optional: if you want to remove the inner input border of Input.Password when focused */
+.form-item .ant-input-affix-wrapper:focus input {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+/* Use this style if your Row component is not already a flex container */
+.row-flex {
+  display: flex;
+  justify-content: center;
+  align-items: stretch; /* This will make all flex children of the row the same height */
+}
+
+.card-equal-width {
+  flex: 1; /* This will make all cards flex items with equal basis */
+}
+
+/* Specific styles for the Sign In button */
+.sign-in-button {
+  background-color: #0073D8;
+  color: white;
+  border: none;
+  border-radius: 120px;
+  font-size: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; 
+  font-family: "Rubik Mono One", monospace;
+  font-weight: normal;
+  font-style: normal;
+  line-height: normal; /* Adjust this value as needed */
+  display: inline-flex; /* Change display to flex */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  height: 100px; /* Set a specific height if necessary */
+
+}
+
+.sign-in-button:hover {
+  background-color: #005AAB; 
+}
+
+.sign-in-button:active {
+  background-color: #003875;
+  transform: translateY(2px); /* Move the button down a bit on click */
+}
+
+/* Styling placeholders for all inputs */
+.ant-input::placeholder, .ant-input-password input::placeholder {
+  color: #A9A9A9;
+  font-family: "Cousine", monospace;
+
+}

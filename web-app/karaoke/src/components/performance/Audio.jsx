@@ -5,7 +5,8 @@ import AudioWave from './AudioWave';
 import { useNavigate } from 'react-router-dom';
 import WaveForm from './Waveform';
 import "../../assets/styles/audio.css"; 
-import { useReward } from 'react-rewards';
+import "../../assets/styles/font.css"; 
+import cardpic from "../../assets/images/card.png"; 
 
 const Audio = () => {
     const [showContent, setShowContent] = useState(false);
@@ -219,6 +220,9 @@ useEffect(() => {
         left: '50%',
         transform: 'translateX(-50%)',
         zIndex: 2, // Ensure it's above the video feed
+        fontFamily: "Rubik Mono One, monospace",
+        fontWeight: "400",
+        fontStyle: "normal"
     };
 
     const videoContainerStyle = {
@@ -242,7 +246,8 @@ useEffect(() => {
                 {!showContent && (
                     <>
                      <AudioWave style={{ pointerEvents: 'none' }} />
-                     <h3 style={{ marginTop: '20px', marginBottom: '20px', textAlign: 'center' }}>Start your Performance</h3>
+                     <h2 style={{ marginTop: '20px', marginBottom: '20px', textAlign: 'center', fontFamily: "Rubik Mono One, monospace", 
+                    fontWeight: '400',fontStyle: 'normal'}}>Start your Performance</h2>
                         {!buttonClicked && (
                             <div style={{ textAlign: 'center', marginTop: '0px' }}>
                                 <button className="blue-button"
@@ -270,6 +275,10 @@ useEffect(() => {
                                         backgroundColor: 'rgba(128, 128, 128, 0.5)',
                                         padding: '5px 20px',
                                         borderRadius: '100px',
+                                        fontFamily: "Rubik Mono One, monospace",
+                                        fontWeight: "400",
+                                        fontStyle: "normal"
+                                        
                                     }}>
                                         {countdown}
                                     </div>
@@ -281,22 +290,26 @@ useEffect(() => {
                 )}
                 {showContent && (
 <>
-<h2 style={{ marginTop: '20px', marginBottom: '20px', textAlign: 'center' }}>🎶 Single Ladies - Beyoncé 🎶</h2>
+<h2 style={{ marginTop: '20px', marginBottom: '20px', textAlign: 'center',  fontFamily: "Rubik Mono One, monospace" }}>🎶 Single Ladies - Beyoncé 🎶</h2>
     
     {/* Wide Box for Lyrics */}
     <div style={{
         textAlign: 'center',
-        border: '3px solid #f0f0f0',
         padding: '10px',
         width: '75%', // Adjusted for a wider box
         height: '300px', // Height adjusts to content
         boxSizing: 'border-box',
-        borderRadius: '15px',
+        borderRadius: '45px',
+        color: 'white',
+        fontFamily: 'Cousine, monospace',
+        border: 'transparent',
+        backgroundImage: `url(${cardpic})`, // Set the background image
+        backgroundSize: 'cover', // Cover the entire card
+        backgroundPosition: 'center', // Center the background image
         boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-        backgroundColor: '#fff',
         margin: '0 auto 20px auto', // Centered and with margin below
     }}>
-        <h3 style={{ fontSize: '2.2em' }}>LYRICS</h3>
+        <h3 style={{ fontSize: '2.2em', fontFamily: 'Rubik Mono One'}}>LYRICS</h3>
         <h3 style={{
             margin: '0', // Remove default margin
             fontSize: getFontSizeForLyric(lyrics[currentLyricIndex]), // Dynamic font size

@@ -78,7 +78,7 @@ const WaveForm = () => {
     };
   }, [width, windowHeight]); // Ensure effect runs when size changes
 
-  return <canvas ref={canvasRef} style={{ position: 'fixed', bottom: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none'}} />;
+  return <canvas ref={canvasRef} style={{ position: 'fixed', bottom: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', opacity: '0.5'}} />;
 };
 
 export default WaveForm;

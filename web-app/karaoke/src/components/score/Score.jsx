@@ -29,12 +29,14 @@ const styles = {
         },
         smallText: {
             display: 'block',
-            fontSize: '30px', // Small font size
+            fontSize: '25px', // Small font size
+            fontFamily: "Rubik Mono One, monospace"
         },
         largeText: {
             display: 'block',
-            fontSize: '100px', // Large font size
+            fontSize: '120px', // Large font size
             margin: '20px 0',
+            fontFamily: "Rubik Mono One, monospace"
         }
     };
 
@@ -241,8 +243,12 @@ const PraiseButtons = ({ praises }) => (
 );
 
     return (
+        <>
+        <Confetti width={width} height={height}></Confetti>
     <div className = "background">
             <Navbar />
+            <h1>{width}</h1>
+            <h1>{height}</h1>
             <div style={styles.scoreContainer}>
                 <div style={styles.imageContainer}>
                     <img src={singleLadiesImage} alt="Performance" style={styles.imgStyle} />
@@ -250,12 +256,8 @@ const PraiseButtons = ({ praises }) => (
                 <div style={styles.scoreDisplay}>
                     {showCalculating ? <CalculatingScore /> : (
                         <>
-                         <Confetti
-                            width={width}
-                            height={height}
-                            />
                             <div className="score-text" style={{ textAlign: 'center' }}>
-                                <span style={styles.smallText}>Total</span>
+                                <span style={styles.smallText}>Your</span>
                                 <span style={styles.largeText}>
                                 <b>{isNaN(score) || score === undefined ? <CalculatingScore/> : Math.ceil(score)}</b>
                                 </span>
@@ -300,7 +302,9 @@ const PraiseButtons = ({ praises }) => (
 
 
         </div>
+        </>
     );
+
 }; 
 
 export default Score;

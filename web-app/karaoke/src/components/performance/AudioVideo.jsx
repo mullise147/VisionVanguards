@@ -7,6 +7,8 @@ import { useReward } from 'react-rewards';
 import { useNavigate } from 'react-router-dom';
 import "../../assets/styles/comment.css";
 import "../../assets/styles/audio.css"; 
+import "../../assets/styles/font.css"; 
+import cardpic from "../../assets/images/card.png"; 
 import pose0 from "../../assets/images/pose/0.png"; 
 import pose1 from "../../assets/images/pose/1.png"; 
 import pose2 from "../../assets/images/pose/2.png"; 
@@ -153,11 +155,11 @@ const colors =
 const colorIndex = Math.floor(Math.random() * colors.length); // Select a random index for the color
 const color = colors[colorIndex]; // Get the color at the randomly selected index
 
-useEffect(() => {
-  if (showContent && lyricsRef.current) {
-    lyricsRef.current.scrollIntoView({behavior: 'smooth', block: 'start'});
-  }
-}, [showContent]);
+// useEffect(() => {
+//   if (showContent && lyricsRef.current) {
+//     lyricsRef.current.scrollIntoView({behavior: 'smooth', block: 'start'});
+//   }
+// }, [showContent]);
 
     useEffect(() => {
         // Function to update to a random word
@@ -321,6 +323,9 @@ useEffect(() => {
         left: '50%',
         transform: 'translateX(-50%)',
         zIndex: 2, // Ensure it's above the video feed
+        fontFamily: "Rubik Mono One, monospace", 
+        fontWeight: 400,
+        fontStyle: "normal",
     };
 
     const videoContainerStyle = {
@@ -346,7 +351,7 @@ useEffect(() => {
                 <>
                     <AudioWave style={{ pointerEvents: 'none', flex: '1', alignSelf: 'center' }} />
 
-                    <h3 style={{marginTop: '20px', marginBottom: '20px', textAlign: 'center'}}>Start your Performance</h3>
+                    <h2 className = "rubik-mono" style={{marginTop: '20px', marginBottom: '20px', textAlign: 'center', className: "rubik-mono"}}>Start your Performance</h2>
                     {!buttonClicked && (
                         <div style={{textAlign: 'center', marginTop: '0px'}}>
                             <button
@@ -376,6 +381,9 @@ useEffect(() => {
                                         backgroundColor: 'rgba(128, 128, 128, 0.5)',
                                         padding: '5px 20px',
                                         borderRadius: '100px',
+                                        fontFamily: "Rubik Mono One, monospace", 
+                                        fontWeight: 400,
+                                        fontStyle: "normal"
                                     }}>
                                         {countdown}
                                     </div>
@@ -398,7 +406,7 @@ useEffect(() => {
             
             {showContent && (
   <>
-    <h2 style={{  marginTop: '20px', marginBottom: '20px', textAlign: 'center' }}>🎶 Single Ladies - Beyoncé 🎶</h2>
+    <h2 style={{  marginTop: '20px', marginBottom: '20px', textAlign: 'center',  fontFamily: "Rubik Mono One, monospace" }}>🎶 Single Ladies - Beyoncé 🎶</h2>
     <div style = {{opacity: '0.8'}}>    </div>
 
     
@@ -412,19 +420,23 @@ useEffect(() => {
  <div style={{
   flex: '1', // This will allow each box to take up an equal amount of space
   textAlign: 'center',
-  border: '3px solid #f0f0f0', // Changed to light grey for a softer look
   padding: '10px',
   marginLeft: '2%',
+  color: 'white',
+  fontFamily: 'Cousine, monospace',
+  border: 'transparent',
   marginRight: '2%', // Adjusted for spacing between the boxes
   width: '50%', // Adjust the width to account for the border and padding
-  height: '300px',
+  height: '325px', 
   boxSizing: 'border-box', // Include the padding and border in the element's total width
-  borderRadius: '15px', // Smooth rounded corners for a modern look
+  borderRadius: '45px', // Smooth rounded corners for a modern look
   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', // Added a soft shadow for depth
-  backgroundColor: '#fff', // Optional: Background color for contrast
+  backgroundImage: `url(${cardpic})`, // Set the background image
+  backgroundSize: 'cover', // Cover the entire card
+                  backgroundPosition: 'center' // Center the background image
 }}> 
-        <h3 ref={lyricsRef} style = {{fontSize: '2.2em'}}>LYRICS</h3>  
-    //<h3 ref={lyricsRef} style = {{fontSize: '2.2em'}}>LYRICS</h3>  
+        <h3 ref={lyricsRef} style = {{fontSize: '2.2em', fontFamily: 'Rubik Mono One'}}>LYRICS</h3>  
+  {/* <h3 ref={lyricsRef} style = {{fontSize: '2.2em'}}>LYRICS</h3>   */}
     <h3 style={{
     margin: '0', // Remove default margin
     // fontSize: '1.9em', // Slightly larger font size for the current lyric
@@ -452,23 +464,22 @@ useEffect(() => {
   <div style={{
   flex: '1', // This will allow each box to take up an equal amount of space
   textAlign: 'center',
-  border: '3px solid #f0f0f0', // Changed to light grey for a softer look
   padding: '10px',
+  fontFamily: "Cousine, monospace",
   marginLeft: '2%',
   marginRight: '2%', // Adjusted for spacing between the boxes
   width: '50%', // Adjust the width to account for the border and padding
-  height: '300px', 
+  height: '325px', 
+  border: 'transparent',
   boxSizing: 'border-box', // Include the padding and border in the element's total width
-  borderRadius: '15px', // Smooth rounded corners for a modern look
+  borderRadius: '45px', // Smooth rounded corners for a modern look
   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', // Added a soft shadow for depth
-  backgroundColor: '#fff', // Optional: Background color for contrast
+  backgroundImage: `url(${cardpic})`, // Set the background image
+  backgroundSize: 'cover', // Cover the entire card
+                  backgroundPosition: 'center' // Center the background image
 }}>
-    <h3 style = {{fontSize: '2.2em'}}>POSES</h3>
-    <h3>{currentPoseIndex}</h3>
-    {/* <img src={`../../assets/images/pose/${currentPoseIndex + 1}.png`} style={{ height: '220px', width: '600px' }} alt="Current Pose" /> */}
-    {/* <img src = {pose0}  style={{ height: '220px', width: '600px' }} alt="Current Pose" ></img> */}
-    {/* <img src={poseImage} style={{ height: '220px', width: '600px' }} alt="Current Pose" /> */}
-    <img src={poses[currentPoseIndex]} style={{ height: '200px', width: '600px' }} alt="Current Pose" />
+    <h3 style = {{fontSize: '2.2em', fontFamily: 'Rubik Mono One'}}>POSES</h3>
+    <img src={poses[currentPoseIndex]} style={{ height: '250px', width: 'auto', margin: 'auto', display: 'block', textAlign: 'center' }} alt="Current Pose" />
 
   </div>
 </div>
@@ -549,7 +560,7 @@ useEffect(() => {
       }} 
       onClick={handleButtonClick}
     >
-      QUIT →
+      QUIT
     </button>
     <WaveForm></WaveForm>
   </div>

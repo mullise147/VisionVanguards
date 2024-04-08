@@ -3,6 +3,8 @@ import { Form, Input, Button, Row, Col, Card, Alert } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import "../assets/styles/google.css"; 
 import "../assets/styles/account.css"; 
+import pic from "../assets/images/card_picture.png"; 
+import "../assets/styles/font.css"; 
 import { auth } from '../firebase'; 
 import { signInWithGoogle } from '../firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, updateProfile } from "firebase/auth";
@@ -141,7 +143,13 @@ const Account = () => {
 
       <Row justify="center" align="middle" style={{ minHeight: '100vh' }}>
         <Col span={12}>
-          <Card title="Sign Up" justify="center" align="middle" style={{ margin: '0 90px' }} className="form-item">
+          <Card title="Sign Up" justify="center" align="middle" style={{ margin: '0 90px',
+          backgroundImage: `url(${pic})`, // Set the background image
+          backgroundSize: 'cover', // Cover the entire card
+          backgroundPosition: 'center', // Center the background image, 
+          border: 'transparent', 
+          borderRadius: '50px', 
+        }} className="form-item">
             <Form
               name="signupForm"
               initialValues={{ remember: true }}
@@ -150,9 +158,9 @@ const Account = () => {
             >
               <Form.Item
                 name="email"
-                rules={[{ required: true, type: 'email', message: 'Please input a valid email!' }]}
+                rules={[{ required: true, type: 'email', message: 'Please input a valid e-mail!' }]}
               >
-                <Input placeholder="Email" />
+                <Input placeholder="E-mail" />
               </Form.Item> 
               <Form.Item
                 name="username"
@@ -188,8 +196,8 @@ const Account = () => {
                 <Input.Password placeholder="Re-enter Password"/>
               </Form.Item>
               <Form.Item>
-                <Button type="primary" htmlType="submit">
-                  Sign Up
+                <Button type="primary" htmlType="submit" className='sign-in-button'>
+                  Sign Up &rarr;
                 </Button>
               </Form.Item>
             </Form>
@@ -197,7 +205,18 @@ const Account = () => {
         </Col>
 
         <Col span={12}>
-          <Card title="Sign In" justify="center" align="middle" style={{ margin: '0 90px' }} className="form-item">
+          <Card title="Sign In" justify="center" align="middle" style={{ margin: '0 90px',
+          backgroundImage: `url(${pic})`, // Set the background image
+          backgroundSize: 'cover', // Cover the entire card
+          backgroundPosition: 'center',
+          border: 'transparent',
+          font: 'rubik-mono', 
+          text: 'white',
+          borderRadius: '50px'
+
+          // Center the background image
+        
+        }} className="form-item">
             <Form
               name="signinForm"
               initialValues={{ remember: true }}
@@ -218,16 +237,17 @@ const Account = () => {
                         <path fill="none" d="M0 0h48v48H0z"></path>
                       </svg>
                     </div>
-                    <span className="gsi-material-button-contents">Sign in with Google</span>
+                    <span className="gsi-material-button-contents" style = {{color: 'black'}}>Sign in with Google</span>
                   </div>
                 </button>
               </Form.Item>
+              <div style = {{color: 'white', margin: '15px',  fontFamily: 'Rubik Mono One', fontSize: '45px' }}>OR</div>
 
               <Form.Item
                 name="signinEmail"
-                rules={[{ required: true, type: 'email', message: 'Please input a valid email!' }]}
+                rules={[{ required: true, type: 'email', message: 'Please input a valid e-mail!' }]}
               >
-                <Input placeholder="Email" />
+                <Input placeholder="E-mail" />
               </Form.Item>
               <Form.Item
                 name="signinPassword"
@@ -236,8 +256,8 @@ const Account = () => {
                 <Input.Password placeholder="Password" />
               </Form.Item>
               <Form.Item>
-                <Button type="primary" htmlType="submit">
-                  Sign In
+                <Button type="primary" htmlType="submit" className='sign-in-button'>
+                  Sign In &rarr;
                 </Button>
               </Form.Item>
             </Form>

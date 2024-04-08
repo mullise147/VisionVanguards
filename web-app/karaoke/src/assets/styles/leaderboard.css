@@ -1,7 +1,85 @@
+/* Ensure header cells also have the background image and adjust their border color */
+.ant-table-thead > tr > th {
+  background-image: url("../images/card_picture.png") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  color: white !important;
+  border-color: #333 !important;
+  font-family: "Rubik Mono One", monospace;
+  font-size: large;
+}
 
-.background {
-    background: url('../images/all.png') repeat-y center top fixed;
-    /* background-size: cover; */
-    background-size: 100% 100%
-  }
+/* Adjust body cells border color and ensure they use the background image */
+.ant-table-tbody > tr > td {
+  background-image: url("../images/card_picture.png");
+  background-size: cover;
+  background-position: center;
+  color: white !important;
+  border-color: #333 !important; /* Dark gray border for softer contrast */
+  font-family: "Cousine", monospace;
+  font-size: large;
+}
+
+/* Update for pagination color
+.ant-table-pagination.ant-pagination {
+  color: white !important;
+} */
+
+/* Adjusting table container for rounded corners */
+.custom-table-container .ant-table {
+  border-radius: 100px;
+  overflow: hidden; /* Ensures the table's corners are also rounded */
+  /* border-color: #333 !important; Dark gray border for softer contrast */
+}
+
+/* Additional style to ensure the table itself is rounded if needed */
+.custom-table-container {
+  border-radius: 50px;
+  overflow: hidden; /* This might be redundant but ensures containment */
+  /* border-color: #333 !important; Dark gray border for softer contrast */
+}
+
+/* Change row hover effect */
+.ant-table-tbody > tr:hover > td {
+  background-color:rgba(5, 34, 71, 1) !important; 
   
+  background-size: cover;
+  background-position: center;
+  color: white !important;
+}
+
+/* TabPane styling for a dark theme */
+.custom-tabs .ant-tabs-nav .ant-tabs-tab {
+  background-color: black; /* Dark background for tabs */
+  color: white; /* Unselected tab text color */
+  font-family: "Rubik Mono One", monospace;
+  font-size: large;
+}
+
+.custom-tabs .ant-tabs-nav .ant-tabs-tab-active .ant-tabs-tab-btn,
+.custom-tabs .ant-tabs-nav .ant-tabs-tab:hover .ant-tabs-tab-btn {
+  color: #FFD700 !important; /* Gold color for selected tab text */
+  font-family: "Rubik Mono One", monospace;
+  font-size: large;
+}
+
+/* This ensures the text color of inactive tabs */
+.custom-tabs .ant-tabs-nav .ant-tabs-tab .ant-tabs-tab-btn {
+  color: white; /* This will ensure inactive tabs are white */
+  font-family: "Rubik Mono One", monospace;
+  font-size: large;
+}
+
+.custom-tabs .ant-tabs-ink-bar {
+  background-color: #FFD700 !important; /* Gold color for the indicator */
+  border-color: white!important; /* Dark gray border for softer contrast */
+  font-family: "Rubik Mono One", monospace;
+  font-size: large;
+}
+
+.custom-tabs .ant-tabs-ink-bar-animated {
+  border-color: white !important; /* Dark gray border for softer contrast */
+  font-family: "Rubik Mono One", monospace;
+  font-size: large;
+}
+
