@@ -1,0 +1,71 @@
+
+.landing-page-top {
+    /* background-color: black; */
+    background-repeat: no-repeat;
+    background-size:cover;  
+    height: 100vh;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+  }
+  
+  h1 {
+    font-size: 80px;
+  }
+
+  h2 {
+    font-size: 60px;
+  }
+
+  p {
+    font-size: 30px; 
+  }
+
+\body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'VT323',  sans-serif; 
+    color: black; 
+  }
+  
+body, button, input, select, textarea {
+    font-family: 'VT323', sans-serif;
+  }
+
+  .link-style {
+    color: white;
+    text-decoration: none;
+  }
+  .cursor {
+    animation: blink-animation 1s steps(5, start) infinite;
+    -webkit-animation: blink-animation 1s steps(5, start) infinite;
+  }
+  
+  @keyframes blink-animation {
+    to {
+      visibility: hidden;
+    }
+  }
+  @-webkit-keyframes blink-animation {
+    to {
+      visibility: hidden;
+    }
+  }
+
+  .landing-container {
+    background: url('../images/all.png') repeat-y center top fixed;
+    background-size: cover;
+    background-size: 100% 100%
+  }
+  
+  .about-section {
+    height: 100vh; /* Set the height to control the section size */
+    background-position: center 33%; 
+  }
+  
+  .team-section {
+    height: 100vh;
+    background-position: center 66%;
+  }
+  
