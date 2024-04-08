@@ -148,7 +148,7 @@ const Account = () => {
           backgroundSize: 'cover', // Cover the entire card
           backgroundPosition: 'center', // Center the background image, 
           border: 'transparent', 
-          borderRadius: '50px'
+          borderRadius: '50px', 
         }} className="form-item">
             <Form
               name="signupForm"

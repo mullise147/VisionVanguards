@@ -6,7 +6,7 @@ import { getFirestore, getDocs, collection, query, where } from "firebase/firest
 import winner from "../assets/images/winner.png"; 
 import you from "../assets/images/you.png"; 
 import "../assets/styles/font.css"; 
-
+import "../assets/styles/leaderboard.css"; 
 
 const colors = 
     [
@@ -215,21 +215,23 @@ if (userEntry) {
         ];
 
         return (
-            <div className = "background">
-            <Navbar></Navbar>
-                <h3 className = "rubik-mono"style={{ textAlign: "center", paddingTop: "25px" }}>{title}</h3>
+            <div className="background">
+                <Navbar />
+                <h3 className="rubik-mono" style={{ textAlign: "center", fontSize: '50px'}}>{title}</h3>
                 <div style={{ display: "table", justifyContent: "center", paddingTop: "25px", width: "80%", margin: "0 auto" }}>
-                    <Tabs onChange={this.onChange} type="card">
+                    {/* Apply custom-tabs class to Tabs for improved styling */}
+                    <Tabs onChange={this.onChange} type="card" className="custom-tabs">
                         <TabPane tab="Leaderboard" key="1">
-                            <Table columns={columns} dataSource={data_leaderboard} pagination={false} />
+                            {/* Use custom-ant-table class for Table to adjust border colors */}
+                            <Table className="custom-ant-table" columns={columns} dataSource={data_leaderboard} pagination={false} />
                         </TabPane>
                         <TabPane tab="Your Ranking" key="2">
-                            <Table columns={columns} dataSource={data_ranking} pagination={false} />
+                            <Table className="custom-ant-table" columns={columns} dataSource={data_ranking} pagination={false} />
                         </TabPane>
                     </Tabs>
                 </div>
             </div>
-        )
+        )        
     }
 }
 
