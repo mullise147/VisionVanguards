@@ -32,7 +32,7 @@ class Team extends Component {
                 <div className="custom-card-container">
                   <Meta
                     title={<span className="rubik-mono" style = {{color: 'white'}}>Athulya</span>}
-                    description={<span className="cousine-regular custom-card-description"  style = {{color: 'white'}}>Athulya Ganesh, an international student from India and Dubai, UAE, is pursuing a combined BSc and M.Eng in Computer Science, set to graduate in April 2024. With co-ops at Nokia, FOX Sports, Infinera, and the iCDCU Lab, Athulya aims to specialize in healthcare-tech product management in the future.</span>}
+                    description={<span className="cousine-regular custom-card-description"  style = {{color: 'white'}}>Athulya Ganesh is an international student from India and Dubai. She is pursuing a combined BSc and M.Eng in Computer Science, set to graduate in April 2024. With co-ops at Nokia, FOX Sports, Infinera, and the iCDCU Lab, Athulya aims to be a software engineer, and currently finds interest in frontend development, as well as UX design.</span>}
                   />
                 </div>
               </Card>
@@ -96,7 +96,7 @@ class Team extends Component {
                   <Meta
                     title={<span className="rubik-mono"  style = {{color: 'white'}}>Dr. Aurisano</span>}
                     description={<span className="cousine-regular custom-card-description"  style = {{color: 'white'}}>Jillian Aurisano, an Assistant Professor at the University of Cincinnati 
-                  and setting up DaVINCI lab, plays a pivotal role as a project advisor. With an academic background that includes a Bachelor's degree in Biology and a PhD from the University of Illinois at 
+                  and setting up the DaVINCI laboratory at UC. With an academic background that includes a Bachelor's degree in Biology and a PhD from the University of Illinois at 
                   Chicago, Dr. Aurisano brings a wealth of knowledge and experience to her role.</span>}
                   />
                 </div>
