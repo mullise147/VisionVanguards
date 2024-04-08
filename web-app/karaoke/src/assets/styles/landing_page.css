@@ -54,7 +54,7 @@ body, button, input, select, textarea {
   }
 
   .landing-container {
-    background: url('../images/landing.png') repeat-y center top fixed;
+    background: url('../images/all.png') repeat-y center top fixed;
     background-size: cover;
     background-size: 100% 100%
   }

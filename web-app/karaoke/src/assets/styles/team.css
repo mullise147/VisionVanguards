@@ -10,10 +10,15 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    border-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important
   }
   
+
   .custom-card-container {
-    height: 365px; /* Adjust based on your content */
+    height: 370px; /* Adjust based on your content */
     display: flex;
     flex-direction: column;
   }

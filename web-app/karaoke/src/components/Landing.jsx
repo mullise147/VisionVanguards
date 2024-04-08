@@ -4,7 +4,7 @@ import About from './landing_page/About';
 import Team from "./landing_page/Team"; 
 import "../assets/styles/landing_page.css"; 
 import "../index.css"; 
-
+import Footer from "./Footer.jsx"; 
 class Landing extends Component {
   constructor(props) {
     super(props);
