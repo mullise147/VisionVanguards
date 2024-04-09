@@ -17,7 +17,6 @@ const Audio = () => {
     const [lyrics, setLyrics] = useState([]);
     const [lyricsTimings, setLyricsTimings] = useState([]);
     const [currentWord, setCurrentWord] = useState('');
-    const [isFullScreen, setIsFullScreen] = useState(false);
 
 
 
@@ -105,17 +104,6 @@ const Audio = () => {
     const colorIndex = Math.floor(Math.random() * colors.length); // Select a random index for the color
     const color = colors[colorIndex]; // Get the color at the randomly selected index    
 
-    
-    const toggleFullScreen = () => {
-        if (!isFullScreen) {
-          document.body.requestFullscreen();
-        } else {
-          document.exitFullscreen();
-        }
-    
-        setIsFullScreen(!isFullScreen);
-      };
-    
 
 
     // Define the event handler for button click
@@ -216,7 +204,6 @@ useEffect(() => {
         if (!buttonClicked) {
             setButtonClicked(true);
             setCountdown(10);
-            toggleFullScreen(); 
         }
     };
 
@@ -270,7 +257,6 @@ useEffect(() => {
                                 >
                                     START →
                                 </button>
-                                <p style = {{paddingTop: '15px', fontFamily: 'Cousine'}}>For an immersive experience, you will be put in full-screen mode. </p>
                             </div>
                         )}
                         {buttonClicked && (
