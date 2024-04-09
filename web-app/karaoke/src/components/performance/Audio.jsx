@@ -17,7 +17,6 @@ const Audio = () => {
     const [lyrics, setLyrics] = useState([]);
     const [lyricsTimings, setLyricsTimings] = useState([]);
     const [currentWord, setCurrentWord] = useState('');
-    const [isFullScreen, setIsFullScreen] = useState(false);
 
 
 
@@ -106,15 +105,15 @@ const Audio = () => {
     const color = colors[colorIndex]; // Get the color at the randomly selected index    
     const [seconds, setSeconds] = useState(0);
     
-    // const toggleFullScreen = () => {
-    //     if (!isFullScreen) {
-    //       document.body.requestFullscreen();
-    //     } else {
-    //       document.exitFullscreen();
-    //     }
+//     const toggleFullScreen = () => {
+//         if (!isFullScreen) {
+//           document.body.requestFullscreen();
+//         } else {
+//           document.exitFullscreen();
+//         }
     
-    //     setIsFullScreen(!isFullScreen);
-    //   };
+//         setIsFullScreen(!isFullScreen);
+//       };
     
       useEffect(() => {
         // Start the timer

@@ -42,7 +42,8 @@ const AudioVideo = () => {
     const navigate = useNavigate(); 
     const { reward, isAnimating } = useReward('rewardId', 'confetti');
     const lyricsRef = useRef(null);
-    const [isFullScreen, setIsFullScreen] = useState(false);
+
+    // const [isFullScreen, setIsFullScreen] = useState(false);
 
     const [currentPoseIndex, setCurrentPoseIndex] = useState(0);
     const [poseTimings, setPoseTimings] = useState([]);
@@ -153,7 +154,6 @@ const colors =
     "cyan" 
 ]
 
-
 const colorIndex = Math.floor(Math.random() * colors.length); // Select a random index for the color
 const color = colors[colorIndex]; // Get the color at the randomly selected index
 const [seconds, setSeconds] = useState(0);
@@ -185,7 +185,6 @@ useEffect(() => {
 
 //   setIsFullScreen(!isFullScreen);
 // };
-
     useEffect(() => {
         // Function to update to a random word
         const updateWord = () => {
@@ -391,7 +390,6 @@ useEffect(() => {
                             </button>
                             {/* <p style = {{paddingTop: '15px', fontFamily: 'Cousine'}}>For an immersive experience, you will be put in full-screen mode. </p> */}
                             <p style = {{paddingTop: '15px', fontFamily: 'Cousine'}}>For an immersive experience, we suggest the full-screen mode. </p> 
-
                         </div>
                     )}
                     {buttonClicked && (
