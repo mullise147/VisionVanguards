@@ -389,8 +389,7 @@ const toggleFullScreen = () => {
                             >
                                 START →             
                             </button>
-                            <p style = {{paddingTop: '15px', fontFamily: 'Cousine'}}>For an immersive experience, you will be put in full-screen mode. </p>
-                            {/* <p style = {{paddingTop: '15px', fontFamily: 'Cousine'}}>For an immersive experience, we suggest the full-screen mode. </p>  */}
+                            <p style = {{paddingTop: '15px', fontFamily: 'Cousine'}}>For an immersive experience, we suggest the full-screen mode. </p> 
 
                         </div>
                     )}
