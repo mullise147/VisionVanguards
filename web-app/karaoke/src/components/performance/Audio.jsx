@@ -104,16 +104,17 @@ const Audio = () => {
     const colorIndex = Math.floor(Math.random() * colors.length); // Select a random index for the color
     const color = colors[colorIndex]; // Get the color at the randomly selected index    
     const [seconds, setSeconds] = useState(0);
+    const [isFullScreen, setIsFullScreen] = useState(false);
+
+    const toggleFullScreen = () => {
+        if (!isFullScreen) {
+          document.body.requestFullscreen();
+        } else {
+          document.exitFullscreen();
+        }
     
-//     const toggleFullScreen = () => {
-//         if (!isFullScreen) {
-//           document.body.requestFullscreen();
-//         } else {
-//           document.exitFullscreen();
-//         }
-    
-//         setIsFullScreen(!isFullScreen);
-//       };
+        setIsFullScreen(!isFullScreen);
+      };
     
       useEffect(() => {
         // Start the timer
@@ -225,7 +226,7 @@ useEffect(() => {
         if (!buttonClicked) {
             setButtonClicked(true);
             setCountdown(10);
-            // toggleFullScreen(); 
+            toggleFullScreen(); 
         }
     };
 
