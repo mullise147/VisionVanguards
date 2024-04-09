@@ -4,7 +4,7 @@ import SingleLadiesAudioPlayer from "./SingleLadiesAudioPlayer";
 import AudioWave from './AudioWave';
 import WaveForm from './Waveform';
 import { useReward } from 'react-rewards';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import "../../assets/styles/comment.css";
 import "../../assets/styles/audio.css"; 
 import "../../assets/styles/font.css"; 
@@ -42,6 +42,8 @@ const AudioVideo = () => {
     const navigate = useNavigate(); 
     const { reward, isAnimating } = useReward('rewardId', 'confetti');
     const lyricsRef = useRef(null);
+
+    // const [isFullScreen, setIsFullScreen] = useState(false);
 
     const [currentPoseIndex, setCurrentPoseIndex] = useState(0);
     const [poseTimings, setPoseTimings] = useState([]);
@@ -154,13 +156,35 @@ const colors =
 
 const colorIndex = Math.floor(Math.random() * colors.length); // Select a random index for the color
 const color = colors[colorIndex]; // Get the color at the randomly selected index
+const [seconds, setSeconds] = useState(0);
 
-// useEffect(() => {
-//   if (showContent && lyricsRef.current) {
-//     lyricsRef.current.scrollIntoView({behavior: 'smooth', block: 'start'});
+
+useEffect(() => {
+  if (showContent && lyricsRef.current) {
+    lyricsRef.current.scrollIntoView({behavior: 'smooth', block: 'start'});
+  }
+}, [showContent]);
+
+useEffect(() => {
+  // Start the timer
+  const intervalId = setInterval(() => {
+      setSeconds(prevSeconds => prevSeconds + 1);
+  }, 1000);
+
+  // Clean up the interval on component unmount
+  return () => clearInterval(intervalId);
+}, []); // Empty dependency array means this effect runs once on mount
+
+
+// const toggleFullScreen = () => {
+//   if (!isFullScreen) {
+//     document.body.requestFullscreen();
+//   } else {
+//     document.exitFullscreen();
 //   }
-// }, [showContent]);
 
+//   setIsFullScreen(!isFullScreen);
+// };
     useEffect(() => {
         // Function to update to a random word
         const updateWord = () => {
@@ -280,8 +304,7 @@ const color = colors[colorIndex]; // Get the color at the randomly selected inde
 
     const handleButtonClick = () => {
         stopRecording(); 
-        // navigate("/score")
-        navigate('/score', { state: { from: "/audio-video" } });
+        navigate('/score', { state: { from: "/audio-video", timeOnPage: seconds } });
 
     }
     const handleStartCountdown = () => {
@@ -289,6 +312,8 @@ const color = colors[colorIndex]; // Get the color at the randomly selected inde
         if (!buttonClicked) {
             setButtonClicked(true);
             setCountdown(10);
+            // toggleFullScreen(); 
+
         }
     };
 
@@ -363,6 +388,8 @@ const color = colors[colorIndex]; // Get the color at the randomly selected inde
                             >
                                 START →             
                             </button>
+                            {/* <p style = {{paddingTop: '15px', fontFamily: 'Cousine'}}>For an immersive experience, you will be put in full-screen mode. </p> */}
+                            <p style = {{paddingTop: '15px', fontFamily: 'Cousine'}}>For an immersive experience, we suggest the full-screen mode. </p> 
                         </div>
                     )}
                     {buttonClicked && (
@@ -538,7 +565,7 @@ const color = colors[colorIndex]; // Get the color at the randomly selected inde
   </p>
 </div>
     <div style={{paddingTop: '5px'}}>
-    <SingleLadiesAudioPlayer onAudioEnd={() => navigate('/score', { state: { from: "/audio-video" } })} />
+    <SingleLadiesAudioPlayer onAudioEnd={() => navigate('/score', { state: { from: "/audio-video", timeOnPage: seconds } })} />
 
     </div>
   </div>

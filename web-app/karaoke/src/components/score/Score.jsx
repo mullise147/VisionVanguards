@@ -52,6 +52,9 @@ const Score = () => {
     const[pitch_score, setPitchScore] = useState(null); 
     const location = useLocation(); 
     const navigatedFromAudioVideo = location.state?.from === "/audio-video";
+
+    const timeOnPage = location.state?.timeOnPage || 73; // With option
+
     const praiseMessages = [
         "excellent", "awesome", "fantastic", "terrific", "superb", 
         "outstanding", "impressive", "bravo", "amazing", "great", 
@@ -144,32 +147,43 @@ const colors =
     };
     
 
-    const fetchScores = async () => {
+    const fetchScores = async (timeOnPage) => {
         if (!scoreFetched) {
-            try {
-                const response = await fetch('http://localhost:8080/get-scores');
-                const newScore = await response.json();
-                
-                if(newScore) 
-                {
-                    setScore(Number.isNaN(newScore.weighted_score) ? 0 : Math.ceil(+newScore.weighted_score));
-                    setCVscore(Number.isNaN(newScore.cv_score) ? 0 : Math.ceil(+newScore.cv_score));
-                    setLyricsScore(Number.isNaN(newScore.lyrics_score) ? 0 : Math.ceil(+newScore.lyrics_score));
-                    setPitchScore(Number.isNaN(newScore.pitch_score) ? 0 : Math.ceil(+newScore.pitch_score));
-                }
-               
-                const existingScore = await getFirestoreScore(); // Fetch existing score from Firestore
-                await updateFirestoreTags(uniqueRandomPraises); 
-                if (newScore.weighted_score > existingScore) { // Compare with existing score
-                    await updateFirestoreScore(Math.ceil(newScore.weighted_score)); // Update score in Firestore
-                }
-                setScoreFetched(true);
-            } catch (error) {
-                console.error('Error fetching score:', error);
+          try {
+            const response = await fetch('http://localhost:8080/get-scores');
+            const newScore = await response.json();
+      
+            // Ensure we have a newScore object before proceeding
+            if (newScore) {
+              const weightedScore = Number.isNaN(newScore.weighted_score) ? 0 : Math.ceil(newScore.weighted_score);
+              const cvScore = Number.isNaN(newScore.cv_score) ? 0 : Math.ceil(newScore.cv_score);
+              const lyricsScore = Number.isNaN(newScore.lyrics_score) ? 0 : Math.ceil(newScore.lyrics_score);
+              const pitchScore = Number.isNaN(newScore.pitch_score) ? 0 : Math.ceil(newScore.pitch_score);
+      
+              // Update component state with these values
+              setScore(weightedScore);
+              setCVscore(cvScore);
+              setLyricsScore(lyricsScore);
+              setPitchScore(pitchScore);
+      
+              const existingScore = await getFirestoreScore(); // Fetch existing score from Firestore
+              
+              const multiplier = Math.ceil((timeOnPage - 10)/63); 
+              const totalWeighter = multiplier * weightedScore; 
+              if (totalWeighter> existingScore) {
+                await updateFirestoreScore(totalWeighter);
+              }
+              
+              await updateFirestoreTags(uniqueRandomPraises);
+      
+              setScoreFetched(true);
             }
+          } catch (error) {
+            console.error('Error fetching score:', error);
+          }
         }
-    };
-
+      };
+      
 
     const getFirestoreScore = async () => {
         try {
@@ -199,11 +213,12 @@ const colors =
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowCalculating(false);
-            if (!scoreFetched) {fetchScores();}
-        }, 10); // Delay changed to 10 seconds for demonstration
+            if (!scoreFetched) {fetchScores(timeOnPage);}
+        }, 0); // Delay changed to 10 seconds for demonstration
 
         return () => clearTimeout(timer);
-    }, []);
+    }, [scoreFetched]); // Add scoreFetched to dependency array if its changes should trigger the effect
+  
 
     // Styles unchanged
 
@@ -246,9 +261,7 @@ const PraiseButtons = ({ praises }) => (
         <>
         <Confetti width={width} height={height}></Confetti>
     <div className = "background">
-            <Navbar />
-            <h1>{width}</h1>
-            <h1>{height}</h1>
+         <Navbar />
             <div style={styles.scoreContainer}>
                 <div style={styles.imageContainer}>
                     <img src={singleLadiesImage} alt="Performance" style={styles.imgStyle} />
@@ -259,7 +272,7 @@ const PraiseButtons = ({ praises }) => (
                             <div className="score-text" style={{ textAlign: 'center' }}>
                                 <span style={styles.smallText}>Your</span>
                                 <span style={styles.largeText}>
-                                <b>{isNaN(score) || score === undefined ? <CalculatingScore/> : Math.ceil(score)}</b>
+                                <b>{isNaN(score) || score === undefined ? <CalculatingScore/> : Math.ceil(Math.ceil(score) * Math.ceil((timeOnPage-10)/63))}</b>
                                 </span>
                                 <span style={styles.smallText}>Score</span>
                             </div>
@@ -292,9 +305,9 @@ const PraiseButtons = ({ praises }) => (
                     <div className="score-meter">
                         <ScoreMeter widthPerc={lyrics_score} title="Lyrics Score" gradient={true} />
                     </div>
-                    <div className="score-meter">
+                    {/* <div className="score-meter">
                         <ScoreMeter widthPerc={score} title="Total Score" gradient={true} />
-                    </div>
+                    </div> */}
                 </div>
             )}
         </div>
