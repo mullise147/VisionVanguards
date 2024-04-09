@@ -4,7 +4,7 @@ import SingleLadiesAudioPlayer from "./SingleLadiesAudioPlayer";
 import AudioWave from './AudioWave';
 import WaveForm from './Waveform';
 import { useReward } from 'react-rewards';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import "../../assets/styles/comment.css";
 import "../../assets/styles/audio.css"; 
 import "../../assets/styles/font.css"; 
@@ -43,7 +43,6 @@ const AudioVideo = () => {
     const { reward, isAnimating } = useReward('rewardId', 'confetti');
     const lyricsRef = useRef(null);
     const [isFullScreen, setIsFullScreen] = useState(false);
-
 
     const [currentPoseIndex, setCurrentPoseIndex] = useState(0);
     const [poseTimings, setPoseTimings] = useState([]);
@@ -157,22 +156,35 @@ const colors =
 
 const colorIndex = Math.floor(Math.random() * colors.length); // Select a random index for the color
 const color = colors[colorIndex]; // Get the color at the randomly selected index
+const [seconds, setSeconds] = useState(0);
 
-// useEffect(() => {
-//   if (showContent && lyricsRef.current) {
-//     lyricsRef.current.scrollIntoView({behavior: 'smooth', block: 'start'});
-//   }
-// }, [showContent]);
 
-const toggleFullScreen = () => {
-  if (!isFullScreen) {
-    document.body.requestFullscreen();
-  } else {
-    document.exitFullscreen();
+useEffect(() => {
+  if (showContent && lyricsRef.current) {
+    lyricsRef.current.scrollIntoView({behavior: 'smooth', block: 'start'});
   }
+}, [showContent]);
 
-  setIsFullScreen(!isFullScreen);
-};
+useEffect(() => {
+  // Start the timer
+  const intervalId = setInterval(() => {
+      setSeconds(prevSeconds => prevSeconds + 1);
+  }, 1000);
+
+  // Clean up the interval on component unmount
+  return () => clearInterval(intervalId);
+}, []); // Empty dependency array means this effect runs once on mount
+
+
+// const toggleFullScreen = () => {
+//   if (!isFullScreen) {
+//     document.body.requestFullscreen();
+//   } else {
+//     document.exitFullscreen();
+//   }
+
+//   setIsFullScreen(!isFullScreen);
+// };
 
     useEffect(() => {
         // Function to update to a random word
@@ -293,8 +305,7 @@ const toggleFullScreen = () => {
 
     const handleButtonClick = () => {
         stopRecording(); 
-        // navigate("/score")
-        navigate('/score', { state: { from: "/audio-video" } });
+        navigate('/score', { state: { from: "/audio-video", timeOnPage: seconds } });
 
     }
     const handleStartCountdown = () => {
@@ -302,7 +313,7 @@ const toggleFullScreen = () => {
         if (!buttonClicked) {
             setButtonClicked(true);
             setCountdown(10);
-            toggleFullScreen(); 
+            // toggleFullScreen(); 
 
         }
     };
@@ -378,7 +389,9 @@ const toggleFullScreen = () => {
                             >
                                 START →             
                             </button>
-                            <p style = {{paddingTop: '15px', fontFamily: 'Cousine'}}>For an immersive experience, you will be put in full-screen mode. </p>
+                            {/* <p style = {{paddingTop: '15px', fontFamily: 'Cousine'}}>For an immersive experience, you will be put in full-screen mode. </p> */}
+                            <p style = {{paddingTop: '15px', fontFamily: 'Cousine'}}>For an immersive experience, we suggest the full-screen mode. </p> 
+
                         </div>
                     )}
                     {buttonClicked && (
@@ -554,7 +567,7 @@ const toggleFullScreen = () => {
   </p>
 </div>
     <div style={{paddingTop: '5px'}}>
-    <SingleLadiesAudioPlayer onAudioEnd={() => navigate('/score', { state: { from: "/audio-video" } })} />
+    <SingleLadiesAudioPlayer onAudioEnd={() => navigate('/score', { state: { from: "/audio-video", timeOnPage: seconds } })} />
 
     </div>
   </div>

@@ -104,24 +104,34 @@ const Audio = () => {
     ]
     const colorIndex = Math.floor(Math.random() * colors.length); // Select a random index for the color
     const color = colors[colorIndex]; // Get the color at the randomly selected index    
-
+    const [seconds, setSeconds] = useState(0);
     
-    const toggleFullScreen = () => {
-        if (!isFullScreen) {
-          document.body.requestFullscreen();
-        } else {
-          document.exitFullscreen();
-        }
+    // const toggleFullScreen = () => {
+    //     if (!isFullScreen) {
+    //       document.body.requestFullscreen();
+    //     } else {
+    //       document.exitFullscreen();
+    //     }
     
-        setIsFullScreen(!isFullScreen);
-      };
+    //     setIsFullScreen(!isFullScreen);
+    //   };
     
+      useEffect(() => {
+        // Start the timer
+        const intervalId = setInterval(() => {
+            setSeconds(prevSeconds => prevSeconds + 1);
+        }, 1000);
+
+        // Clean up the interval on component unmount
+        return () => clearInterval(intervalId);
+    }, []); // Empty dependency array means this effect runs once on mount
 
 
-    // Define the event handler for button click
-  const handleButtonClick = () => {
-    navigate('/score'); // Navigate to /score page
-  };
+
+  // Inside your Audio component
+const handleButtonClick = () => {
+  navigate('/score', { state: { timeOnPage: seconds } }); // Include the seconds in the navigation state
+};
 
   useEffect(() => {
     fetchLyrics();
@@ -216,7 +226,7 @@ useEffect(() => {
         if (!buttonClicked) {
             setButtonClicked(true);
             setCountdown(10);
-            toggleFullScreen(); 
+            // toggleFullScreen(); 
         }
     };
 
@@ -270,7 +280,8 @@ useEffect(() => {
                                 >
                                     START →
                                 </button>
-                                <p style = {{paddingTop: '15px', fontFamily: 'Cousine'}}>For an immersive experience, you will be put in full-screen mode. </p>
+                                {/* <p style = {{paddingTop: '15px', fontFamily: 'Cousine'}}>For an immersive experience, you will be put in full-screen mode. </p> */}
+                                <p style = {{paddingTop: '15px', fontFamily: 'Cousine'}}>For an immersive experience, we suggest the full-screen mode. </p> 
                             </div>
                         )}
                         {buttonClicked && (
@@ -382,7 +393,7 @@ useEffect(() => {
         marginRight: '20px', // Adds space between the audio player and the quit button
     }}>
         <SingleLadiesAudioPlayer 
-            onAudioEnd={() => navigate("/score")} 
+            onAudioEnd={() =>  handleButtonClick} // Include the seconds in the navigation state} 
             style={{ 
                 width: '100%', // Ensures the audio player stretches to fill its container
             }} 
