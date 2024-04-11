@@ -120,13 +120,26 @@ Upon launching the SIGHTSTEP app, you will be greeted with a landing page showca
 - Scores are provided in various categories including posing, lyrics, and pitch.
 - You can also restart the performance or check for updates on the leaderboard.
 
+Audio score page: 
+<img width="1470" alt="Screenshot 2024-04-11 at 2 55 19 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/d3a0fc36-7bca-46f1-88f8-1b81a26daeea">
+
+Audio and Video score page: 
+<img width="1470" alt="Screenshot 2024-04-11 at 2 56 03 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/14acf540-7425-44c4-b47c-bbdba6cee054">
+
+
 ## f. Account Management
 
+<img width="207" alt="Screenshot 2024-04-11 at 2 54 21 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/e91f2c79-fa34-4014-a2c2-8f67ccf4cd42">
+
 ### Signing Out
-- To sign out, simply click on your profile icon and select the "Sign Out" option.
+- To sign out, simply click on the settings icon on the top right corner and select the "Sign Out" option.
 
 ### Deleting Account
-- If you wish to delete your account, please contact our support team for assistance.
+- If you wish to delete your account,  simply click on the settings icon on the top right corner and select the "Delete Account" option which opens the popup below. 
+
+<img width="421" alt="Screenshot 2024-04-11 at 2 54 27 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/c4c83fe9-2779-4207-9cfb-443e47190721">
+
+You will then be redirected to the landing page of the website. 
 
 ## g. FAQ
 
@@ -134,7 +147,7 @@ Upon launching the SIGHTSTEP app, you will be greeted with a landing page showca
 A: No, an account is required to access the full features of the karaoke app, including saving performances and tracking scores.
 
 ### Q: Can I change my username?
-A: Yes, you can update your username in the account settings section after logging in.
+A: No, at this moment you cannot update your username but we are working on it and it will be available soon! 
 
 ### Q: How often is the leaderboard updated?
 A: The leaderboard is updated in real-time to reflect the latest performances and scores.
