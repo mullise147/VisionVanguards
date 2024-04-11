@@ -189,7 +189,7 @@ A: Currently, we only offer a web-based application. However, stay tuned for upd
 ### Athulya 
 
 ### Stephanie 
-[Hours and Justification](Assignments/Mullins_Hours_Justification.wd)
+[Hours and Justification](Assignments/Mullins_Hours_Justification.docx)
 
 ### Rob 
 
