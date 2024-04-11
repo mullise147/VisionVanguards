@@ -67,6 +67,7 @@ g. FAQ
 ## a. Getting Started
 
 Upon launching the SIGHTSTEP app, you will be greeted with a landing page showcasing our exciting features. Click on the "Get Started" button to begin your karaoke journey.
+<img width="1468" alt="Screenshot 2024-04-11 at 2 53 29 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/57d6d685-6710-496d-82bf-8e895101a976">
 
 ## b. Signing Up/Login
 
@@ -78,22 +79,40 @@ Upon launching the SIGHTSTEP app, you will be greeted with a landing page showca
 - If you already have an account, simply enter your credentials (email and password) and click "Sign In".
 - You can also sign in using your Google account if you have previously linked it.
 
+<img width="1470" alt="Screenshot 2024-04-11 at 2 53 55 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/304c5307-a631-4018-9541-d375ff33e414">
+
+
 ## c. Viewing the Leaderboard
 
 - Once logged in, navigate to the leaderboard section to see the top 5 performers.
 - The leaderboard displays details such as high scores, the number of games played, and tags associated with each performer's performance.
 - You can also view your specific ranking and compare yourself to others in the same league.
+<img width="1469" alt="Screenshot 2024-04-11 at 2 54 05 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/56588787-0e17-4743-8ca6-5af8d3933eeb">
+
+<img width="1469" alt="Screenshot 2024-04-11 at 2 54 13 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/008d78ed-87b0-418f-931b-39746bc08169">
 
 ## d. Performing
+<img width="264" alt="Screenshot 2024-04-11 at 2 54 33 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/5626db28-84f5-4d0a-b7b9-067d7f0f0493">
 
 ### Audio Performance
-- Start an audio performance by selecting a song from the available catalog.
+- Start an audio performance by selecting the plus icon in the top right corner. 
 - Before starting, preview the audio to ensure functionality.
 - Once started, you can view lyrics and sing along with the music.
+- Click the QUIT button to leave the performance early. 
+<img width="1470" alt="Screenshot 2024-04-11 at 2 54 43 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/56e06bf3-452b-464a-8f96-988d40aade6e">
+
+<img width="1470" alt="Screenshot 2024-04-11 at 2 54 50 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/31e6d153-0c00-47a0-b5f5-a422e2427942">
+
+<img width="1470" alt="Screenshot 2024-04-11 at 2 55 02 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/fd286ed0-576f-4f28-ac1b-d94cf0391deb">
 
 ### Audio-Video Performance
 - Alternatively, start an audio-video performance to follow along with lyrics while posing.
 - Feel free to express yourself and have fun!
+
+<img width="1470" alt="Screenshot 2024-04-11 at 2 55 37 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/ab4b6c54-e6fa-42ce-95d9-95fcaf18d368">
+
+<img width="1470" alt="Screenshot 2024-04-11 at 2 55 47 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/b14abccc-ac34-4397-bfe4-026029ecf06b">
+
 
 ## e. Viewing Scores
 
