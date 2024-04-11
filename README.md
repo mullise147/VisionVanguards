@@ -149,6 +149,13 @@ A: Currently, we only offer a web-based application. However, stay tuned for upd
 ## Summary of Hours and Justification
 
 ## Summary of Expenses
+All the equipment needed for Vision Vanguard's project was already owned by the members. The needed hardware was 
+- Laptop
+- Laptop charger
+- Monitor
+- HDMI cable
+- Extension cord
+- Headphones
 
 ## Appendix
 [Figma prototypes](https://www.figma.com/file/T7vnLTLLM7szsg422XGj29/Web-App-UI?type=design&node-id=0%3A1&mode=design&t=55rzAfCOAH3WwTt2-1) 
