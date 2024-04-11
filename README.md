@@ -4,7 +4,7 @@
 
 1. [Team Names and Advisor](#team-names-and-advisor)
 2. [Project Description](#project-description)
-3. [User Interface Specification](#user-interface-specificaiton)
+3. [User Interface Specification](#user-interface-specification)
 4. [Test Plan and Results](#test-plan-and-results)
 5. [User Manual](#user-manual)
 6. [Spring Final Presentation](#spring-final-presentation)
