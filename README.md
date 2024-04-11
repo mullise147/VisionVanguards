@@ -29,18 +29,23 @@ Vision Vanguards aims to develop an integrated karaoke and movement web applicat
 ## User Manual
 
 ## Spring Final Presentation
+[Spring Final Presentation](Assignments/Vision%20Vanguards%20Final%20Presentation.pdf)
 
 ## Final Expo Poster
+
 
 ## Self-Assessment Essays
 
 [Team Contract](Assignments/Vision%20Vanguards%20Team%20Contract.md)
 
-[Link to Stephanie's Essay](Assignments/Stephanie%20Mullins%20Capstone.md)
-[Link to Rob's Essay](Assignments/Rob%20Kelly%20Capstone.md)
-[Link to Athulya's Essay](Assignments/Athulya%20Ganesh%20Capstone.md)
+[Link to Stephanie's Fall Essay](Assignments/Stephanie%20Mullins%20Capstone.md)
+[Link to Stephanie's Spring Essay]
 
-[Link to deployed website](vision-vanguards.vercel.app)
+[Link to Rob's Fall Essay](Assignments/Rob%20Kelly%20Capstone.md)
+[Link to Rob's Spring Essay]
+
+[Link to Athulya's Fall Essay](Assignments/Athulya%20Ganesh%20Capstone.md)
+[Link to Athulya's Spring Essay]
 
 ## Summary of Hours and Justification
 
@@ -49,3 +54,5 @@ Vision Vanguards aims to develop an integrated karaoke and movement web applicat
 ## Appendix
 [Figma prototypes](https://www.figma.com/file/T7vnLTLLM7szsg422XGj29/Web-App-UI?type=design&node-id=0%3A1&mode=design&t=55rzAfCOAH3WwTt2-1) 
 [CV Component](https://github.com/mullise147/VisionVanguards/tree/CV-Component/CV_Component)
+[Link to deployed website](vision-vanguards.vercel.app)
+[Trello Board](https://trello.com/invite/b/hlPpXafJ/ATTIb1c3854191bbb49b912e7f0724b880bd1F612ADC/vision-vanguards-senior-design)
