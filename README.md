@@ -53,6 +53,9 @@ Vision Vanguards aims to develop an integrated karaoke and movement web applicat
 
 ## Appendix
 [Figma prototypes](https://www.figma.com/file/T7vnLTLLM7szsg422XGj29/Web-App-UI?type=design&node-id=0%3A1&mode=design&t=55rzAfCOAH3WwTt2-1) 
+
 [CV Component](https://github.com/mullise147/VisionVanguards/tree/CV-Component/CV_Component)
+
 [Link to deployed website](vision-vanguards.vercel.app)
+
 [Trello Board](https://trello.com/invite/b/hlPpXafJ/ATTIb1c3854191bbb49b912e7f0724b880bd1F612ADC/vision-vanguards-senior-design)
