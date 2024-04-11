@@ -81,11 +81,11 @@ UI Design Mockups can be viewed on our Figma. Here are some screenshots of the a
 ## Appendix
 [Figma prototypes](https://www.figma.com/file/T7vnLTLLM7szsg422XGj29/Web-App-UI?type=design&node-id=0%3A1&mode=design&t=55rzAfCOAH3WwTt2-1) 
 
-[Posing Component](https://github.com/mullise147/VisionVanguards/CV_Component)
+[Posing Component](VisionVanguards/tree/master/CV_Component)
 
-[Audio Component](https://github.com/mullise147/VisionVanguards/AudioProcessing)
+[Audio Component](VisionVanguards/tree/master/AudioProcessing)
 
-[Web Component](https://github.com/mullise147/VisionVanguards/web-app)
+[Web Component](VisionVanguards/tree/master/web-app)
 
 [Link to deployed website](vision-vanguards.vercel.app)
 
