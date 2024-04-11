@@ -182,7 +182,7 @@ A: Currently, we only offer a web-based application. However, stay tuned for upd
 [Link to Rob's Spring Essay]
 
 [Link to Athulya's Fall Essay](Assignments/Athulya%20Ganesh%20Capstone.md)
-[Link to Athulya's Spring Essay]
+[Link to Athulya's Spring Essay](Assignments/Athulya_Self_Assessment.pdf)
 
 ## Summary of Hours and Justification
 
