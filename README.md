@@ -54,6 +54,78 @@ UI Design Mockups can be viewed on our Figma. Here are some screenshots of the a
 ## Test Plan and Results
 
 ## User Manual
+### Table of Contents
+
+a. Getting Started  
+b. Signing Up/Login  
+c. Viewing the Leaderboard  
+d. Performing  
+e. Viewing Scores  
+f. Account Management  
+g. FAQ
+
+## a. Getting Started
+
+Upon launching the SIGHTSTEP app, you will be greeted with a landing page showcasing our exciting features. Click on the "Get Started" button to begin your karaoke journey.
+
+## b. Signing Up/Login
+
+### Creating an Account
+- If you are a new user, click on the "Sign Up" option on the sign-up/sign-in page.
+- Enter your email address and create a password, or sign up using your Google account for quick access.
+
+### Signing In
+- If you already have an account, simply enter your credentials (email and password) and click "Sign In".
+- You can also sign in using your Google account if you have previously linked it.
+
+## c. Viewing the Leaderboard
+
+- Once logged in, navigate to the leaderboard section to see the top 5 performers.
+- The leaderboard displays details such as high scores, the number of games played, and tags associated with each performer's performance.
+- You can also view your specific ranking and compare yourself to others in the same league.
+
+## d. Performing
+
+### Audio Performance
+- Start an audio performance by selecting a song from the available catalog.
+- Before starting, preview the audio to ensure functionality.
+- Once started, you can view lyrics and sing along with the music.
+
+### Audio-Video Performance
+- Alternatively, start an audio-video performance to follow along with lyrics while posing.
+- Feel free to express yourself and have fun!
+
+## e. Viewing Scores
+
+- After your performance ends, view your comprehensive score breakdown.
+- Scores are provided in various categories including posing, lyrics, and pitch.
+- You can also restart the performance or check for updates on the leaderboard.
+
+## f. Account Management
+
+### Signing Out
+- To sign out, simply click on your profile icon and select the "Sign Out" option.
+
+### Deleting Account
+- If you wish to delete your account, please contact our support team for assistance.
+
+## g. FAQ
+
+### Q: Can I use the karaoke app without creating an account?
+A: No, an account is required to access the full features of the karaoke app, including saving performances and tracking scores.
+
+### Q: Can I change my username?
+A: Yes, you can update your username in the account settings section after logging in.
+
+### Q: How often is the leaderboard updated?
+A: The leaderboard is updated in real-time to reflect the latest performances and scores.
+
+### Q: Can I suggest new songs to be added to the catalog?
+A: Yes, we welcome song suggestions! Please reach out to our support team with your requests.
+
+### Q: Is there a mobile app available?
+A: Currently, we only offer a web-based application. However, stay tuned for updates on our mobile app development.
+
 
 ## Spring Final Presentation
 [Spring Final Presentation](Assignments/Vision%20Vanguards%20Final%20Presentation.pdf)
