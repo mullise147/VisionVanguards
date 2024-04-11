@@ -65,8 +65,14 @@ f. Account Management
 g. FAQ
 
 ## a. Getting Started
+To run the app, follow the instructions below: 
 
-Upon launching the SIGHTSTEP app, you will be greeted with a landing page showcasing our exciting features. Click on the "Get Started" button to begin your karaoke journey.
+1. Clone this repository in your desired folder using the command ```**git clone https://github.com/mullise147/VisionVanguards**```.
+2. After cloning, enter to the following directory: **VisionVanguards/web-app/api** and run this command: ```**python3 main.py**``` to start the Flask API. It may initially give you some errors about modules that need to be install. We recommend using the **pip** command to install the necessary libraries like openCV, Librosa, PyAudioProcessing and Flask. 
+3. Now, enter the following directory:** VisionVanguards/web-app/karaoke/src** and run the following commands:
+4. **npm install** to install all dependencies
+5. **npm run dev** to start the application. Navigate to **localhost:5173** on a browser of your choice. 
+6. Upon launching the SIGHTSTEP app, you will be greeted with a landing page showcasing our exciting features. Click on the "Get Started" button to begin your karaoke journey.
 <img width="1468" alt="Screenshot 2024-04-11 at 2 53 29 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/57d6d685-6710-496d-82bf-8e895101a976">
 
 ## b. Signing Up/Login
@@ -179,6 +185,12 @@ A: Currently, we only offer a web-based application. However, stay tuned for upd
 [Link to Athulya's Spring Essay]
 
 ## Summary of Hours and Justification
+
+### Athulya 
+
+### Stephanie 
+### Rob 
+
 
 ## Summary of Expenses
 All the equipment needed for Vision Vanguard's project was already owned by the members. The needed hardware was 
