@@ -187,7 +187,7 @@ A: Currently, we only offer a web-based application. However, stay tuned for upd
 ## Summary of Hours and Justification
 
 ### Athulya 
-[Hours and Justification](Assignments/Ganesh_Hours_Justification.docx)
+[Hours and Justification](Assignments/Ganesh_Hours_Justification.pdf)
 
 ### Stephanie 
 [Hours and Justification](Assignments/Mullins_Hours_Justification.docx)
