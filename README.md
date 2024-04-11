@@ -32,14 +32,14 @@ Vision Vanguards aims to develop an integrated karaoke and movement web applicat
 [Spring Final Presentation](Assignments/Vision%20Vanguards%20Final%20Presentation.pdf)
 
 ## Final Expo Poster
-
+[Final Expo Poster](Assignments/Expo%20Poster.pdf)
 
 ## Self-Assessment Essays
 
 [Team Contract](Assignments/Vision%20Vanguards%20Team%20Contract.md)
 
 [Link to Stephanie's Fall Essay](Assignments/Stephanie%20Mullins%20Capstone.md)
-[Link to Stephanie's Spring Essay]
+[Link to Stephanie's Spring Essay](Assignments/Mullins_Self_Assessment_WO_Team.pdf)
 
 [Link to Rob's Fall Essay](Assignments/Rob%20Kelly%20Capstone.md)
 [Link to Rob's Spring Essay]
