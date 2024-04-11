@@ -24,6 +24,33 @@ Vision Vanguards aims to develop an integrated karaoke and movement web applicat
 
 ## User Interface Specification
 
+Functionality: 
+- A user can sign up/login for the web application either using an email and password, or sign in through Google.
+- A user can view the leaderboard that shows the top 5 scorers of the game, including details like their high score, the number of games played and tags associated with their performance.
+- A user can also view their specific ranking and how they compare to others in the same league.
+- A user can sign out/delete their own account.
+- A user can start an audio performance, with a preview to check whether audio is functional. Once the performance starts, the user is able to view lyrics.
+- Alternatively, a user can start an audio-video performance where they can follow along with lyrics while posing.
+- Once the performance ends, a user can view their comprehensive score and their scores in various categories including posing, lyrics and pitch. They can also restart the performance, or view updates to the leaderboard.
+
+User Interaction:
+- Users can navigate the website using a combination of mouse clicks and keyboard inputs.
+- Interactive elements such as buttons and links should provide visual feedback when clicked.
+- Forms should validate user input in real-time and display error messages if necessary.
+
+Visual Design Guides:
+- The website will use a modern and clean design aesthetic.
+- Color scheme: Predominantly blues, pinks and blacks and white.
+- Typography: Rubix Mono for headings and Cousine for body text.
+
+UI Design Mockups can be viewed on our Figma. Here are some screenshots of the app illustrating the color scheme, layout and some functionality: 
+<img width="1468" alt="Screenshot 2024-04-11 at 2 53 29 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/c422e650-820e-46c9-af87-298d67d06329">
+
+<img width="1470" alt="Screenshot 2024-04-11 at 2 53 55 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/d909f708-a62b-4b8e-ac7d-5c92bbd9f602">
+
+<img width="1470" alt="Screenshot 2024-04-11 at 2 56 03 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/1cb75aa2-afb3-48fb-ab08-2b4c370d8a35">
+
+
 ## Test Plan and Results
 
 ## User Manual
