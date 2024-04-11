@@ -195,7 +195,7 @@ A: Currently, we only offer a web-based application. However, stay tuned for upd
 
 
 ## Summary of Expenses
-All the equipment needed for Vision Vanguard's project was already owned by the members. The needed hardware was 
+All the equipment needed for Vision Vanguard's project was already owned by the members. The needed hardware was:
 - Laptop
 - Laptop charger
 - Monitor
