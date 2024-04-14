@@ -3,143 +3,216 @@
 ## Table of Contents
 
 1. [Team Names and Advisor](#team-names-and-advisor)
-2. [Project Abstract](#project-abstract)
-3. [Project Description](#project-description)
-4. [User Stories and Design Diagrams](#user-stories-and-design-diagrams)
-   - [User Stories](#user-stories)
-   - [Design Diagrams](#design-diagrams)
-      - [Level 0 Diagram](#level-0-diagram)
-      - [Level 1 Diagram](#level-1-diagram)
-      - [Level 2 Diagram](#level-2-diagram)
-      - [Description of Diagrams](#description-of-diagrams)
-5. [Project Tasks and Timeline](#project-tasks-and-timeline)
-   - [Task List](#task-list)
-   - [Timeline](#timeline)
-   - [Effort Matrix](#effort-matrix)
-6. [ABET Concerns Essay](#abet-concerns-essay)
-7. [PPT Slideshow](#ppt-slideshow)
+2. [Project Description](#project-description)
+3. [User Interface Specification](#user-interface-specification)
+4. [Test Plan and Results](#test-plan-and-results)
+5. [User Manual](#user-manual)
+6. [Spring Final Presentation](#spring-final-presentation)
+7. [Final Expo Poster](#final-expo-poster)
 8. [Self-Assessment Essays](#self-assessment-essays)
-9. [Professional Biographies](#professional-biographies)
-10. [Budget](#budget)
+9. [Summary of Hours and Justification](#summary-of-hours-and-justification)
+10. [Summary of Expenses](#summary-of-expenses)
 11. [Appendix](#appendix)
 
 ## Team Names and Advisor
 - Team Members: Stephanie Mullins, Rob Kelly, Athulya Ganesh
-- Advisor: Dr. Jilian Aurisano 
-
-## Project Abstract
-Immerse yourself in the world of music with SightStep, a cutting-edge computer vision application. Transform any space into your private dance floor and karaoke stage. SightStep listens to your favorite karaoke songs, tracks your movements, and guides you through dance routines. Sing along effortlessly as the lyrics sync with your performance. Elevate your karaoke experience with SightStep's fusion of computer vision, music, and dance. Get ready to step into a new realm of entertainment!
+- Advisor: Dr. Jilian Aurisano
+- [Link to our Biographies](Biographies.md)
 
 ## Project Description
-Vision Vanguards aims to develop an integrated karaoke and movement web application, combining computer vision and audio processing technologies. The project involves implementing gesture and full-body skeletal tracking, alongside audio processing for lyrical pitch accuracy. The team has completed initial research, environment setup, and technology selection for the web interface. The envisioned outcome includes a fully functional platform with accurate scoring for singing and dance movements, a comprehensive lyrics module, and user management features. The project's success relies on seamless execution of key tasks, including technology implementation and interface optimization.
+Vision Vanguards aims to develop an integrated karaoke and movement web application, combining computer vision and audio processing technologies. The project involves implementing gesture and full-body skeletal tracking, alongside audio processing for lyrical pitch accuracy. The team has completed initial research, environment setup, and technology selection for the web interface. The envisioned outcome includes a fully functional platform with accurate scoring for singing and dance movements, a comprehensive lyrics module, and user management features. The project's success relies on the seamless execution of key tasks, including technology implementation and interface optimization.
 
-## User Stories and Design Diagrams
-### User Stories
-- As a casual singer, I want to visit the website, pick a song, and use only video scoring to have a lighthearted and entertaining karaoke experience without worrying about my singing skills.
-- As a song enthusiast, I want to access the app, use both video and audio scoring, and choose from a wide range of songs from the database to challenge myself and have fun with friends.
-- As a shy performer, I want to use the app in audio scoring mode, follow along with the lyrics displayed, and improve my singing skills privately while enjoying the music.
+## User Interface Specification
 
-### Design Diagrams
-#### Level 0 Diagram
-<img width="562" alt="Screenshot 2023-11-22 at 8 46 44 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/565757fc-f9cd-46d1-a1b7-cdefaf0d3fe9">
+Functionality: 
+- A user can sign up/login for the web application either using an email and password, or sign in through Google.
+- A user can view the leaderboard that shows the top 5 scorers of the game, including details like their high score, the number of games played and tags associated with their performance.
+- A user can also view their specific ranking and how they compare to others in the same league.
+- A user can sign out/delete their own account.
+- A user can start an audio performance, with a preview to check whether audio is functional. Once the performance starts, the user is able to view lyrics.
+- Alternatively, a user can start an audio-video performance where they can follow along with lyrics while posing.
+- Once the performance ends, a user can view their comprehensive score and their scores in various categories including posing, lyrics and pitch. They can also restart the performance, or view updates to the leaderboard.
 
-#### Level 1 Diagram
-<img width="1043" alt="Screenshot 2023-11-22 at 8 46 52 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/7928acf6-8ca5-4a0c-ba39-f634eba0aa41">
+User Interaction:
+- Users can navigate the website using a combination of mouse clicks and keyboard inputs.
+- Interactive elements such as buttons and links should provide visual feedback when clicked.
+- Forms should validate user input in real-time and display error messages if necessary.
 
-#### Level 2 Diagram
-<img width="608" alt="Screenshot 2023-11-22 at 8 47 02 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/b7495085-877d-425c-862a-1da97869c50c">
+Visual Design Guides:
+- The website will use a modern and clean design aesthetic.
+- Color scheme: Predominantly blues, pinks and blacks and white.
+- Typography: Rubix Mono for headings and Cousine for body text.
 
-#### Description of Diagrams
-As we go from level 0 to level 2, the level of detail starts to heighten. 
+UI Design Mockups can be viewed on our Figma. Here are some screenshots of the app illustrating the color scheme, layout and some functionality: 
+<img width="1468" alt="Screenshot 2024-04-11 at 2 53 29 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/c422e650-820e-46c9-af87-298d67d06329">
 
-Level 1: A user can start a session, and perform a song and hit the "replay" button to replay the song and if not, end the singing session. 
+<img width="1470" alt="Screenshot 2024-04-11 at 2 53 55 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/d909f708-a62b-4b8e-ac7d-5c92bbd9f602">
 
-Level 2: A user can start a session, and request mic and camera access and then begin to select a song from the list. Once enabled, the user performs the song (if only mic then audio, if both then video). Then the points are calculated and shown to the user, after which the user is able to restart a session. 
+<img width="1470" alt="Screenshot 2024-04-11 at 2 56 03 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/1cb75aa2-afb3-48fb-ab08-2b4c370d8a35">
 
-Level 3: This talks about the leaderboard aspect of the application. Once a score is displayed, a user can choose to add it to the leaderboard or not and make the score public. 
 
-## Project Tasks and Timeline
-### Task List
-All developers will work mainly on their section but will also do some work on the other sections.
+## Test Plan and Results
 
-Athulya Ganesh - Lead web interface developer. 
-Stephanie Mullins - Lead Computer Vision developer.
-Rob Kelly - Lead audio processing developer. 
+## User Manual
+### Table of Contents
 
-Computer Vision Tasks (Stephanie):
-- Research technologies (gesture recognition, skeleton detection, skeleton tracking w/ comparison to given position) and how others have done problems like our project with a focus on gesture recognition and tracking.
-- Implement gesture recognition for basic hand signals (picture then live video).
-- Expand gesture recognition to include gesture tracking of hand signals (recorded then live video).
-- Research technologies for skeleton recognition and tracking and see how others have implemented the problem.
-- Implement skeleton detection to see if a human can get recognized as a skeletal figure (picture then live video).
-- Expand skeleton detection to include skeletal tracking to convert the whole human body to a skeletal figure (recorded then live video).
-- Implement skeletal tracking correctness compared to given positions to calculate graded score.
-  
-Audio Processing Tasks (Rob):
-- Research various audio processing libraries (as well as experiment with them) in order to find the best library for the needs of the project Some libraries to consider include Speech Recognition, Librosa, IPython, TorchAudio, PyAudio
-- After selecting the best library for the project, implement it within the team project
-- In particular, implement audio processing tool so that it can be manipulated in various ways that will be necessary for the project
-- Research methods of implementing audio to text transcription
-- Research various methods to implement pitch detection within the project (used to determine the accuracy of the pitch of the user compared to the audio file of the song)
-- Implement both of the above features to be able to determine a user’s lyrical and pitch accuracy
-- Using the above features, implement algorithm to compute composite accuracy of a user’s singing on a given song
-  
-Web Interface Tasks (Athulya):
-- Research and select appropriate frontend and backend technologies for the web app, as well as database options (consider both local and cloud services for scalability) and suitable APIs for feature integration
-- Develop page-by-page wireframes and prototypes using Figma, including the landing page, performance options, lyrics display, gesture list, scoring interface, and leaderboard
-- Set up the development environment, including configuring the chosen frontend and backend frameworks
-- Prepare the server and database environment, ensuring proper access and security settings
-- Develop the initial skeleton of the web app with basic navigation and structure, including landing page for user selections and different interfaces for audio-only and audio-video performances
-- Implement performance recording and playback functionality
-- Develop the module to display lyrics on the screen in sync with the chosen song, ensuring that the GUI is user-friendly
-- Create a module that lists gestures for users to follow along during performances
-- Implement features to highlight or track user gestures in real-time
-- Develop a scoring system to evaluate user performances, as well as a leaderboard for users to view their performance in relation to others
-- Develop user registration and login pages to save user information securely
-- Set up the backend database, either locally or using a cloud service, to store user profiles, scores, and song information
-- Perform comprehensive testing at each development stage, including unit testing, integration testing, and user testing
-- Deploy the web application within the specified timeline using a hosting service like Vercel or Netlify
+a. Getting Started  
+b. Signing Up/Login  
+c. Viewing the Leaderboard  
+d. Performing  
+e. Viewing Scores  
+f. Account Management  
+g. FAQ
 
-Combined Tasks:
-- Hook package containing all of the audio processing logic into the project web application
-- Combine computer vision aspects with audio and website portions
-- Implement an algorithm to calculate composite scores of audio and visual aspects of performance
+## a. Getting Started
+To run the app, follow the instructions below: 
 
-### Timeline
-By the end of this, we expect the following. 
-<img width="599" alt="Screenshot 2023-11-22 at 9 05 02 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/ada5428c-8f49-4231-a3cd-70a655588f1a">
+1. Clone this repository in your desired folder using the command ```git clone https://github.com/mullise147/VisionVanguards```.
+2. After cloning, enter to the following directory: ```VisionVanguards/web-app/api``` and run this command: ```python3 main.py``` to start the Flask API. It may initially give you some errors about modules that need to be install. We recommend using the ```pip``` command to install the necessary libraries like openCV, Librosa, PyAudioProcessing and Flask. 
+3. Now, enter the following directory: ```VisionVanguards/web-app/karaoke/src``` and run the following commands:
+4. ```npm install``` to install all dependencies
+5. ```npm run dev``` to start the application. Navigate to ```localhost:5173``` on a browser of your choice. 
+6. Upon launching the SIGHTSTEP app, you will be greeted with a landing page showcasing our exciting features. Click on the "Get Started" button to begin your karaoke journey.
+<img width="1468" alt="Screenshot 2024-04-11 at 2 53 29 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/57d6d685-6710-496d-82bf-8e895101a976">
 
-### Effort Matrix
-<img width="387" alt="Screenshot 2023-11-22 at 9 05 42 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/85520f97-73ec-498c-980c-d640831fb1fd">
-<img width="385" alt="Screenshot 2023-11-22 at 9 05 53 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/e92b8d1e-cbb6-41da-bd26-db1dd40a6f95">
-<img width="386" alt="Screenshot 2023-11-22 at 9 06 00 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/48afabc8-c701-4f5c-84ed-2e99fcdfee3d">
-<img width="384" alt="Screenshot 2023-11-22 at 9 06 06 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/f29a43d8-8295-4a06-a7a6-3ea172ae7309">
-<img width="381" alt="Screenshot 2023-11-22 at 9 06 11 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/82e212f7-74b7-4fe6-b4f1-31edec53ea43">
+## b. Signing Up/Login
 
-## ABET Concerns Essay
-View here: https://docs.google.com/document/d/1UlMg2LQ5EyT-aBHIn1_bGkr_9jN04lpPhCgV6xu_uHY/edit?usp=sharing 
+### Creating an Account
+- If you are a new user, click on the "Sign Up" option on the sign-up/sign-in page.
+- Enter your email address and create a password, or sign up using your Google account for quick access.
 
-## PPT Slideshow
-View here: https://docs.google.com/presentation/d/1YJ9hlBPG063lpFqUt1tHlmXG1a-g_3lZhYhl6zD7kfI/edit?usp=sharing
+### Signing In
+- If you already have an account, simply enter your credentials (email and password) and click "Sign In".
+- You can also sign in using your Google account if you have previously linked it.
+
+<img width="1470" alt="Screenshot 2024-04-11 at 2 53 55 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/304c5307-a631-4018-9541-d375ff33e414">
+
+
+## c. Viewing the Leaderboard
+
+- Once logged in, navigate to the leaderboard section to see the top 5 performers.
+- The leaderboard displays details such as high scores, the number of games played, and tags associated with each performer's performance.
+- You can also view your specific ranking and compare yourself to others in the same league.
+<img width="1469" alt="Screenshot 2024-04-11 at 2 54 05 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/56588787-0e17-4743-8ca6-5af8d3933eeb">
+
+<img width="1469" alt="Screenshot 2024-04-11 at 2 54 13 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/008d78ed-87b0-418f-931b-39746bc08169">
+
+## d. Performing
+<img width="264" alt="Screenshot 2024-04-11 at 2 54 33 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/5626db28-84f5-4d0a-b7b9-067d7f0f0493">
+
+### Audio Performance
+- Start an audio performance by selecting the plus icon in the top right corner. 
+- Before starting, preview the audio to ensure functionality.
+- Once started, you can view lyrics and sing along with the music.
+- Click the QUIT button to leave the performance early. 
+<img width="1470" alt="Screenshot 2024-04-11 at 2 54 43 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/56e06bf3-452b-464a-8f96-988d40aade6e">
+
+<img width="1470" alt="Screenshot 2024-04-11 at 2 54 50 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/31e6d153-0c00-47a0-b5f5-a422e2427942">
+
+<img width="1470" alt="Screenshot 2024-04-11 at 2 55 02 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/fd286ed0-576f-4f28-ac1b-d94cf0391deb">
+
+### Audio-Video Performance
+- Alternatively, start an audio-video performance to follow along with lyrics while posing.
+- Feel free to express yourself and have fun!
+
+<img width="1470" alt="Screenshot 2024-04-11 at 2 55 37 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/ab4b6c54-e6fa-42ce-95d9-95fcaf18d368">
+
+<img width="1470" alt="Screenshot 2024-04-11 at 2 55 47 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/b14abccc-ac34-4397-bfe4-026029ecf06b">
+
+
+## e. Viewing Scores
+
+- After your performance ends, view your comprehensive score breakdown.
+- Scores are provided in various categories including posing, lyrics, and pitch.
+- You can also restart the performance or check for updates on the leaderboard.
+
+Audio score page: 
+<img width="1470" alt="Screenshot 2024-04-11 at 2 55 19 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/d3a0fc36-7bca-46f1-88f8-1b81a26daeea">
+
+Audio and Video score page: 
+<img width="1470" alt="Screenshot 2024-04-11 at 2 56 03 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/14acf540-7425-44c4-b47c-bbdba6cee054">
+
+
+## f. Account Management
+
+<img width="207" alt="Screenshot 2024-04-11 at 2 54 21 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/e91f2c79-fa34-4014-a2c2-8f67ccf4cd42">
+
+### Signing Out
+- To sign out, simply click on the settings icon on the top right corner and select the "Sign Out" option.
+
+### Deleting Account
+- If you wish to delete your account,  simply click on the settings icon on the top right corner and select the "Delete Account" option which opens the popup below. 
+
+<img width="421" alt="Screenshot 2024-04-11 at 2 54 27 PM" src="https://github.com/mullise147/VisionVanguards/assets/68687725/c4c83fe9-2779-4207-9cfb-443e47190721">
+
+You will then be redirected to the landing page of the website. 
+
+## g. FAQ
+
+### Q: Can I use the karaoke app without creating an account?
+A: No, an account is required to access the full features of the karaoke app, including saving performances and tracking scores.
+
+### Q: Can I change my username?
+A: No, at this moment you cannot update your username but we are working on it and it will be available soon! 
+
+### Q: How often is the leaderboard updated?
+A: The leaderboard is updated in real-time to reflect the latest performances and scores.
+
+### Q: Can I suggest new songs to be added to the catalog?
+A: Yes, we welcome song suggestions! Please reach out to our support team with your requests.
+
+### Q: Is there a mobile app available?
+A: Currently, we only offer a web-based application. However, stay tuned for updates on our mobile app development.
+
+
+## Spring Final Presentation
+[Spring Final Presentation](Assignments/Vision%20Vanguards%20Final%20Presentation.pdf)
+
+## Final Expo Poster
+[Final Expo Poster](Assignments/Expo%20Poster.pdf)
 
 ## Self-Assessment Essays
 
 [Team Contract](Assignments/Vision%20Vanguards%20Team%20Contract.md)
 
-[Link to Stephanie's Essay](Assignments/Stephanie%20Mullins%20Capstone.md)
-[Link to Rob's Essay](Assignments/Rob%20Kelly%20Capstone.md)
-[Link to Athulya's Essay](Assignments/Athulya%20Ganesh%20Capstone.md)
+[Link to Stephanie's Fall Essay](Assignments/Stephanie%20Mullins%20Capstone.md)
+[Link to Stephanie's Spring Essay](Assignments/Mullins_Self_Assessment_WO_Team.pdf)
 
-[Link to deployed website](vision-vanguards.vercel.app)
+[Link to Rob's Fall Essay](Assignments/Rob%20Kelly%20Capstone.md)
+[Link to Rob's Spring Essay]
 
-## Professional Biographies
-[Link to our Biographies](Biographies.md)
+[Link to Athulya's Fall Essay](Assignments/Athulya%20Ganesh%20Capstone.md)
+[Link to Athulya's Spring Essay](Assignments/Athulya_Self_Assessment.pdf)
 
-## Budget
-- Expenses to Date: $0 
-- Donated Items: $0 
+## Summary of Hours and Justification
+
+### Athulya 
+[Hours and Justification](Assignments/Ganesh_Hours_Justification.pdf)
+
+### Stephanie 
+[Hours and Justification](Assignments/Mullins_Hours_Justification.docx)
+
+### Rob 
+
+
+## Summary of Expenses
+All the equipment needed for Vision Vanguard's project was already owned by the members. The needed hardware was:
+- Laptop
+- Laptop charger
+- Monitor
+- HDMI cable
+- Extension cord
+- Headphones
 
 ## Appendix
 [Figma prototypes](https://www.figma.com/file/T7vnLTLLM7szsg422XGj29/Web-App-UI?type=design&node-id=0%3A1&mode=design&t=55rzAfCOAH3WwTt2-1) 
-[CV Component](https://github.com/mullise147/VisionVanguards/tree/CV-Component/CV_Component)
 
+[Posing Component](CV_Component)
+
+[Audio Component](AudioProcessing)
+
+[Web Component](web-app)
+
+[Link to deployed website](vision-vanguards.vercel.app)
+
+[Trello Board](https://trello.com/invite/b/hlPpXafJ/ATTIb1c3854191bbb49b912e7f0724b880bd1F612ADC/vision-vanguards-senior-design)
