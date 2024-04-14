@@ -52,7 +52,7 @@ UI Design Mockups can be viewed on our Figma. Here are some screenshots of the a
 
 
 ## Test Plan and Results
-[Full Test Plan and Results](Test_Plan_Plus_Results.pdf)
+[Full Test Plan and Results](Assignments/Test_Plan_Plus_Results.pdf)
 
 ## User Manual
 ### Table of Contents
