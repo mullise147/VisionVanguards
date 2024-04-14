@@ -52,6 +52,7 @@ UI Design Mockups can be viewed on our Figma. Here are some screenshots of the a
 
 
 ## Test Plan and Results
+[Full Test Plan and Results](Test_Plan_Plus_Results.pdf)
 
 ## User Manual
 ### Table of Contents
@@ -179,7 +180,7 @@ A: Currently, we only offer a web-based application. However, stay tuned for upd
 [Link to Stephanie's Spring Essay](Assignments/Mullins_Self_Assessment_WO_Team.pdf)
 
 [Link to Rob's Fall Essay](Assignments/Rob%20Kelly%20Capstone.md)
-[Link to Rob's Spring Essay]
+[Link to Rob's Spring Essay](Assignments/Kelly_Self_Assessment.pdf)
 
 [Link to Athulya's Fall Essay](Assignments/Athulya%20Ganesh%20Capstone.md)
 [Link to Athulya's Spring Essay](Assignments/Athulya_Self_Assessment.pdf)
@@ -193,7 +194,7 @@ A: Currently, we only offer a web-based application. However, stay tuned for upd
 [Hours and Justification](Assignments/Mullins_Hours_Justification.docx)
 
 ### Rob 
-
+[Hours and Justification](Assignments/Kelly_Hours_Justification.pdf)
 
 ## Summary of Expenses
 All the equipment needed for Vision Vanguard's project was already owned by the members. The needed hardware was:
