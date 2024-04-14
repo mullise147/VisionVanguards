@@ -294,11 +294,11 @@ const PraiseButtons = ({ praises }) => (
                 <div className = "background"></div>
             ) : (
                 <div className="score-container">
-                    {navigatedFromAudioVideo && (
+                    {/* {navigatedFromAudioVideo && ( */}
                         <div className="score-meter">
                             <ScoreMeter widthPerc={cv_score} title="Video Score" gradient={true} />
                         </div>
-                    )}
+                    {/* )} */}
                     <div className="score-meter">
                         <ScoreMeter widthPerc={pitch_score} title="Pitch Score" gradient={true} />
                     </div>
