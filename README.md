@@ -1,4 +1,4 @@
-# Fall Design Report - SightStep by The Vision Vanguards
+# Senior Design Report - SightStep by The Vision Vanguards
 
 ## Table of Contents
 
