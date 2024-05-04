@@ -18,7 +18,7 @@
 - Team Members: Stephanie Mullins, Rob Kelly, Athulya Ganesh
 - Advisor: Dr. Jilian Aurisano
 - [Link to our Biographies](Biographies.md)
-- [Link to Video Demo (no audio available unfortunately)] (https://www.youtube.com/watch?v=l0enL6FKXBA)
+- [Link to Video Demo (no audio available unfortunately)] https://www.youtube.com/watch?v=l0enL6FKXBA
 
 ## Project Description
 Vision Vanguards aims to develop an integrated karaoke and movement web application, combining computer vision and audio processing technologies. The project involves implementing gesture and full-body skeletal tracking, alongside audio processing for lyrical pitch accuracy. The team has completed initial research, environment setup, and technology selection for the web interface. The envisioned outcome includes a fully functional platform with accurate scoring for singing and dance movements, a comprehensive lyrics module, and user management features. The project's success relies on the seamless execution of key tasks, including technology implementation and interface optimization.
